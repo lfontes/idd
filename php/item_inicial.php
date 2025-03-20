@@ -7,7 +7,6 @@
 	$sql = "SELECT legajo FROM agentes WHERE email = '$user_id';";
 	
 	$rs = toba::db('desempenio')->consultar($sql);
-	ei_arbol($rs);
 	
 	$legajo = $rs[0]['legajo'];
 	echo '<div class="logo">';	

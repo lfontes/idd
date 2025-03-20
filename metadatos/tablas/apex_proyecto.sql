@@ -49,7 +49,7 @@ INSERT INTO apex_proyecto (proyecto, descripcion, descripcion_corta, estilo, con
 	NULL, --item_set_sesion
 	'1', --log_archivo
 	'7', --log_archivo_nivel
-	'pruebas', --fuente_datos
+	'desempenio', --fuente_datos
 	NULL, --pagina_tipo
 	NULL, --version
 	NULL, --version_fecha

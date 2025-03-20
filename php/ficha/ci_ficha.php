@@ -1,5 +1,5 @@
 <?php
-class ci_legajo extends pruebas_ci
+class ci_ficha extends pruebas_ci
 {
 	protected $s__datos_filtro;
 	
@@ -16,7 +16,6 @@ class ci_legajo extends pruebas_ci
 
 	function evt__filtro__filtrar($datos)
 	{
-		$datos['legajo'] = $this->legajo;
 		$this->s__datos_filtro = $datos;
 	}
 
@@ -29,19 +28,23 @@ class ci_legajo extends pruebas_ci
 
 	function conf__cuadro(toba_ei_cuadro $cuadro)
 	{
-		if (isset($this->legajo)) {
-		
-			$this->s__datos_filtro['legajo'] = $this->legajo;
-
-			$cuadro->set_datos($this->dep('datos')->tabla('agentes')->get_listado($this->s__datos_filtro));
+		if (isset($this->s__datos_filtro)) {
+			$cuadro->set_datos($this->dep('datos')->tabla('ficha')->get_listado($this->s__datos_filtro));
 		} else {
-			$cuadro->set_datos($this->dep('datos')->tabla('agentes')->get_listado());
+			$cuadro->set_datos($this->dep('datos')->tabla('ficha')->get_listado());
 		}
+	}
+
+	function evt__cuadro__eliminar($datos)
+	{
+		$this->dep('datos')->resetear();
+		$this->dep('datos')->cargar($datos);
+		$this->dep('datos')->eliminar_todo();
+		$this->dep('datos')->resetear();
 	}
 
 	function evt__cuadro__seleccion($datos)
 	{
-		ei_arbol($datos);
 		$this->dep('datos')->cargar($datos);
 		$this->set_pantalla('pant_edicion');
 	}
@@ -50,9 +53,8 @@ class ci_legajo extends pruebas_ci
 
 	function conf__formulario(toba_ei_formulario $form)
 	{
-		
 		if ($this->dep('datos')->esta_cargada()) {
-			$form->set_datos($this->dep('datos')->tabla('agentes')->get());
+			$form->set_datos($this->dep('datos')->tabla('ficha')->get());
 		} else {
 			$this->pantalla()->eliminar_evento('eliminar');
 		}
@@ -60,8 +62,7 @@ class ci_legajo extends pruebas_ci
 
 	function evt__formulario__modificacion($datos)
 	{
-		ei_arbol($datos);
-		$this->dep('datos')->tabla('agentes')->set($datos);
+		$this->dep('datos')->tabla('ficha')->set($datos);
 	}
 
 	function resetear()
@@ -94,16 +95,17 @@ class ci_legajo extends pruebas_ci
 		$this->resetear();
 	}
 
-	function ini()
+	function ini__operacion()
 	{
-	$nombre = toba::usuario()->get_nombre();
-	$user_id = toba::usuario()->get_id();
-	$this->perfil = implode('/', toba::usuario()->get_perfiles_funcionales());
-	$sql = "SELECT legajo FROM public.agentes WHERE email = '$user_id'";
-	$rs = toba::db('desempenio')->consultar($sql);
-	$this->legajo = $rs[0]['legajo'];
 	}
+
+	/**
+	 * devuelve el usuario logueado
+	 */
+	function usuario() {
+			return toba::usuario()->get_id();
+		}
+		
+	
 }
-
-
 ?>

@@ -11,7 +11,7 @@ class contexto_ejecucion extends toba_contexto_ejecucion
 			toba_logger::instancia()->redirect_to_stdout(\getenv('TOBA_REDIRECCIONAR_LOGS') == 1);
 		}
 		//toba::menu()->set_abrir_nueva_ventana();
-		toba::db()->set_parser_errores(new toba_parser_error_db_postgres7());
+		//toba::db()->set_parser_errores(new toba_parser_error_db_postgres7());
 		//toba::mensajes()->set_fuente_ini(toba::proyecto()->get_path().'/mensajes.ini');
 
 		//Autenticacion personalizada
