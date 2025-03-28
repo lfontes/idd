@@ -1,5 +1,5 @@
 ------------------------------------------------------------
---[2334]--  formacion 
+--[2372]--  DT - dedicaciones 
 ------------------------------------------------------------
 
 ------------------------------------------------------------
@@ -9,18 +9,18 @@
 --- INICIO Grupo de desarrollo 0
 INSERT INTO apex_objeto (proyecto, objeto, anterior, identificador, reflexivo, clase_proyecto, clase, punto_montaje, subclase, subclase_archivo, objeto_categoria_proyecto, objeto_categoria, nombre, titulo, colapsable, descripcion, fuente_datos_proyecto, fuente_datos, solicitud_registrar, solicitud_obj_obs_tipo, solicitud_obj_observacion, parametro_a, parametro_b, parametro_c, parametro_d, parametro_e, parametro_f, usuario, creacion, posicion_botonera) VALUES (
 	'pruebas', --proyecto
-	'2334', --objeto
+	'2372', --objeto
 	NULL, --anterior
 	NULL, --identificador
 	NULL, --reflexivo
 	'toba', --clase_proyecto
 	'toba_datos_tabla', --clase
 	'13', --punto_montaje
-	'dt_formacion', --subclase
-	'datos/dt_formacion.php', --subclase_archivo
+	'dt_dedicaciones', --subclase
+	'datos/dt_dedicaciones.php', --subclase_archivo
 	NULL, --objeto_categoria_proyecto
 	NULL, --objeto_categoria
-	'formacion', --nombre
+	'DT - dedicaciones', --nombre
 	NULL, --titulo
 	NULL, --colapsable
 	NULL, --descripcion
@@ -36,7 +36,7 @@ INSERT INTO apex_objeto (proyecto, objeto, anterior, identificador, reflexivo, c
 	NULL, --parametro_e
 	NULL, --parametro_f
 	NULL, --usuario
-	'2025-03-14 11:23:16', --creacion
+	'2025-03-27 12:20:15', --creacion
 	NULL  --posicion_botonera
 );
 --- FIN Grupo de desarrollo 0
@@ -46,22 +46,22 @@ INSERT INTO apex_objeto (proyecto, objeto, anterior, identificador, reflexivo, c
 ------------------------------------------------------------
 INSERT INTO apex_objeto_db_registros (objeto_proyecto, objeto, max_registros, min_registros, punto_montaje, ap, ap_clase, ap_archivo, tabla, tabla_ext, alias, modificar_claves, fuente_datos_proyecto, fuente_datos, permite_actualizacion_automatica, esquema, esquema_ext) VALUES (
 	'pruebas', --objeto_proyecto
-	'2334', --objeto
+	'2372', --objeto
 	NULL, --max_registros
 	NULL, --min_registros
 	'13', --punto_montaje
 	'1', --ap
 	NULL, --ap_clase
 	NULL, --ap_archivo
-	'formacion', --tabla
+	'dedicaciones', --tabla
 	NULL, --tabla_ext
 	NULL, --alias
-	NULL, --modificar_claves
+	'0', --modificar_claves
 	'pruebas', --fuente_datos_proyecto
 	'desempenio', --fuente_datos
-	'0', --permite_actualizacion_automatica
+	'1', --permite_actualizacion_automatica
 	'public', --esquema
-	NULL  --esquema_ext
+	'public'  --esquema_ext
 );
 
 ------------------------------------------------------------
@@ -71,23 +71,23 @@ INSERT INTO apex_objeto_db_registros (objeto_proyecto, objeto, max_registros, mi
 --- INICIO Grupo de desarrollo 0
 INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, columna, tipo, pk, secuencia, largo, no_nulo, no_nulo_db, externa, tabla) VALUES (
 	'pruebas', --objeto_proyecto
-	'2334', --objeto
-	'863', --col_id
+	'2372', --objeto
+	'906', --col_id
 	'id', --columna
 	'E', --tipo
 	'1', --pk
-	NULL, --secuencia
+	'dedicaciones_id_seq', --secuencia
 	NULL, --largo
 	NULL, --no_nulo
 	'1', --no_nulo_db
 	NULL, --externa
-	NULL  --tabla
+	'dedicaciones'  --tabla
 );
 INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, columna, tipo, pk, secuencia, largo, no_nulo, no_nulo_db, externa, tabla) VALUES (
 	'pruebas', --objeto_proyecto
-	'2334', --objeto
-	'864', --col_id
-	'tipo_formacion', --columna
+	'2372', --objeto
+	'907', --col_id
+	'dedicacion', --columna
 	'C', --tipo
 	'0', --pk
 	NULL, --secuencia
@@ -95,6 +95,6 @@ INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, colum
 	NULL, --no_nulo
 	'1', --no_nulo_db
 	NULL, --externa
-	NULL  --tabla
+	'dedicaciones'  --tabla
 );
 --- FIN Grupo de desarrollo 0
