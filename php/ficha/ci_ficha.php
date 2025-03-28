@@ -3,7 +3,17 @@ class ci_ficha extends pruebas_ci
 {
 	protected $s__datos_filtro;
 	
+	// funciones para acceder a los datos desde el ci interno
+	// asi es mas corto para llamarlas desde el ci interno 
+	function get_relacion()
+	{
+		return $this->dep('datos');
+	}
 
+	function get_tabla($id_tabla)
+	{
+		return $this->get_relacion()->tabla($id_tabla);
+	}
 
 	//---- Filtro -----------------------------------------------------------------------
 
@@ -51,19 +61,19 @@ class ci_ficha extends pruebas_ci
 
 	//---- Formulario -------------------------------------------------------------------
 
-	function conf__formulario(toba_ei_formulario $form)
-	{
-		if ($this->dep('datos')->esta_cargada()) {
-			$form->set_datos($this->dep('datos')->tabla('ficha')->get());
-		} else {
-			$this->pantalla()->eliminar_evento('eliminar');
-		}
-	}
+	// function conf__formulario(toba_ei_formulario $form)
+	// {
+	// 	if ($this->dep('datos')->esta_cargada()) {
+	// 		$form->set_datos($this->dep('datos')->tabla('ficha')->get());
+	// 	} else {
+	// 		$this->pantalla()->eliminar_evento('eliminar');
+	// 	}
+	// }
 
-	function evt__formulario__modificacion($datos)
-	{
-		$this->dep('datos')->tabla('ficha')->set($datos);
-	}
+	// function evt__formulario__modificacion($datos)
+	// {
+	// 	$this->dep('datos')->tabla('ficha')->set($datos);
+	// }
 
 	function resetear()
 	{
@@ -107,5 +117,32 @@ class ci_ficha extends pruebas_ci
 		}
 		
 	
+	//-----------------------------------------------------------------------------------
+	//---- edicion_ficha ----------------------------------------------------------------
+	//-----------------------------------------------------------------------------------
+
+	function conf__edicion_ficha(pruebas_ei_formulario $form)
+	{
+		if ($this->dep('datos')->esta_cargada()) {
+			$form->set_datos($this->dep('datos')->tabla('ficha')->get());
+		} else {
+			$this->pantalla()->eliminar_evento('eliminar');
+		}
+	}
+
+	function evt__edicion_ficha__modificacion($datos)
+	{
+		$this->dep('datos')->tabla('ficha')->set($datos);
+	}
+
+	//-----------------------------------------------------------------------------------
+	//---- formacion_academica ----------------------------------------------------------
+	//-----------------------------------------------------------------------------------
+
+	function conf__formacion_academica(pruebas_ei_formulario_ml $form_ml)
+	{
+		$form_ml->set_datos($this->dep('datos')->tabla('formacion_academica')->get_filas());
+	}
+
 }
 ?>
