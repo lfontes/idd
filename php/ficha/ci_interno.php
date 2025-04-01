@@ -100,5 +100,33 @@ class ci_interno extends pruebas_ci
 		$this->controlador()->get_tabla('docec_facultad')->procesar_filas($datos);
 	}
 
+	//-----------------------------------------------------------------------------------
+	//---- docec_posgrado ---------------------------------------------------------------
+	//-----------------------------------------------------------------------------------
+
+	function conf__docec_posgrado(pruebas_ei_formulario_ml $form_ml)
+	{
+		$form_ml->set_datos($this->controlador()->get_tabla('docec_posgrado')->get_filas());
+			}
+
+	function evt__docec_posgrado__modificacion($datos)
+	{
+		$this->controlador()->get_tabla('docec_posgrado')->procesar_filas($datos);
+	}
+
+	//-----------------------------------------------------------------------------------
+	//---- reu_cientificas --------------------------------------------------------------
+	//-----------------------------------------------------------------------------------
+
+	function conf__reu_cientificas(pruebas_ei_formulario_ml $form_ml)
+	{
+		$form_ml->set_datos($this->controlador()->get_tabla('reu_cientificas')->get_filas());
+	}
+
+	function evt__reu_cientificas__modificacion($datos)
+	{
+		$this->controlador()->get_tabla('reu_cientificas')->procesar_filas($datos);
+	}
+
 }
 ?>
