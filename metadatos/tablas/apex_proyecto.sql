@@ -51,7 +51,7 @@ INSERT INTO apex_proyecto (proyecto, descripcion, descripcion_corta, estilo, con
 	'7', --log_archivo_nivel
 	'desempenio', --fuente_datos
 	NULL, --pagina_tipo
-	NULL, --version
+	'0.1', --version
 	NULL, --version_fecha
 	NULL, --version_detalle
 	NULL, --version_link

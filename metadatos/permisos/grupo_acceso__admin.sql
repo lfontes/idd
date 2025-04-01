@@ -44,12 +44,6 @@ INSERT INTO apex_usuario_grupo_acc_item (proyecto, usuario_grupo_acc, item_id, i
 	'pruebas', --proyecto
 	'admin', --usuario_grupo_acc
 	NULL, --item_id
-	'3474'  --item
-);
-INSERT INTO apex_usuario_grupo_acc_item (proyecto, usuario_grupo_acc, item_id, item) VALUES (
-	'pruebas', --proyecto
-	'admin', --usuario_grupo_acc
-	NULL, --item_id
 	'3475'  --item
 );
 INSERT INTO apex_usuario_grupo_acc_item (proyecto, usuario_grupo_acc, item_id, item) VALUES (
