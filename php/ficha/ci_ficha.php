@@ -135,14 +135,6 @@ class ci_ficha extends pruebas_ci
 		$this->dep('datos')->tabla('ficha')->set($datos);
 	}
 
-	//-----------------------------------------------------------------------------------
-	//---- formacion_academica ----------------------------------------------------------
-	//-----------------------------------------------------------------------------------
-
-	function conf__formacion_academica(pruebas_ei_formulario_ml $form_ml)
-	{
-		$form_ml->set_datos($this->dep('datos')->tabla('formacion_academica')->get_filas());
-	}
-
+	
 }
 ?>

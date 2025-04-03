@@ -128,5 +128,19 @@ class ci_interno extends pruebas_ci
 		$this->controlador()->get_tabla('reu_cientificas')->procesar_filas($datos);
 	}
 
+	//-----------------------------------------------------------------------------------
+	//---- proy_educativos --------------------------------------------------------------
+	//-----------------------------------------------------------------------------------
+
+	function conf__proy_educativos(pruebas_ei_formulario_ml $form_ml)
+	{
+		$form_ml->set_datos($this->controlador()->get_tabla('proy_educativos')->get_filas());
+	}
+
+	function evt__proy_educativos__modificacion($datos)
+	{
+		$this->controlador()->get_tabla('proy_educativos')->procesar_filas($datos);
+	}
+
 }
 ?>
