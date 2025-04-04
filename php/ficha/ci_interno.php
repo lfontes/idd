@@ -142,5 +142,33 @@ class ci_interno extends pruebas_ci
 		$this->controlador()->get_tabla('proy_educativos')->procesar_filas($datos);
 	}
 
+	//-----------------------------------------------------------------------------------
+	//---- formaciion_docec -------------------------------------------------------------
+	//-----------------------------------------------------------------------------------
+
+	function conf__formaciion_docec(pruebas_ei_formulario_ml $form_ml)
+	{
+		$form_ml->set_datos($this->controlador()->get_tabla('formacion_docec')->get_filas());
+	}
+
+	function evt__formaciion_docec__modificacion($datos)
+	{
+		$this->controlador()->get_tabla('formacion_docec')->procesar_filas($datos);
+	}
+
+	//-----------------------------------------------------------------------------------
+	//---- materiales_pedag -------------------------------------------------------------
+	//-----------------------------------------------------------------------------------
+
+	function conf__materiales_pedag(pruebas_ei_formulario_ml $form_ml)
+	{
+		$form_ml->set_datos($this->controlador()->get_tabla('materiales_pedag')->get_filas());
+	}
+
+	function evt__materiales_pedag__modificacion($datos)
+	{
+		$this->controlador()->get_tabla('materiales_pedag')->procesar_filas($datos);
+	}
+
 }
 ?>

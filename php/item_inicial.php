@@ -16,4 +16,5 @@
 	echo $perfil .'<br>';
 	echo $legajo .'<br>';
 	echo '</div>';
+
 ?>
