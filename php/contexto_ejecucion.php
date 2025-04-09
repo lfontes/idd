@@ -23,7 +23,7 @@ class contexto_ejecucion extends toba_contexto_ejecucion
 		//Instanciacion del provider base para boostrap
 		$bootstrap_config = new bootstrap_factory();
 		toba::output()->registrarServicio($bootstrap_config);				
-		bootstrap_config::setMainColor( '#8B0C73');
+		bootstrap_config::setMainColor( '#0C328BEB');
 		bootstrap_config::setLogoNombre(toba_recurso::imagen_proyecto('logo.gif', false));
 
 		//Instanciacion del provider bootstrap extendido (en este caso propio del proyecto)

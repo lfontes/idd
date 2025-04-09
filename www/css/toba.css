@@ -25,3 +25,14 @@
 	font-weight: bolder;
 	font-size: 16px;
 }
+
+.mitad-pantalla {
+    width: 50vw;  /* 50% del ancho de la pantalla */
+    height: 50vh; /* 50% de la altura de la pantalla */
+    background-color: lightblue; /* Solo para visualizarlo */
+    display: flex; /* Para centrar contenido opcionalmente */
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border: 2px solid black;
+}

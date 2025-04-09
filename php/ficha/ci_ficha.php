@@ -136,5 +136,30 @@ class ci_ficha extends pruebas_ci
 	}
 
 	
+	//-----------------------------------------------------------------------------------
+	//---- cuadro_idd -------------------------------------------------------------------
+	//-----------------------------------------------------------------------------------
+
+	function conf__cuadro_idd(pruebas_ei_cuadro $cuadro_idd)
+	{
+		// $sql = "SELECT * FROM vista_idd 
+		// 		join ficha on (ficha.id = vista_idd.ficha_id)
+		// 		ORDER BY ficha_id";
+
+		// $datos = toba::db('desempenio')->consultar($sql);
+		// $cuadro->set_datos($datos);
+		if (isset($this->s__datos_filtro)) {
+			$cuadro_idd->set_datos($this->dep('datos')->tabla('ficha')->get_listado($this->s__datos_filtro));
+		} else {
+			$cuadro_idd->set_datos($this->dep('datos')->tabla('ficha')->get_listado());
+		}
+		
+	}
+
+
+	
+	
+	
+
 }
 ?>

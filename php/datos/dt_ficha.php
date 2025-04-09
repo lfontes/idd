@@ -30,7 +30,7 @@ class dt_ficha extends pruebas_datos_tabla
 			t_ded.dedicacion as dedicacion_doc,
 			t_f.dedicacion_id,
 			t_f.user_id,
-			(COALESCE(idd.ad1,0))+(COALESCE(idd.ad2,0))+(COALESCE(idd.ad3,0)) as idd 
+			idd.ad1,idd.ad2,idd.ad3,idd.ad4,idd.ad5,idd.ad6,idd.ad7,idd.ad8
 		FROM
 			ficha as t_f
 			LEFT OUTER JOIN departamentos as t_dep ON (t_f.departamento_id = t_dep.id_departamento)
@@ -38,7 +38,7 @@ class dt_ficha extends pruebas_datos_tabla
 			LEFT OUTER JOIN categorias_doc as t_catg ON (t_f.categoria_id = t_catg.id)
 			left OUTER JOIN dedicaciones as t_ded ON (t_f.dedicacion_id = t_ded.id)
 			LEFT OUTER JOIN vista_idd as idd ON (t_f.id = idd.ficha_id)
-		ORDER BY categoria";
+		ORDER BY ficha_id";
 		if (count($where)>0) {
 			$sql = sql_concatenar_where($sql, $where);
 		}

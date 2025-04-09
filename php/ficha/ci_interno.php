@@ -170,5 +170,6 @@ class ci_interno extends pruebas_ci
 		$this->controlador()->get_tabla('materiales_pedag')->procesar_filas($datos);
 	}
 
+	
 }
 ?>
