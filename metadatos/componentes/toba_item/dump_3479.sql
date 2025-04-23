@@ -1,5 +1,5 @@
 ------------------------------------------------------------
---[3479]--  Ficha 
+--[3479]--  Informes de Labor 
 ------------------------------------------------------------
 
 ------------------------------------------------------------
@@ -23,7 +23,7 @@ INSERT INTO apex_item (item_id, proyecto, item, padre_id, padre_proyecto, padre,
 	NULL, --actividad_buffer
 	NULL, --actividad_patron_proyecto
 	NULL, --actividad_patron
-	'Ficha', --nombre
+	'Informes de Labor', --nombre
 	NULL, --descripcion
 	'13', --punto_montaje
 	NULL, --actividad_accion

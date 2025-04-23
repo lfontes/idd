@@ -235,17 +235,17 @@ INSERT INTO apex_objeto_ei_formulario_ef (objeto_ei_formulario_fila, objeto_ei_f
 	NULL, --estado_defecto
 	'0', --solo_lectura
 	'0', --solo_lectura_modificacion
-	'get_descripciones', --carga_metodo
-	NULL, --carga_clase
-	NULL, --carga_include
-	'2386', --carga_dt
+	'get_espacios_curriculares', --carga_metodo
+	'dependencias', --carga_clase
+	'datos/dependencias.php', --carga_include
+	NULL, --carga_dt
 	NULL, --carga_consulta_php
 	NULL, --carga_sql
 	'desempenio', --carga_fuente
 	NULL, --carga_lista
 	'id', --carga_col_clave
 	'espacio_curricular', --carga_col_desc
-	NULL, --carga_maestros
+	'carrera_id', --carga_maestros
 	'0', --carga_cascada_relaj
 	'0', --cascada_mantiene_estado
 	'0', --carga_permite_no_seteado
@@ -559,17 +559,17 @@ INSERT INTO apex_objeto_ei_formulario_ef (objeto_ei_formulario_fila, objeto_ei_f
 	NULL, --estado_defecto
 	'0', --solo_lectura
 	'0', --solo_lectura_modificacion
-	'get_descripciones', --carga_metodo
-	NULL, --carga_clase
-	NULL, --carga_include
-	'2397', --carga_dt
+	'get_tipo_espacio_curricular', --carga_metodo
+	'dependencias', --carga_clase
+	'datos/dependencias.php', --carga_include
+	NULL, --carga_dt
 	NULL, --carga_consulta_php
 	NULL, --carga_sql
 	'desempenio', --carga_fuente
 	NULL, --carga_lista
 	'id', --carga_col_clave
 	'tipo_espacio_curricular', --carga_col_desc
-	NULL, --carga_maestros
+	'esp_curricular_id', --carga_maestros
 	'0', --carga_cascada_relaj
 	'0', --cascada_mantiene_estado
 	'0', --carga_permite_no_seteado

@@ -21,7 +21,7 @@ INSERT INTO apex_objeto (proyecto, objeto, anterior, identificador, reflexivo, c
 	NULL, --objeto_categoria_proyecto
 	NULL, --objeto_categoria
 	'Ficha - Cuadro.', --nombre
-	'Fichas', --titulo
+	'Informes de Labor', --titulo
 	'0', --colapsable
 	NULL, --descripcion
 	NULL, --fuente_datos_proyecto
@@ -53,14 +53,14 @@ INSERT INTO apex_objeto_eventos (proyecto, evento_id, objeto, identificador, eti
 	'eliminar', --identificador
 	NULL, --etiqueta
 	'1', --maneja_datos
-	'1', --sobre_fila
+	'0', --sobre_fila
 	'¿Desea eliminar el registro?', --confirmacion
 	NULL, --estilo
 	'apex', --imagen_recurso_origen
 	'borrar.gif', --imagen
 	'0', --en_botonera
 	NULL, --ayuda
-	'0', --orden
+	'1', --orden
 	NULL, --ci_predep
 	NULL, --implicito
 	NULL, --defecto
@@ -71,7 +71,7 @@ INSERT INTO apex_objeto_eventos (proyecto, evento_id, objeto, identificador, eti
 	NULL, --accion_vinculo_carpeta
 	NULL, --accion_vinculo_item
 	NULL, --accion_vinculo_objeto
-	NULL, --accion_vinculo_popup
+	'0', --accion_vinculo_popup
 	NULL, --accion_vinculo_popup_param
 	NULL, --accion_vinculo_target
 	NULL, --accion_vinculo_celda
@@ -93,7 +93,7 @@ INSERT INTO apex_objeto_eventos (proyecto, evento_id, objeto, identificador, eti
 	'doc.gif', --imagen
 	'0', --en_botonera
 	NULL, --ayuda
-	'1', --orden
+	'2', --orden
 	NULL, --ci_predep
 	NULL, --implicito
 	NULL, --defecto
@@ -128,7 +128,7 @@ INSERT INTO apex_objeto_cuadro (objeto_cuadro_proyecto, objeto_cuadro, titulo, s
 	'0', --clave_dbr
 	NULL, --archivos_callbacks
 	'100%', --ancho
-	'0', --ordenar
+	'1', --ordenar
 	'0', --paginar
 	NULL, --tamano_pagina
 	'P', --tipo_paginado
@@ -138,7 +138,7 @@ INSERT INTO apex_objeto_cuadro (objeto_cuadro_proyecto, objeto_cuadro, titulo, s
 	'0', --siempre_con_titulo
 	'0', --exportar_paginado
 	'0', --exportar
-	'0', --exportar_rtf
+	'1', --exportar_rtf
 	NULL, --pdf_propiedades
 	NULL, --pdf_respetar_paginacion
 	NULL, --asociacion_columnas

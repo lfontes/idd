@@ -1,5 +1,5 @@
 ------------------------------------------------------------
---[2373]--  DT - idd 
+--[2417]--  DT - c38_tareas_tipos 
 ------------------------------------------------------------
 
 ------------------------------------------------------------
@@ -9,18 +9,18 @@
 --- INICIO Grupo de desarrollo 0
 INSERT INTO apex_objeto (proyecto, objeto, anterior, identificador, reflexivo, clase_proyecto, clase, punto_montaje, subclase, subclase_archivo, objeto_categoria_proyecto, objeto_categoria, nombre, titulo, colapsable, descripcion, fuente_datos_proyecto, fuente_datos, solicitud_registrar, solicitud_obj_obs_tipo, solicitud_obj_observacion, parametro_a, parametro_b, parametro_c, parametro_d, parametro_e, parametro_f, usuario, creacion, posicion_botonera) VALUES (
 	'pruebas', --proyecto
-	'2373', --objeto
+	'2417', --objeto
 	NULL, --anterior
 	NULL, --identificador
 	NULL, --reflexivo
 	'toba', --clase_proyecto
 	'toba_datos_tabla', --clase
 	'13', --punto_montaje
-	NULL, --subclase
-	NULL, --subclase_archivo
+	'dt_c38_tareas_tipos', --subclase
+	'datos/dt_c38_tareas_tipos.php', --subclase_archivo
 	NULL, --objeto_categoria_proyecto
 	NULL, --objeto_categoria
-	'DT - idd', --nombre
+	'DT - c38_tareas_tipos', --nombre
 	NULL, --titulo
 	NULL, --colapsable
 	NULL, --descripcion
@@ -36,7 +36,7 @@ INSERT INTO apex_objeto (proyecto, objeto, anterior, identificador, reflexivo, c
 	NULL, --parametro_e
 	NULL, --parametro_f
 	NULL, --usuario
-	'2025-03-27 12:38:27', --creacion
+	'2025-04-03 16:26:59', --creacion
 	NULL  --posicion_botonera
 );
 --- FIN Grupo de desarrollo 0
@@ -46,14 +46,14 @@ INSERT INTO apex_objeto (proyecto, objeto, anterior, identificador, reflexivo, c
 ------------------------------------------------------------
 INSERT INTO apex_objeto_db_registros (objeto_proyecto, objeto, max_registros, min_registros, punto_montaje, ap, ap_clase, ap_archivo, tabla, tabla_ext, alias, modificar_claves, fuente_datos_proyecto, fuente_datos, permite_actualizacion_automatica, esquema, esquema_ext) VALUES (
 	'pruebas', --objeto_proyecto
-	'2373', --objeto
+	'2417', --objeto
 	NULL, --max_registros
 	NULL, --min_registros
 	'13', --punto_montaje
 	'1', --ap
 	NULL, --ap_clase
 	NULL, --ap_archivo
-	'idd', --tabla
+	'c38_tareas_tipos', --tabla
 	NULL, --tabla_ext
 	NULL, --alias
 	'0', --modificar_claves
@@ -71,37 +71,37 @@ INSERT INTO apex_objeto_db_registros (objeto_proyecto, objeto, max_registros, mi
 --- INICIO Grupo de desarrollo 0
 INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, columna, tipo, pk, secuencia, largo, no_nulo, no_nulo_db, externa, tabla) VALUES (
 	'pruebas', --objeto_proyecto
-	'2373', --objeto
-	'908', --col_id
+	'2417', --objeto
+	'1011', --col_id
 	'id', --columna
 	'E', --tipo
 	'1', --pk
-	'idd_id_seq', --secuencia
+	'c38_tareas_tipos_id_seq', --secuencia
 	NULL, --largo
 	NULL, --no_nulo
 	'1', --no_nulo_db
 	NULL, --externa
-	'idd'  --tabla
+	'c38_tareas_tipos'  --tabla
 );
 INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, columna, tipo, pk, secuencia, largo, no_nulo, no_nulo_db, externa, tabla) VALUES (
 	'pruebas', --objeto_proyecto
-	'2373', --objeto
-	'909', --col_id
-	'ficha_id', --columna
-	'E', --tipo
+	'2417', --objeto
+	'1012', --col_id
+	'tipo_tarea', --columna
+	'C', --tipo
 	'0', --pk
 	NULL, --secuencia
 	NULL, --largo
 	NULL, --no_nulo
-	'1', --no_nulo_db
+	'0', --no_nulo_db
 	NULL, --externa
-	'idd'  --tabla
+	'c38_tareas_tipos'  --tabla
 );
 INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, columna, tipo, pk, secuencia, largo, no_nulo, no_nulo_db, externa, tabla) VALUES (
 	'pruebas', --objeto_proyecto
-	'2373', --objeto
-	'910', --col_id
-	'ad1', --columna
+	'2417', --objeto
+	'1013', --col_id
+	'valor', --columna
 	'N', --tipo
 	'0', --pk
 	NULL, --secuencia
@@ -109,90 +109,6 @@ INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, colum
 	NULL, --no_nulo
 	'0', --no_nulo_db
 	NULL, --externa
-	'idd'  --tabla
-);
-INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, columna, tipo, pk, secuencia, largo, no_nulo, no_nulo_db, externa, tabla) VALUES (
-	'pruebas', --objeto_proyecto
-	'2373', --objeto
-	'911', --col_id
-	'ad2', --columna
-	'N', --tipo
-	'0', --pk
-	NULL, --secuencia
-	NULL, --largo
-	NULL, --no_nulo
-	'0', --no_nulo_db
-	NULL, --externa
-	'idd'  --tabla
-);
-INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, columna, tipo, pk, secuencia, largo, no_nulo, no_nulo_db, externa, tabla) VALUES (
-	'pruebas', --objeto_proyecto
-	'2373', --objeto
-	'912', --col_id
-	'ad3', --columna
-	'N', --tipo
-	'0', --pk
-	NULL, --secuencia
-	NULL, --largo
-	NULL, --no_nulo
-	'0', --no_nulo_db
-	NULL, --externa
-	'idd'  --tabla
-);
-INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, columna, tipo, pk, secuencia, largo, no_nulo, no_nulo_db, externa, tabla) VALUES (
-	'pruebas', --objeto_proyecto
-	'2373', --objeto
-	'913', --col_id
-	'ad4', --columna
-	'N', --tipo
-	'0', --pk
-	NULL, --secuencia
-	NULL, --largo
-	NULL, --no_nulo
-	'0', --no_nulo_db
-	NULL, --externa
-	'idd'  --tabla
-);
-INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, columna, tipo, pk, secuencia, largo, no_nulo, no_nulo_db, externa, tabla) VALUES (
-	'pruebas', --objeto_proyecto
-	'2373', --objeto
-	'914', --col_id
-	'ad5', --columna
-	'N', --tipo
-	'0', --pk
-	NULL, --secuencia
-	NULL, --largo
-	NULL, --no_nulo
-	'0', --no_nulo_db
-	NULL, --externa
-	'idd'  --tabla
-);
-INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, columna, tipo, pk, secuencia, largo, no_nulo, no_nulo_db, externa, tabla) VALUES (
-	'pruebas', --objeto_proyecto
-	'2373', --objeto
-	'915', --col_id
-	'ad6', --columna
-	'N', --tipo
-	'0', --pk
-	NULL, --secuencia
-	NULL, --largo
-	NULL, --no_nulo
-	'0', --no_nulo_db
-	NULL, --externa
-	'idd'  --tabla
-);
-INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, columna, tipo, pk, secuencia, largo, no_nulo, no_nulo_db, externa, tabla) VALUES (
-	'pruebas', --objeto_proyecto
-	'2373', --objeto
-	'916', --col_id
-	'ad7', --columna
-	'N', --tipo
-	'0', --pk
-	NULL, --secuencia
-	NULL, --largo
-	NULL, --no_nulo
-	'0', --no_nulo_db
-	NULL, --externa
-	'idd'  --tabla
+	'c38_tareas_tipos'  --tabla
 );
 --- FIN Grupo de desarrollo 0

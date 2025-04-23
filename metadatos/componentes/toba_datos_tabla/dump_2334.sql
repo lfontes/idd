@@ -97,4 +97,18 @@ INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, colum
 	NULL, --externa
 	NULL  --tabla
 );
+INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, columna, tipo, pk, secuencia, largo, no_nulo, no_nulo_db, externa, tabla) VALUES (
+	'pruebas', --objeto_proyecto
+	'2334', --objeto
+	'1014', --col_id
+	'valor', --columna
+	'N', --tipo
+	'0', --pk
+	NULL, --secuencia
+	NULL, --largo
+	NULL, --no_nulo
+	'1', --no_nulo_db
+	NULL, --externa
+	'formacion'  --tabla
+);
 --- FIN Grupo de desarrollo 0
