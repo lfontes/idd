@@ -157,6 +157,23 @@ class ci_ficha extends pruebas_ci
 	}
 
 
+	function vista_jasperreports(toba_vista_jasperreports $vista) 
+	{
+		// Ruta al archivo .jasper
+		//$vista->set_path_reporte('reportes/fichas.jasper');
+
+		// Parámetros para el informe
+		$titulo = 'Informe de Fichas';
+		$vista->set_parametro('titulo', 'S', $titulo);
+		// Parámetro para filtrar por ID de ficha seleccionada
+       
+            $vista->set_parametro('ficha_id', 'E',22);
+        
+		$vista->set_path_reporte('/var/local/pruebas/vendor/siu-toba/framework/proyectos/pruebas/reportes/report2.jasper');
+
+	}
+
+
 	
 	
 	

@@ -2,6 +2,8 @@
 class ci_impresion_informe extends pruebas_ci
 {
 	protected $s__datos_filtro;
+	protected $s__id_ficha_seleccionada;
+	protected $s__seleccion;
 
 
 	//---- Filtro -----------------------------------------------------------------------
@@ -37,6 +39,15 @@ class ci_impresion_informe extends pruebas_ci
 	function evt__cuadro__seleccion($datos)
 	{
 		$this->dep('datos')->cargar($datos);
+				
+	}
+
+	function evt__cuadro__imprimir($datos)
+	{
+		$this->dep('datos')->cargar($datos);
+		$this->s__seleccion = $this->dep('cuadro')->get_clave_seleccionada();
+		
+		
 	}
 
 	//---- Formulario -------------------------------------------------------------------
@@ -80,8 +91,18 @@ class ci_impresion_informe extends pruebas_ci
 
 	function vista_jasperreports(toba_vista_jasperreports $vista) 
 	{
-		// Ruta al archivo .jasper
-		$vista->set_path_reporte('/var/local/pruebas/vendor/siu-toba/framework/proyectos/pruebas/reportes/report1.jasper');
+		$path= toba::memoria()->get_parametro('path');
+		$data_cuadro=$this->dep('cuadro')->get_datos();
+		$ficha= $data_cuadro[$path]['id'];
+
+		
+		// Parámetros para el informe
+		$titulo = 'Informe de Labor';
+		$vista->set_parametro('titulo', 'S', $titulo);
+		
+		$vista->set_parametro('ficha_id', 'E', $ficha);
+		
+		$vista->set_path_reporte('/var/local/pruebas/vendor/siu-toba/framework/proyectos/pruebas/reportes/report2.jasper');
 
 		/* Parámetros para el informe
 		$vista->set_parametros(array(
@@ -96,4 +117,26 @@ class ci_impresion_informe extends pruebas_ci
 		$vista->set_nombre_archivo('informe_fichas.pdf');
 		*/
 	}
+
+	/**
+		* Atrapa el evento seleccion del cuadro e invoca manualmente el serviccio vista_jasperreports pasandole el hash por parámetro
+		* @param array $datos
+		*/
+	
+	 function extender_objeto_js()
+	{ 
+		if ($this->get_id_pantalla() == 'pant_edicion') {
+			echo 
+				 toba::escaper()->escapeJs($this->dep('cuadro')->objeto_js).".evt__imprimir = function(params) {
+					
+					location.href = vinculador.get_url(null, null, 'vista_jasperreports', {'path': params});
+					return false;
+				}
+				
+			"; 
+			
+		} 
+	} 
+
 }
+?>

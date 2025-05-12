@@ -2,26 +2,430 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report2" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="67335831-b025-4b18-95e8-32612b875816">
 	<property name="ireport.zoom" value="2.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="91"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 2_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 3_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="formacion" uuid="b4cbe7ca-e700-47e8-914d-f187740da578">
+		<parameter name="ficha" class="java.lang.Integer" isForPrompting="false"/>
+		<queryString>
+			<![CDATA[select * from formacion_academica
+where ficha_id = $P{ficha}]]>
+		</queryString>
+		<field name="id" class="java.lang.Integer"/>
+		<field name="ficha_id" class="java.lang.Integer"/>
+		<field name="tipo_formacion" class="java.lang.Integer"/>
+		<field name="titulo" class="java.lang.String"/>
+		<field name="institucion" class="java.lang.String"/>
+		<field name="normativa" class="java.lang.String"/>
+		<field name="anio" class="java.lang.Integer"/>
+	</subDataset>
+	<parameter name="titulo" class="java.lang.String"/>
+	<parameter name="ficha_id" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[select * from ficha
+where id = $P{ficha_id}]]>
+	</queryString>
+	<field name="id" class="java.lang.Integer"/>
+	<field name="dni_doc" class="java.lang.Long"/>
+	<field name="legajo_doc" class="java.lang.Long"/>
+	<field name="fecha_alta" class="java.sql.Date"/>
+	<field name="fecha_modif" class="java.sql.Date"/>
+	<field name="departamento_id" class="java.lang.Integer"/>
+	<field name="catedra_id" class="java.lang.Integer"/>
+	<field name="user_id" class="java.lang.String"/>
+	<field name="categoria_id" class="java.lang.Integer"/>
+	<field name="dedicacion_id" class="java.lang.Integer"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="79" splitType="Stretch">
-			<staticText>
-				<reportElement x="227" y="33" width="100" height="20" uuid="b29b3b26-c2f1-4e03-97f0-a72f944882a5"/>
-				<text><![CDATA[HOLA MUNDO!!]]></text>
-			</staticText>
+		<band height="52" splitType="Stretch">
+			<textField>
+				<reportElement x="120" y="25" width="199" height="20" uuid="063beb39-41f0-4247-ac86-c5e8cb2a5636"/>
+				<textFieldExpression><![CDATA[$P{titulo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="349" y="25" width="96" height="20" uuid="9d5c2960-25d6-4988-a775-9b93e5621136"/>
+				<textFieldExpression><![CDATA[$P{ficha_id}]]></textFieldExpression>
+			</textField>
 		</band>
 	</title>
 	<pageHeader>
-		<band height="35" splitType="Stretch"/>
+		<band height="18" splitType="Stretch"/>
 	</pageHeader>
 	<columnHeader>
-		<band height="61" splitType="Stretch"/>
+		<band height="29" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="32" height="20" uuid="727cac2f-6a71-4860-b4c4-ca00d2af90ed"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[id]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="39" y="0" width="55" height="20" uuid="8ae2aa11-0501-4228-a5c1-afda4e6bae79"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[dni_doc]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="104" y="0" width="61" height="20" uuid="dc9d05b3-a9a0-4636-8942-019bff5e6107"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[legajo_doc]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="175" y="0" width="55" height="20" uuid="1db58b92-e38c-4553-a3d7-eb05020280b5"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[fecha_alta]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="239" y="0" width="55" height="20" uuid="c316d44b-ed2b-4943-8f63-1cfaee33c916"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[fecha_modif]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="306" y="0" width="43" height="20" uuid="e24c7936-dc27-4542-ab99-5df1a8ff1da8"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[departamento_id]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="354" y="0" width="55" height="20" uuid="747ec853-b110-475c-92de-a9fd71cf7398"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[catedra_id]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="415" y="0" width="41" height="20" uuid="98d12281-0dd8-4520-83bc-74f50ffe6a8f"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[user_id]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="469" y="0" width="26" height="20" uuid="437f2b2c-a39f-40c3-8fee-5aba9b680da4"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[categoria_id]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="499" y="0" width="55" height="20" uuid="753f9481-277a-4cf8-8b82-7c085dc7d601"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[dedicacion_id]]></text>
+			</staticText>
+		</band>
 	</columnHeader>
 	<detail>
-		<band height="125" splitType="Stretch"/>
+		<band height="137" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="32" height="20" uuid="4fc6a2e9-a5a2-4bdb-84f0-50d1cae493dd"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="39" y="0" width="55" height="20" uuid="f5dc3c0e-2989-419e-b8c5-6ffba87cfa1d"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dni_doc}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="104" y="0" width="61" height="20" uuid="98620558-3697-4d3a-9e8a-9a0044b5221b"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{legajo_doc}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="175" y="0" width="55" height="20" uuid="28bc4adc-d172-4790-80b3-e149cdbfa80b"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fecha_alta}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="239" y="0" width="55" height="20" uuid="6c434e88-1d66-475d-8b65-fafed3a53170"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{fecha_modif}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="306" y="0" width="43" height="20" uuid="65f0870c-5e18-4543-9cec-c2218b17d39a"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{departamento_id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="354" y="0" width="55" height="20" uuid="a5b45724-bb0b-416c-8f09-3be4669e6083"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{catedra_id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="415" y="0" width="41" height="20" uuid="d0f13805-a9de-4b8b-a8f3-c309f896b696"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{user_id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="469" y="0" width="26" height="20" uuid="255d582b-c5dd-404a-a230-849e0d490db0"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{categoria_id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="499" y="0" width="55" height="20" uuid="58e7f9b6-58e5-4911-a22d-06aef76340ed"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dedicacion_id}]]></textFieldExpression>
+			</textField>
+			<componentElement>
+				<reportElement key="table 4" x="1" y="20" width="554" height="97" uuid="e2230710-d33d-48b0-84c1-b8a74499c229"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="formacion" uuid="42c12ceb-9ff0-4786-a21c-1bb9c82e760f">
+						<datasetParameter name="ficha">
+							<datasetParameterExpression><![CDATA[$P{ficha_id}]]></datasetParameterExpression>
+						</datasetParameter>
+						<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					</datasetRun>
+					<jr:columnGroup width="119" uuid="239d10ae-9888-4ec3-9418-aebb91d56748">
+						<jr:tableHeader height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="119" height="30" uuid="09019b0a-6463-420c-b02b-d91bfc545afd"/>
+								<textElement verticalAlignment="Middle">
+									<font isBold="true"/>
+								</textElement>
+								<text><![CDATA[3.1 Formacion Académica]]></text>
+							</staticText>
+						</jr:tableHeader>
+						<jr:column width="49" uuid="d75e591a-189e-4381-b622-440cd785fbb3">
+							<jr:tableFooter height="30" rowSpan="1"/>
+							<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+								<staticText>
+									<reportElement x="0" y="0" width="49" height="30" uuid="d87bb776-0d56-4377-bd5a-6b003d6426e6"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle"/>
+									<text><![CDATA[id]]></text>
+								</staticText>
+							</jr:columnHeader>
+							<jr:columnFooter height="30" rowSpan="1"/>
+							<jr:detailCell style="table 1" height="30" rowSpan="1">
+								<textField>
+									<reportElement x="0" y="0" width="49" height="30" uuid="a2a2b31e-177c-44e8-b796-913b48dfd908"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle"/>
+									<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="70" uuid="ac99ecbf-1bc3-4ac7-a8e3-28f077ad441d">
+							<jr:tableFooter height="30" rowSpan="1"/>
+							<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+								<staticText>
+									<reportElement x="0" y="0" width="70" height="30" uuid="58b9a57a-2e02-44dc-b57e-d35783b3158b"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle"/>
+									<text><![CDATA[ficha_id]]></text>
+								</staticText>
+							</jr:columnHeader>
+							<jr:columnFooter height="30" rowSpan="1"/>
+							<jr:detailCell style="table 1" height="30" rowSpan="1">
+								<textField>
+									<reportElement x="0" y="0" width="70" height="30" uuid="3dd2299e-7e29-4f34-a09e-9a17ef9a4ac5"/>
+									<textElement textAlignment="Center" verticalAlignment="Middle"/>
+									<textFieldExpression><![CDATA[$F{ficha_id}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+					</jr:columnGroup>
+					<jr:column width="90" uuid="54551edc-64d7-4069-8f66-d9c85d7032a1">
+						<jr:tableFooter height="30" rowSpan="1"/>
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="0bb59547-836f-4e0a-ab04-d503ff237e35"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<text><![CDATA[tipo_formacion]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter height="30" rowSpan="1"/>
+						<jr:detailCell style="table 1" height="30" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="96f56f18-27b2-4d3e-b9c8-e0b093538eae"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{tipo_formacion}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="62eea85d-1b36-4f0d-ac54-04fc4f3c749c">
+						<jr:tableFooter height="30" rowSpan="1"/>
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="09a78fef-ddea-4881-a1f7-f3be42095329"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<text><![CDATA[titulo]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter height="30" rowSpan="1"/>
+						<jr:detailCell style="table 1" height="30" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="2d13b268-eac5-43f5-981f-0af7ad809129"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{titulo}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="bb5cde30-c2f7-49ad-a312-f94e268f275f">
+						<jr:tableFooter height="30" rowSpan="1"/>
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="3dfe62f8-846b-4830-b356-61ee68533d4c"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<text><![CDATA[institucion]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter height="30" rowSpan="1"/>
+						<jr:detailCell style="table 1" height="30" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="9c0258d4-e4a5-4402-bbf0-627dc01bd893"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{institucion}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="1a468d39-7e01-4579-91da-c19277dfbf49">
+						<jr:tableFooter height="30" rowSpan="1"/>
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="026cd781-2289-471b-b03d-38e32dde914c"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<text><![CDATA[normativa]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter height="30" rowSpan="1"/>
+						<jr:detailCell style="table 1" height="30" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="fb32a44a-d7b1-4664-8644-e3fd40c49fb6"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{normativa}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="90" uuid="38be0ff7-eba8-494d-8d80-8f2ac3a7ff0b">
+						<jr:tableFooter height="30" rowSpan="1"/>
+						<jr:columnHeader style="table_CH" height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="90" height="30" uuid="74a444e9-1421-415a-bbf0-95e2aea65429"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<text><![CDATA[anio]]></text>
+							</staticText>
+						</jr:columnHeader>
+						<jr:columnFooter height="30" rowSpan="1"/>
+						<jr:detailCell style="table 1" height="30" rowSpan="1">
+							<textField>
+								<reportElement x="0" y="0" width="90" height="20" uuid="58fee359-9e25-4781-ac23-d32c2b2f8126"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{anio}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+		</band>
 	</detail>
 	<columnFooter>
 		<band height="45" splitType="Stretch"/>
