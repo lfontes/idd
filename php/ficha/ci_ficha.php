@@ -156,9 +156,6 @@ class ci_ficha extends pruebas_ci
 		
 	}
 
-
-	
-	
 	
 
 }

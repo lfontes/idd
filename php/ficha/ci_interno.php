@@ -1,4 +1,5 @@
 <?php
+use datos\dependencias;
 class ci_interno extends pruebas_ci
 {
 	/**
@@ -181,6 +182,39 @@ class ci_interno extends pruebas_ci
 	{
 		$this->controlador()->get_tabla('materiales_pedag')->procesar_filas($datos);
 	}
+
+
+	/** // Método AJAX
+     * Devuelve la cantidad de inscriptos por año y actividad.
+     * @param int $anio_academico
+     * @param string $codigo_actividad
+     * @return array
+     */
+
+	
+    function ajax__get_inscriptos_por_espacio($parametros, toba_ajax_respuesta $respuesta)
+    {
+		//$anio = (string)$parametros[0];
+		$anio='2024';
+		$espacio = toba::db()->quote($parametros[0]);
+
+    $sql = "
+        SELECT count(*) as inscriptos
+        FROM negocio.vw_insc_cursada
+        JOIN negocio.sga_comisiones ON negocio.vw_insc_cursada.comision = negocio.sga_comisiones.comision
+        JOIN negocio.sga_periodos_lectivos ON negocio.sga_comisiones.periodo_lectivo = negocio.sga_periodos_lectivos.periodo_lectivo
+        JOIN negocio.sga_periodos ON negocio.sga_periodos_lectivos.periodo = negocio.sga_periodos.periodo
+        JOIN negocio.vw_actividades_plan ON (
+            negocio.sga_comisiones.elemento = negocio.vw_actividades_plan.elemento
+            AND negocio.vw_insc_cursada.plan_version = negocio.vw_actividades_plan.plan_version
+        )
+        WHERE negocio.sga_periodos.anio_academico = '2024'
+          AND negocio.vw_actividades_plan.codigo = $espacio
+    ";
+
+    $cant_inscriptos = toba::db('guarani')->consultar($sql);
+    $respuesta->set($cant_inscriptos[0]['inscriptos']);
+    }
 
 	
 }

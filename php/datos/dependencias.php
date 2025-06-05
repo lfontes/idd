@@ -6,7 +6,7 @@ class dependencias
 	static function get_espacios_curriculares($carrera)
 	{
 		$sql = "SELECT
-			t_cec.id,
+			t_cec.cod_guarani,
 			t_cec.espacio_curricular
 			FROM
 			c33_espacios_curriculares as t_cec
@@ -26,6 +26,8 @@ class dependencias
                 ORDER BY tipo_espacio_curricular";
         return toba::db('desempenio')->consultar($sql);
     }
+
+   
 }
 
 ?>
