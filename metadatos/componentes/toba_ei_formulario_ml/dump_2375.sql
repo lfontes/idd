@@ -21,8 +21,8 @@ INSERT INTO apex_objeto (proyecto, objeto, anterior, identificador, reflexivo, c
 	NULL, --objeto_categoria_proyecto
 	NULL, --objeto_categoria
 	'Ficha - CI - interno - actualizacion', --nombre
-	'3.2 Actualización, Capacitación y Distinción', --titulo
-	'1', --colapsable
+	NULL, --titulo
+	'0', --colapsable
 	'Referencias a los campos de la tabla', --descripcion
 	'pruebas', --fuente_datos_proyecto
 	'desempenio', --fuente_datos
