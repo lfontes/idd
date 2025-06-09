@@ -158,5 +158,23 @@ class ci_ficha extends pruebas_ci
 
 	
 
+
+function vista_jasperreports(toba_vista_jasperreports $report) 
+	{
+		// Configuración del reporte Jasper
+		$path = toba::proyecto()->get_path(). '/reportes';
+
+		//$path = toba::memoria()->get_parametro('path');
+		if (! isset($path) || ! is_numeric($path) || ! isset($this->s__paths[$path])) {
+			throw new toba_error_def("Parámetro no definido");
+		}
+		$report->set_path_reporte($this->s__paths[$path]);
+		$db = toba::instancia()->get_db();
+		$report->set_conexion($db);
+	}
+
+
+	
+
 }
 ?>
