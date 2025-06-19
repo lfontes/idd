@@ -2,6 +2,7 @@
 use datos\dependencias;
 class ci_interno extends pruebas_ci
 {
+	
 	/**
 	 * devuelve el usuario logueado
 	 */

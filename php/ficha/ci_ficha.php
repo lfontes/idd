@@ -2,7 +2,8 @@
 class ci_ficha extends pruebas_ci
 {
 	protected $s__datos_filtro;
-	
+	protected $s__ficha_seleccionada;
+
 	// funciones para acceder a los datos desde el ci interno
 	// asi es mas corto para llamarlas desde el ci interno 
 	function get_relacion()
@@ -43,6 +44,7 @@ class ci_ficha extends pruebas_ci
 		} else {
 			$cuadro->set_datos($this->dep('datos')->tabla('ficha')->get_listado());
 		}
+		
 	}
 
 	function evt__cuadro__eliminar($datos)
@@ -56,9 +58,11 @@ class ci_ficha extends pruebas_ci
 	function evt__cuadro__seleccion($datos)
 	{
 		$this->dep('datos')->cargar($datos);
+		$this->s__ficha_seleccionada = $seleccion;
 		$this->set_pantalla('pant_edicion');
 	}
 
+	
 	//---- Formulario -------------------------------------------------------------------
 
 	// function conf__formulario(toba_ei_formulario $form)
@@ -105,18 +109,17 @@ class ci_ficha extends pruebas_ci
 		$this->resetear();
 	}
 
-	function ini__operacion()
-	{
-	}
+	function ini__operacion() {}
 
 	/**
 	 * devuelve el usuario logueado
 	 */
-	function usuario() {
-			return toba::usuario()->get_id();
-		}
-		
-	
+	function usuario()
+	{
+		return toba::usuario()->get_id();
+	}
+
+
 	//-----------------------------------------------------------------------------------
 	//---- edicion_ficha ----------------------------------------------------------------
 	//-----------------------------------------------------------------------------------
@@ -135,7 +138,7 @@ class ci_ficha extends pruebas_ci
 		$this->dep('datos')->tabla('ficha')->set($datos);
 	}
 
-	
+
 	//-----------------------------------------------------------------------------------
 	//---- cuadro_idd -------------------------------------------------------------------
 	//-----------------------------------------------------------------------------------
@@ -153,28 +156,59 @@ class ci_ficha extends pruebas_ci
 		} else {
 			$cuadro_idd->set_datos($this->dep('datos')->tabla('ficha')->get_listado());
 		}
-		
 	}
 
-	
+//IMPRESION
 
-
-function vista_jasperreports(toba_vista_jasperreports $report) 
+//funcion que devuelte la ficha seleccionada  a partir del indice del cuadro $seleccion
+	function set_ficha_seleccionada($seleccion)
 	{
-		// Configuración del reporte Jasper
-		$path = toba::proyecto()->get_path(). '/reportes';
+		$r_fichas=($this->dep('cuadro')->get_datos());
+		return $r_fichas[$seleccion];
+	}
 
-		//$path = toba::memoria()->get_parametro('path');
-		if (! isset($path) || ! is_numeric($path) || ! isset($this->s__paths[$path])) {
-			throw new toba_error_def("Parámetro no definido");
-		}
-		$report->set_path_reporte($this->s__paths[$path]);
-		$db = toba::instancia()->get_db();
-		$report->set_conexion($db);
+	function vista_jasperreports(toba_vista_jasperreports $vista)
+	{
+		$id = toba::memoria()->get_parametro('seleccion'); // Obtiene el id de la ficha seleccionada desde la memoria
+		// Parámetros para el informe
+		$titulo = 'Informe de Fichas';
+		$vista->set_parametro('titulo', 'S', $titulo);
+		$fichaid =  $this->set_ficha_seleccionada($id); // Obtiene la ficha seleccionada a partir del id
+		
+		$vista->set_parametro('ficha_id', 'E', $fichaid['id']);
+
+		$vista->set_path_reporte('/var/local/pruebas/vendor/siu-toba/framework/proyectos/pruebas/reportes/report2.jasper');
 	}
 
 
-	
+	/**
+	 * Atrapa el evento seleccion del cuadro e invoca manualmente el serviccio vista_jasperreports pasandole el hash por parámetro
+	 */
 
+	function extender_objeto_js()
+	{
+		if ($this->get_id_pantalla() == 'pant_seleccion') {
+
+			echo
+			toba::escaper()->escapeJs($this->dep('cuadro')->objeto_js) . ".evt__imprimir = function(params) {
+	 				location.href = vinculador.get_url(null, null, 'vista_jasperreports', {'seleccion': params});
+	 				return false;
+	 			}
+	 		";
+		}
+	}
+
+
+
+
+	//-----------------------------------------------------------------------------------
+	//---- cuadro -----------------------------------------------------------------------
+	//-----------------------------------------------------------------------------------
+
+	function evt__cuadro__imprimir($seleccion)
+	{
+		$this->s__id_ficha = $seleccion;
+		$vista = new toba_vista_jasperreports();
+		$this->vista_jasperreports($vista);
+	}
 }
-?>
