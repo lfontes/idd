@@ -30,6 +30,7 @@ class dt_ficha extends pruebas_datos_tabla
 			t_ded.dedicacion as dedicacion_doc,
 			t_f.dedicacion_id,
 			t_f.user_id,
+			t_f.anio,
 			idd.ad1,idd.ad2,idd.ad3,idd.ad4,idd.ad5,idd.ad6,idd.ad7,idd.ad8
 		FROM
 			ficha as t_f

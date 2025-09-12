@@ -177,7 +177,7 @@ class ci_ficha extends pruebas_ci
 		
 		$vista->set_parametro('ficha_id', 'E', $fichaid['id']);
 
-		$vista->set_path_reporte('/var/local/pruebas/vendor/siu-toba/framework/proyectos/pruebas/reportes/report2.jasper');
+		$vista->set_path_reporte('/var/local/test/vendor/siu-toba/framework/proyectos/pruebas/reportes/report2.jasper');
 	}
 
 

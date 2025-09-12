@@ -86,7 +86,19 @@ class ci_interno extends pruebas_ci
 		$this->controlador()->get_tabla('actualizacion')->procesar_filas($datos);
 
 	}
+	//-----------------------------------------------------------------------------------
+	//---- cargos ---------------------------------------------------------------
+	//-----------------------------------------------------------------------------------
 
+	function conf__cargos(pruebas_ei_formulario_ml $form_ml)
+	{
+		$form_ml->set_datos($this->controlador()->get_tabla('cargos')->get_filas());
+	}
+
+	function evt__cargos__modificacion($datos)
+	{
+		$this->controlador()->get_tabla('cargos')->procesar_filas($datos);
+	}
 //-----------------------------------------------------------------------------------
 	//---- licencias -------------------------------------------------------------
 	//-----------------------------------------------------------------------------------
@@ -184,6 +196,33 @@ class ci_interno extends pruebas_ci
 		$this->controlador()->get_tabla('materiales_pedag')->procesar_filas($datos);
 	}
 
+	//-----------------------------------------------------------------------------------
+	//---- 4.1 Categorizacion investigacion ---------------------------------------------------------------
+	//-----------------------------------------------------------------------------------
+
+	function conf__categorizacion(pruebas_ei_formulario_ml $form_ml)
+	{
+		$form_ml->set_datos($this->controlador()->get_tabla('categorizacion_inv')->get_filas());
+	}
+
+	function evt__categorizacion__modificacion($datos)
+	{
+		$this->controlador()->get_tabla('categorizacion_inv')->procesar_filas($datos);
+	}
+
+	//-----------------------------------------------------------------------------------
+	//---- 4.2 Proyectos acreditados ----------------------------------------------------
+	//-----------------------------------------------------------------------------------
+
+	function conf__proy_acreditados(pruebas_ei_formulario_ml $form_ml)
+	{
+		$form_ml->set_datos($this->controlador()->get_tabla('proy_acreditados')->get_filas());
+	}
+	function evt__proy_acreditados__modificacion($datos)
+	{
+		$this->controlador()->get_tabla('proy_acreditados')->procesar_filas($datos);
+	}
+	
 
 	/** // Método AJAX
      * Devuelve la cantidad de inscriptos por año y actividad.
