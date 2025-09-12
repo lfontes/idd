@@ -223,7 +223,95 @@ class ci_interno extends pruebas_ci
 		$this->controlador()->get_tabla('proy_acreditados')->procesar_filas($datos);
 	}
 	
+	//-----------------------------------------------------------------------------------
+	//---- 4.3 Impacto publicaciones ----------------------------------------------------
+	//-----------------------------------------------------------------------------------
 
+	function conf__impacto_pub(pruebas_ei_formulario_ml $form_ml)
+	{
+		$form_ml->set_datos($this->controlador()->get_tabla('impacto_pub')->get_filas());
+	}
+	function evt__impacto_pub__modificacion($datos)
+	{
+		$this->controlador()->get_tabla('impacto_pub')->procesar_filas($datos);
+	}
+
+	//-----------------------------------------------------------------------------------
+	//---- 4.4.1 Publicaciones en revistas científicas ----------------------------------------------------
+	//-----------------------------------------------------------------------------------
+
+	function conf__publ_rev_cientificas(pruebas_ei_formulario_ml $form_ml)
+	{
+		$form_ml->set_datos($this->controlador()->get_tabla('publ_rev_cientificas')->get_filas());
+	}
+	function evt__publ_rev_cientificas__modificacion($datos)
+	{
+		$this->controlador()->get_tabla('publ_rev_cientificas')->procesar_filas($datos);
+	}
+
+	//-----------------------------------------------------------------------------------
+	//---- 4.4.2 Publicaciones en revistas de divulgación--------------------------------
+	//-----------------------------------------------------------------------------------
+
+	function conf__publ_rev_divulgacion(pruebas_ei_formulario_ml $form_ml)
+	{
+		$form_ml->set_datos($this->controlador()->get_tabla('publ_rev_divulgacion')->get_filas());
+	}
+	function evt__publ_rev_divulgacion__modificacion($datos)
+	{
+		$this->controlador()->get_tabla('publ_rev_divulgacion')->procesar_filas($datos);
+	}
+
+	//-----------------------------------------------------------------------------------
+	//---- 4.4.3.1 Libros completos -----------------------------------------------------
+	//-----------------------------------------------------------------------------------
+
+	function conf__Libros(pruebas_ei_formulario_ml $form_ml)
+	{
+		$form_ml->set_datos($this->controlador()->get_tabla('libros')->get_filas());
+	}
+	function evt__Libros__modificacion($datos)
+	{
+		$this->controlador()->get_tabla('libros')->procesar_filas($datos);
+	}
+	//-----------------------------------------------------------------------------------
+	//---- 4.4.3.2 Capitulos de Libros --------------------------------------------------
+	//-----------------------------------------------------------------------------------
+
+	function conf__cap_libros(pruebas_ei_formulario_ml $form_ml)
+	{
+		$form_ml->set_datos($this->controlador()->get_tabla('cap_libros')->get_filas());
+	}
+	function evt__cap_libros__modificacion($datos)
+	{
+		$this->controlador()->get_tabla('cap_libros')->procesar_filas($datos);
+	}
+	//-----------------------------------------------------------------------------------
+	//---- 4.5 Patentes -----------------------------------------------------------------
+	//-----------------------------------------------------------------------------------
+
+	function conf__patentes(pruebas_ei_formulario_ml $form_ml)
+	{
+		$form_ml->set_datos($this->controlador()->get_tabla('patentes')->get_filas());
+	}
+	function evt__patentes__modificacion($datos)
+	{
+		$this->controlador()->get_tabla('patentes')->procesar_filas($datos);
+	}
+
+	//-----------------------------------------------------------------------------------
+	//---- 4.6 Participacion en reuniones científicas -----------------------------------------------------------------
+	//-----------------------------------------------------------------------------------
+
+	function conf__part_reun_cientificas(pruebas_ei_formulario_ml $form_ml)
+	{
+		$form_ml->set_datos($this->controlador()->get_tabla('part_reun_cientificas')->get_filas());
+	}
+	function evt__part_reun_cientificas__modificacion($datos)
+	{
+		$this->controlador()->get_tabla('part_reun_cientificas')->procesar_filas($datos);
+	}
+	
 	/** // Método AJAX
      * Devuelve la cantidad de inscriptos por año y actividad.
      * @param int $anio_academico

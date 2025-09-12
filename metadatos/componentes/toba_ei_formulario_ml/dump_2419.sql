@@ -21,8 +21,8 @@ INSERT INTO apex_objeto (proyecto, objeto, anterior, identificador, reflexivo, c
 	NULL, --objeto_categoria_proyecto
 	NULL, --objeto_categoria
 	'Ficha - CI - interno - materiales_pedag', --nombre
-	NULL, --titulo
-	'0', --colapsable
+	'3.8 Producción de Materiales Pedagógicos', --titulo
+	'1', --colapsable
 	NULL, --descripcion
 	'pruebas', --fuente_datos_proyecto
 	'desempenio', --fuente_datos
