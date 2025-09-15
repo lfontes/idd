@@ -311,6 +311,8 @@ class ci_interno extends pruebas_ci
 	{
 		$this->controlador()->get_tabla('part_reun_cientificas')->procesar_filas($datos);
 	}
+
+	
 	
 	/** // Método AJAX
      * Devuelve la cantidad de inscriptos por año y actividad.
@@ -344,6 +346,91 @@ class ci_interno extends pruebas_ci
     $respuesta->set($cant_inscriptos[0]['inscriptos']);
     }
 
+
+	//IMPRESION
+	//-----------------------------------------------------------------------------------
+	//----  PDF --------------------------------------------------------------------------		
+	function vista_pdf(toba_vista_pdf $salida)
+	{
+		//Cambio lo márgenes accediendo directamente a la librería PDF
+		$pdf = $salida->get_pdf();
+		$pdf->ezSetMargins(80, 50, 30, 30);	//top, bottom, left, right
+
+		//Pie de página
+		$formato = 'Página {PAGENUM} de {TOTALPAGENUM}';
+		$pdf->ezStartPageNumbers(300, 20, 8,'left', $formato, 1);	//x, y, size, pos, texto, pagina inicio
+
+		//Inserto los componentes usando la API de toba_vista_pdf
+
+		// $salida->titulo($this->get_nombre());
+		 $salida->titulo('Informe de Labor Docente e Investigacion');
+		 //$salida->mensaje('Nota: Este es el Principal');
+		 $this->dependencia('edicion_ficha')->vista_pdf($salida);
+		 $salida->separacion();
+		 $this->dependencia('licencias')->vista_pdf($salida);
+		 $salida->separacion();
+		 $this->dependencia('cargos')->vista_pdf($salida);
+		 $salida->separacion();
+		 $this->dependencia('formacion_academica')->vista_pdf($salida);
+		 $salida->separacion();
+		  $this->dependencia('actualizacion')->vista_pdf($salida);
+		 $salida->separacion();
+		 $this->dependencia('docec_facultad')->vista_pdf($salida);		
+		 $salida->separacion();
+		 $this->dependencia('docec_posgrado')->vista_pdf($salida);
+		 $salida->separacion();
+		 $this->dependencia('reu_cientificas')->vista_pdf($salida);
+		 $salida->separacion();
+		 $this->dependencia('proy_educativos')->vista_pdf($salida);
+
+		 $salida->separacion();
+		 $this->dependencia('formaciion_docec')->vista_pdf($salida);
+		 $salida->separacion();		
+		 $this->dependencia('materiales_pedag')->vista_pdf($salida);
+		 $salida->separacion();
+		 $this->dependencia('categorizacion')->vista_pdf($salida);
+		 $salida->separacion();
+		 $this->dependencia('proy_acreditados')->vista_pdf($salida);
+		 $salida->separacion();
+		 $this->dependencia('impacto_pub')->vista_pdf($salida);
+		 $salida->separacion();
+		 $this->dependencia('publ_rev_cientificas')->vista_pdf($salida);
+		 $salida->separacion();	
+		 $this->dependencia('publ_rev_divulgacion')->vista_pdf($salida);
+		 $salida->separacion();
+		 $this->dependencia('Libros')->vista_pdf($salida);
+		 $salida->separacion();
+		 $this->dependencia('cap_libros')->vista_pdf($salida);
+		 $salida->separacion();
+		 $this->dependencia('patentes')->vista_pdf($salida);
+		 $salida->separacion();
+		 $this->dependencia('part_reun_cientificas')->vista_pdf($salida);
+		 $salida->separacion();
+
+		// $this->dependencia('cuadro')->vista_pdf($salida);
+		// $this->dependencia('formulario')->vista_pdf($salida);
+		// $salida->salto_pagina();
+		// $salida->mensaje('Nota: Esta es una copia');
+		// $this->dependencia('filtro')->vista_pdf($salida);
+		// $this->dependencia('cuadro')->vista_pdf($salida);
+		// $this->dependencia('formulario')->vista_pdf($salida);
+		// $salida->salto_pagina();
+		// $salida->mensaje('Este es un formulario ML que esta en otra pagina');
+		// $salida->separacion();
+		// $this->dependencia('ml')->vista_pdf($salida);
+
+		//Encabezado
+		$pdf = $salida->get_pdf();
+		foreach ($pdf->ezPages as $pageNum => $id) {
+			$pdf->reopenObject($id);
+			$imagen = toba::proyecto()->get_path() . '/www/img/logo_Ciencias_Agrarias_UNCuyo.jpg';
+			$pdf->addJpegFromFile($imagen, 50, 780, 141, 45);	//imagen, x, y, ancho, alto
+			$pdf->closeObject();
+		}
+	}
+
 	
 }
+
+
 ?>
