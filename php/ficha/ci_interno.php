@@ -311,7 +311,56 @@ class ci_interno extends pruebas_ci
 	{
 		$this->controlador()->get_tabla('part_reun_cientificas')->procesar_filas($datos);
 	}
+	//-----------------------------------------------------------------------------------
+	//---- 4.7 Participacion en comite editorial ----------------------------------------
+	//-----------------------------------------------------------------------------------
 
+	function conf__part_comite(pruebas_ei_formulario_ml $form_ml)
+	{
+		$form_ml->set_datos($this->controlador()->get_tabla('part_comite')->get_filas());
+	}
+	function evt__part_comite__modificacion($datos)
+	{
+		$this->controlador()->get_tabla('part_comite')->procesar_filas($datos);
+	}
+	//-----------------------------------------------------------------------------------
+	//---- 5.1 Proyectos acreditados en vinculación -------------------------------------
+	//-----------------------------------------------------------------------------------
+
+	function conf__proy_acreditados_vinc(pruebas_ei_formulario_ml $form_ml)
+	{
+		$form_ml->set_datos($this->controlador()->get_tabla('proy_acreditados_vinc')->get_filas());
+	}
+	function evt__proy_acreditados_vinc__modificacion($datos)
+	{
+		$this->controlador()->get_tabla('proy_acreditados_vinc')->procesar_filas($datos);
+	}
+	//-----------------------------------------------------------------------------------
+	//---- 5.2.1 Publicaciones revistas divulgación -------------------------------------
+	//-----------------------------------------------------------------------------------
+
+	function conf__publ_rev_vinculacion(pruebas_ei_formulario_ml $form_ml)
+	{
+		$form_ml->set_datos($this->controlador()->get_tabla('publ_rev_vinculacion')->get_filas());
+	}
+	function evt__publ_rev_vinculacion__modificacion($datos)
+	{
+		$this->controlador()->get_tabla('publ_rev_vinculacion')->procesar_filas($datos);
+	}
+	//-----------------------------------------------------------------------------------
+	//---- 5.2.2 Publicaciones libros extension -------------------------------------
+	//-----------------------------------------------------------------------------------
+
+	function conf__libros_extension(pruebas_ei_formulario_ml $form_ml)
+	{
+		$form_ml->set_datos($this->controlador()->get_tabla('libros_extension')->get_filas());
+	}
+	function evt__libros_extension__modificacion($datos)
+	{
+		$this->controlador()->get_tabla('libros_extension')->procesar_filas($datos);
+	}
+
+	
 	
 	
 	/** // Método AJAX
@@ -363,13 +412,15 @@ class ci_interno extends pruebas_ci
 		//Inserto los componentes usando la API de toba_vista_pdf
 
 		// $salida->titulo($this->get_nombre());
-		 $salida->titulo('Informe de Labor Docente e Investigacion');
+		 $salida->titulo('INFORME INTEGRADOR DE EVALUACIÓN ANUAL DE DESEMPEÑO DOCENTE DE LA FACULTAD DE CIENCIAS AGRARIAS UNCUYO');
 		 //$salida->mensaje('Nota: Este es el Principal');
 		 $this->dependencia('edicion_ficha')->vista_pdf($salida);
 		 $salida->separacion();
 		 $this->dependencia('licencias')->vista_pdf($salida);
 		 $salida->separacion();
 		 $this->dependencia('cargos')->vista_pdf($salida);
+		  $salida->separacion();
+		  $salida->titulo('3. Docencia');
 		 $salida->separacion();
 		 $this->dependencia('formacion_academica')->vista_pdf($salida);
 		 $salida->separacion();
@@ -388,6 +439,7 @@ class ci_interno extends pruebas_ci
 		 $salida->separacion();		
 		 $this->dependencia('materiales_pedag')->vista_pdf($salida);
 		 $salida->separacion();
+		  $salida->titulo('4. Investigacion');
 		 $this->dependencia('categorizacion')->vista_pdf($salida);
 		 $salida->separacion();
 		 $this->dependencia('proy_acreditados')->vista_pdf($salida);
@@ -406,19 +458,21 @@ class ci_interno extends pruebas_ci
 		 $salida->separacion();
 		 $this->dependencia('part_reun_cientificas')->vista_pdf($salida);
 		 $salida->separacion();
+		 $this->dependencia('part_comite')->vista_pdf($salida);
+		 $salida->separacion();
+		  $salida->titulo('5. Investigacion');
+		  $salida->separacion();
+		 $this->dependencia('proy_acreditados_vinc')->vista_pdf($salida);
+		 $salida->separacion();
+		  $this->dependencia('publ_rev_vinculacion')->vista_pdf($salida);
+		 $salida->separacion();
+		 $this->dependencia('libros_extension')->vista_pdf($salida);
+		 $salida->separacion();
 
-		// $this->dependencia('cuadro')->vista_pdf($salida);
-		// $this->dependencia('formulario')->vista_pdf($salida);
-		// $salida->salto_pagina();
-		// $salida->mensaje('Nota: Esta es una copia');
-		// $this->dependencia('filtro')->vista_pdf($salida);
-		// $this->dependencia('cuadro')->vista_pdf($salida);
-		// $this->dependencia('formulario')->vista_pdf($salida);
-		// $salida->salto_pagina();
-		// $salida->mensaje('Este es un formulario ML que esta en otra pagina');
-		// $salida->separacion();
-		// $this->dependencia('ml')->vista_pdf($salida);
 
+
+
+		 
 		//Encabezado
 		$pdf = $salida->get_pdf();
 		foreach ($pdf->ezPages as $pageNum => $id) {
