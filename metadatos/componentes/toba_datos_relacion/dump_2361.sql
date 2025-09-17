@@ -92,6 +92,18 @@ INSERT INTO apex_objeto_dependencias (proyecto, dep_id, objeto_consumidor, objet
 );
 INSERT INTO apex_objeto_dependencias (proyecto, dep_id, objeto_consumidor, objeto_proveedor, identificador, parametros_a, parametros_b, parametros_c, inicializar, orden) VALUES (
 	'pruebas', --proyecto
+	'1832000030', --dep_id
+	'2361', --objeto_consumidor
+	'1832000029', --objeto_proveedor
+	'cap_libros_vinculacion', --identificador
+	NULL, --parametros_a
+	NULL, --parametros_b
+	NULL, --parametros_c
+	NULL, --inicializar
+	'27'  --orden
+);
+INSERT INTO apex_objeto_dependencias (proyecto, dep_id, objeto_consumidor, objeto_proveedor, identificador, parametros_a, parametros_b, parametros_c, inicializar, orden) VALUES (
+	'pruebas', --proyecto
 	'1832000002', --dep_id
 	'2361', --objeto_consumidor
 	'1832000001', --objeto_proveedor
@@ -314,6 +326,30 @@ INSERT INTO apex_objeto_dependencias (proyecto, dep_id, objeto_consumidor, objet
 );
 INSERT INTO apex_objeto_dependencias (proyecto, dep_id, objeto_consumidor, objeto_proveedor, identificador, parametros_a, parametros_b, parametros_c, inicializar, orden) VALUES (
 	'pruebas', --proyecto
+	'1832000032', --dep_id
+	'2361', --objeto_consumidor
+	'1832000031', --objeto_proveedor
+	'patentes_vinculacion', --identificador
+	NULL, --parametros_a
+	NULL, --parametros_b
+	NULL, --parametros_c
+	NULL, --inicializar
+	'28'  --orden
+);
+INSERT INTO apex_objeto_dependencias (proyecto, dep_id, objeto_consumidor, objeto_proveedor, identificador, parametros_a, parametros_b, parametros_c, inicializar, orden) VALUES (
+	'pruebas', --proyecto
+	'1832000036', --dep_id
+	'2361', --objeto_consumidor
+	'1832000035', --objeto_proveedor
+	'premios_vinc_internac', --identificador
+	NULL, --parametros_a
+	NULL, --parametros_b
+	NULL, --parametros_c
+	NULL, --inicializar
+	'30'  --orden
+);
+INSERT INTO apex_objeto_dependencias (proyecto, dep_id, objeto_consumidor, objeto_proveedor, identificador, parametros_a, parametros_b, parametros_c, inicializar, orden) VALUES (
+	'pruebas', --proyecto
 	'1832000005', --dep_id
 	'2361', --objeto_consumidor
 	'1832000005', --objeto_proveedor
@@ -389,6 +425,18 @@ INSERT INTO apex_objeto_dependencias (proyecto, dep_id, objeto_consumidor, objet
 	NULL, --parametros_c
 	NULL, --inicializar
 	'25'  --orden
+);
+INSERT INTO apex_objeto_dependencias (proyecto, dep_id, objeto_consumidor, objeto_proveedor, identificador, parametros_a, parametros_b, parametros_c, inicializar, orden) VALUES (
+	'pruebas', --proyecto
+	'1832000033', --dep_id
+	'2361', --objeto_consumidor
+	'1832000032', --objeto_proveedor
+	'registros_vinculacion', --identificador
+	NULL, --parametros_a
+	NULL, --parametros_b
+	NULL, --parametros_c
+	NULL, --inicializar
+	'29'  --orden
 );
 --- FIN Grupo de desarrollo 1832
 
@@ -799,6 +847,70 @@ INSERT INTO apex_objeto_datos_rel_asoc (proyecto, objeto, asoc_id, identificador
 	NULL, --cascada
 	'24'  --orden
 );
+INSERT INTO apex_objeto_datos_rel_asoc (proyecto, objeto, asoc_id, identificador, padre_proyecto, padre_objeto, padre_id, padre_clave, hijo_proyecto, hijo_objeto, hijo_id, hijo_clave, cascada, orden) VALUES (
+	'pruebas', --proyecto
+	'2361', --objeto
+	'1832000015', --asoc_id
+	NULL, --identificador
+	'pruebas', --padre_proyecto
+	'2335', --padre_objeto
+	'ficha', --padre_id
+	NULL, --padre_clave
+	'pruebas', --hijo_proyecto
+	'1832000029', --hijo_objeto
+	'cap_libros_vinculacion', --hijo_id
+	NULL, --hijo_clave
+	NULL, --cascada
+	'25'  --orden
+);
+INSERT INTO apex_objeto_datos_rel_asoc (proyecto, objeto, asoc_id, identificador, padre_proyecto, padre_objeto, padre_id, padre_clave, hijo_proyecto, hijo_objeto, hijo_id, hijo_clave, cascada, orden) VALUES (
+	'pruebas', --proyecto
+	'2361', --objeto
+	'1832000016', --asoc_id
+	NULL, --identificador
+	'pruebas', --padre_proyecto
+	'2335', --padre_objeto
+	'ficha', --padre_id
+	NULL, --padre_clave
+	'pruebas', --hijo_proyecto
+	'1832000031', --hijo_objeto
+	'patentes_vinculacion', --hijo_id
+	NULL, --hijo_clave
+	NULL, --cascada
+	'26'  --orden
+);
+INSERT INTO apex_objeto_datos_rel_asoc (proyecto, objeto, asoc_id, identificador, padre_proyecto, padre_objeto, padre_id, padre_clave, hijo_proyecto, hijo_objeto, hijo_id, hijo_clave, cascada, orden) VALUES (
+	'pruebas', --proyecto
+	'2361', --objeto
+	'1832000017', --asoc_id
+	NULL, --identificador
+	'pruebas', --padre_proyecto
+	'2335', --padre_objeto
+	'ficha', --padre_id
+	NULL, --padre_clave
+	'pruebas', --hijo_proyecto
+	'1832000032', --hijo_objeto
+	'registros_vinculacion', --hijo_id
+	NULL, --hijo_clave
+	NULL, --cascada
+	'27'  --orden
+);
+INSERT INTO apex_objeto_datos_rel_asoc (proyecto, objeto, asoc_id, identificador, padre_proyecto, padre_objeto, padre_id, padre_clave, hijo_proyecto, hijo_objeto, hijo_id, hijo_clave, cascada, orden) VALUES (
+	'pruebas', --proyecto
+	'2361', --objeto
+	'1832000018', --asoc_id
+	NULL, --identificador
+	'pruebas', --padre_proyecto
+	'2335', --padre_objeto
+	'ficha', --padre_id
+	NULL, --padre_clave
+	'pruebas', --hijo_proyecto
+	'1832000035', --hijo_objeto
+	'premios_vinc_internac', --hijo_id
+	NULL, --hijo_clave
+	NULL, --cascada
+	'28'  --orden
+);
 --- FIN Grupo de desarrollo 1832
 
 ------------------------------------------------------------
@@ -1019,4 +1131,40 @@ INSERT INTO apex_objeto_rel_columnas_asoc (proyecto, objeto, asoc_id, padre_obje
 	'865', --padre_clave
 	'1832000026', --hijo_objeto
 	'1832000112'  --hijo_clave
+);
+INSERT INTO apex_objeto_rel_columnas_asoc (proyecto, objeto, asoc_id, padre_objeto, padre_clave, hijo_objeto, hijo_clave) VALUES (
+	'pruebas', --proyecto
+	'2361', --objeto
+	'1832000015', --asoc_id
+	'2335', --padre_objeto
+	'865', --padre_clave
+	'1832000029', --hijo_objeto
+	'1832000114'  --hijo_clave
+);
+INSERT INTO apex_objeto_rel_columnas_asoc (proyecto, objeto, asoc_id, padre_objeto, padre_clave, hijo_objeto, hijo_clave) VALUES (
+	'pruebas', --proyecto
+	'2361', --objeto
+	'1832000016', --asoc_id
+	'2335', --padre_objeto
+	'865', --padre_clave
+	'1832000031', --hijo_objeto
+	'1832000123'  --hijo_clave
+);
+INSERT INTO apex_objeto_rel_columnas_asoc (proyecto, objeto, asoc_id, padre_objeto, padre_clave, hijo_objeto, hijo_clave) VALUES (
+	'pruebas', --proyecto
+	'2361', --objeto
+	'1832000017', --asoc_id
+	'2335', --padre_objeto
+	'865', --padre_clave
+	'1832000032', --hijo_objeto
+	'1832000128'  --hijo_clave
+);
+INSERT INTO apex_objeto_rel_columnas_asoc (proyecto, objeto, asoc_id, padre_objeto, padre_clave, hijo_objeto, hijo_clave) VALUES (
+	'pruebas', --proyecto
+	'2361', --objeto
+	'1832000018', --asoc_id
+	'2335', --padre_objeto
+	'865', --padre_clave
+	'1832000035', --hijo_objeto
+	'1832000133'  --hijo_clave
 );

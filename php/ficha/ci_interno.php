@@ -359,8 +359,54 @@ class ci_interno extends pruebas_ci
 	{
 		$this->controlador()->get_tabla('libros_extension')->procesar_filas($datos);
 	}
+	//-----------------------------------------------------------------------------------
+	//---- 5.2.3 capitulos libros vinculación -------------------------------------
+	//-----------------------------------------------------------------------------------
 
-	
+	function conf__cap_libros_vinculacion(pruebas_ei_formulario_ml $form_ml)
+	{
+		$form_ml->set_datos($this->controlador()->get_tabla('cap_libros_vinculacion')->get_filas());
+	}
+	function evt__cap_libros_vinculacion__modificacion($datos)
+	{
+		$this->controlador()->get_tabla('cap_libros_vinculacion')->procesar_filas($datos);
+	}
+	//-----------------------------------------------------------------------------------
+	//---- 5.2.4 Patentes vinculación -------------------------------------
+	//-----------------------------------------------------------------------------------
+
+	function conf__patentes_vinculacion(pruebas_ei_formulario_ml $form_ml)
+	{
+		$form_ml->set_datos($this->controlador()->get_tabla('patentes_vinculacion')->get_filas());
+	}
+	function evt__patentes_vinculacion__modificacion($datos)
+	{
+		$this->controlador()->get_tabla('patentes_vinculacion')->procesar_filas($datos);
+	}
+	//-----------------------------------------------------------------------------------
+	//---- 5.2.5 Registros vinculación --------------------------------------------------
+	//-----------------------------------------------------------------------------------
+
+	function conf__registros_vinculacion(pruebas_ei_formulario_ml $form_ml)
+	{
+		$form_ml->set_datos($this->controlador()->get_tabla('registros_vinculacion')->get_filas());
+	}
+	function evt__registros_vinculacion__modificacion($datos)
+	{
+		$this->controlador()->get_tabla('registros_vinculacion')->procesar_filas($datos);
+	}
+	//-----------------------------------------------------------------------------------
+	//---- 5.3 premios y distinciones Internacionalización ------------------------------
+	//-----------------------------------------------------------------------------------
+
+	function conf__premios_vinc_internac(pruebas_ei_formulario_ml $form_ml)
+	{
+		$form_ml->set_datos($this->controlador()->get_tabla('premios_vinc_internac')->get_filas());
+	}
+	function evt__premios_vinc_internac__modificacion($datos)
+	{
+		$this->controlador()->get_tabla('premios_vinc_internac')->procesar_filas($datos);
+	}
 	
 	
 	/** // Método AJAX
@@ -468,9 +514,14 @@ class ci_interno extends pruebas_ci
 		 $salida->separacion();
 		 $this->dependencia('libros_extension')->vista_pdf($salida);
 		 $salida->separacion();
-
-
-
+		 $this->dependencia('cap_libros_vinculacion')->vista_pdf($salida);
+		 $salida->separacion();
+		 $this->dependencia('patentes_vinculacion')->vista_pdf($salida);
+		 $salida->separacion();
+		 $this->dependencia('registros_vinculacion')->vista_pdf($salida);
+		 $salida->separacion();
+		  $this->dependencia('premios_vinc_internac')->vista_pdf($salida);
+		 $salida->separacion();
 
 		 
 		//Encabezado

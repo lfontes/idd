@@ -156,6 +156,18 @@ INSERT INTO apex_objeto_dependencias (proyecto, dep_id, objeto_consumidor, objet
 );
 INSERT INTO apex_objeto_dependencias (proyecto, dep_id, objeto_consumidor, objeto_proveedor, identificador, parametros_a, parametros_b, parametros_c, inicializar, orden) VALUES (
 	'pruebas', --proyecto
+	'1832000031', --dep_id
+	'2370', --objeto_consumidor
+	'1832000030', --objeto_proveedor
+	'cap_libros_vinculacion', --identificador
+	NULL, --parametros_a
+	NULL, --parametros_b
+	NULL, --parametros_c
+	NULL, --inicializar
+	NULL  --orden
+);
+INSERT INTO apex_objeto_dependencias (proyecto, dep_id, objeto_consumidor, objeto_proveedor, identificador, parametros_a, parametros_b, parametros_c, inicializar, orden) VALUES (
+	'pruebas', --proyecto
 	'1832000001', --dep_id
 	'2370', --objeto_consumidor
 	'1832000002', --objeto_proveedor
@@ -336,6 +348,30 @@ INSERT INTO apex_objeto_dependencias (proyecto, dep_id, objeto_consumidor, objet
 );
 INSERT INTO apex_objeto_dependencias (proyecto, dep_id, objeto_consumidor, objeto_proveedor, identificador, parametros_a, parametros_b, parametros_c, inicializar, orden) VALUES (
 	'pruebas', --proyecto
+	'1832000034', --dep_id
+	'2370', --objeto_consumidor
+	'1832000033', --objeto_proveedor
+	'patentes_vinculacion', --identificador
+	NULL, --parametros_a
+	NULL, --parametros_b
+	NULL, --parametros_c
+	NULL, --inicializar
+	NULL  --orden
+);
+INSERT INTO apex_objeto_dependencias (proyecto, dep_id, objeto_consumidor, objeto_proveedor, identificador, parametros_a, parametros_b, parametros_c, inicializar, orden) VALUES (
+	'pruebas', --proyecto
+	'1832000037', --dep_id
+	'2370', --objeto_consumidor
+	'1832000036', --objeto_proveedor
+	'premios_vinc_internac', --identificador
+	NULL, --parametros_a
+	NULL, --parametros_b
+	NULL, --parametros_c
+	NULL, --inicializar
+	NULL  --orden
+);
+INSERT INTO apex_objeto_dependencias (proyecto, dep_id, objeto_consumidor, objeto_proveedor, identificador, parametros_a, parametros_b, parametros_c, inicializar, orden) VALUES (
+	'pruebas', --proyecto
 	'1832000006', --dep_id
 	'2370', --objeto_consumidor
 	'1832000006', --objeto_proveedor
@@ -406,6 +442,18 @@ INSERT INTO apex_objeto_dependencias (proyecto, dep_id, objeto_consumidor, objet
 	'2370', --objeto_consumidor
 	'1832000027', --objeto_proveedor
 	'publ_rev_vinculacion', --identificador
+	NULL, --parametros_a
+	NULL, --parametros_b
+	NULL, --parametros_c
+	NULL, --inicializar
+	NULL  --orden
+);
+INSERT INTO apex_objeto_dependencias (proyecto, dep_id, objeto_consumidor, objeto_proveedor, identificador, parametros_a, parametros_b, parametros_c, inicializar, orden) VALUES (
+	'pruebas', --proyecto
+	'1832000035', --dep_id
+	'2370', --objeto_consumidor
+	'1832000034', --objeto_proveedor
+	'registros_vinculacion', --identificador
 	NULL, --parametros_a
 	NULL, --parametros_b
 	NULL, --parametros_c
@@ -701,6 +749,34 @@ INSERT INTO apex_objetos_pantalla (proyecto, pantalla, objeto_ci, orden, dep_id)
 	'2370', --objeto_ci
 	'2', --orden
 	'1832000029'  --dep_id
+);
+INSERT INTO apex_objetos_pantalla (proyecto, pantalla, objeto_ci, orden, dep_id) VALUES (
+	'pruebas', --proyecto
+	'1222', --pantalla
+	'2370', --objeto_ci
+	'3', --orden
+	'1832000031'  --dep_id
+);
+INSERT INTO apex_objetos_pantalla (proyecto, pantalla, objeto_ci, orden, dep_id) VALUES (
+	'pruebas', --proyecto
+	'1222', --pantalla
+	'2370', --objeto_ci
+	'4', --orden
+	'1832000034'  --dep_id
+);
+INSERT INTO apex_objetos_pantalla (proyecto, pantalla, objeto_ci, orden, dep_id) VALUES (
+	'pruebas', --proyecto
+	'1222', --pantalla
+	'2370', --objeto_ci
+	'5', --orden
+	'1832000035'  --dep_id
+);
+INSERT INTO apex_objetos_pantalla (proyecto, pantalla, objeto_ci, orden, dep_id) VALUES (
+	'pruebas', --proyecto
+	'1222', --pantalla
+	'2370', --objeto_ci
+	'6', --orden
+	'1832000037'  --dep_id
 );
 
 ------------------------------------------------------------

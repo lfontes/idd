@@ -59,7 +59,7 @@ INSERT INTO apex_objeto_db_registros (objeto_proyecto, objeto, max_registros, mi
 	NULL, --modificar_claves
 	'pruebas', --fuente_datos_proyecto
 	'desempenio', --fuente_datos
-	'1', --permite_actualizacion_automatica
+	'0', --permite_actualizacion_automatica
 	NULL, --esquema
 	NULL  --esquema_ext
 );
