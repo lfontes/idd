@@ -1,12 +1,15 @@
 <?php
+
 use datos\dependencias;
+
 class ci_interno extends pruebas_ci
 {
-	
+
 	/**
 	 * devuelve el usuario logueado
 	 */
-	function usuario() {
+	function usuario()
+	{
 		return toba::usuario()->get_id();
 	}
 	//-----------------------------------------------------------------------------------
@@ -18,7 +21,7 @@ class ci_interno extends pruebas_ci
 		$filas = $this->controlador()->get_tabla('ficha')->get_cantidad_filas();
 		if ($filas > 0) {
 			$form->set_datos($this->controlador()->get_tabla('ficha')->get());
-		} 
+		}
 	}
 
 	function evt__edicion_ficha__modificacion($datos)
@@ -38,7 +41,6 @@ class ci_interno extends pruebas_ci
 	function evt__formacion_academica__modificacion($datos)
 	{
 		$this->controlador()->get_tabla('formacion_academica')->procesar_filas($datos);
-
 	}
 
 	/**
@@ -48,9 +50,7 @@ class ci_interno extends pruebas_ci
 	 *  - Si el componente es un ci dentro de otro ci, reci�n se ejecuta cuando entra a la operacion que no necesariamente es al inicio, si por ejemplo se encuentra en la 3er pantalla del ci principal.
 	 *  - Si se ejecuta una limpieza de memoria (comportamiento por defecto del evt__cancelar)
 	 */
-	function ini__operacion()
-	{
-	}
+	function ini__operacion() {}
 
 	//-----------------------------------------------------------------------------------
 	//---- Configuraciones --------------------------------------------------------------
@@ -62,9 +62,7 @@ class ci_interno extends pruebas_ci
 	 * Si se lanza una excepcion se evita el cambio de pantalla.
 	 * [wiki:Referencia/Objetos/ci#Controlandolaentradaylasalida Ver m�s]
 	 */
-	function evt__pant_inicial__entrada()
-	{
-	}
+	function evt__pant_inicial__entrada() {}
 
 	//-----------------------------------------------------------------------------------
 	//---- actualizacion ----------------------------------------------------------------
@@ -75,7 +73,7 @@ class ci_interno extends pruebas_ci
 	 * El formato debe ser una matriz array('id_fila' => array('id_ef' => valor, ...), ...)
 	 */
 
-	 
+
 	function conf__actualizacion(pruebas_ei_formulario_ml $form_ml)
 	{
 		$form_ml->set_datos($this->controlador()->get_tabla('actualizacion')->get_filas());
@@ -84,7 +82,6 @@ class ci_interno extends pruebas_ci
 	function evt__actualizacion__modificacion($datos)
 	{
 		$this->controlador()->get_tabla('actualizacion')->procesar_filas($datos);
-
 	}
 	//-----------------------------------------------------------------------------------
 	//---- cargos ---------------------------------------------------------------
@@ -99,7 +96,7 @@ class ci_interno extends pruebas_ci
 	{
 		$this->controlador()->get_tabla('cargos')->procesar_filas($datos);
 	}
-//-----------------------------------------------------------------------------------
+	//-----------------------------------------------------------------------------------
 	//---- licencias -------------------------------------------------------------
 	//-----------------------------------------------------------------------------------
 
@@ -133,7 +130,7 @@ class ci_interno extends pruebas_ci
 	function conf__docec_posgrado(pruebas_ei_formulario_ml $form_ml)
 	{
 		$form_ml->set_datos($this->controlador()->get_tabla('docec_posgrado')->get_filas());
-			}
+	}
 
 	function evt__docec_posgrado__modificacion($datos)
 	{
@@ -222,7 +219,7 @@ class ci_interno extends pruebas_ci
 	{
 		$this->controlador()->get_tabla('proy_acreditados')->procesar_filas($datos);
 	}
-	
+
 	//-----------------------------------------------------------------------------------
 	//---- 4.3 Impacto publicaciones ----------------------------------------------------
 	//-----------------------------------------------------------------------------------
@@ -407,23 +404,192 @@ class ci_interno extends pruebas_ci
 	{
 		$this->controlador()->get_tabla('premios_vinc_internac')->procesar_filas($datos);
 	}
-	
+	//-----------------------------------------------------------------------------------
+	//---- 5.3. Reconocimientos ---------------------------------------------------------
+	//-----------------------------------------------------------------------------------
+
+	function conf__reconocimientos(pruebas_ei_formulario_ml $form_ml)
+	{
+		$form_ml->set_datos($this->controlador()->get_tabla('reconocimientos')->get_filas());
+	}
+	function evt__reconocimientos__modificacion($datos)
+	{
+		$this->controlador()->get_tabla('reconocimientos')->procesar_filas($datos);
+	}
+	//-----------------------------------------------------------------------------------
+	//---- 5.4 Formacion RRHH en vinculación ---------------------------------------------------------
+	//-----------------------------------------------------------------------------------
+
+	function conf__formacion_vinc(pruebas_ei_formulario_ml $form_ml)
+	{
+		$form_ml->set_datos($this->controlador()->get_tabla('formacion_vinc')->get_filas());
+	}
+	function evt__formacion_vinc__modificacion($datos)
+	{
+		$this->controlador()->get_tabla('formacion_vinc')->procesar_filas($datos);
+	}
+	//-----------------------------------------------------------------------------------
+	//---- 5.4 Promocion vinculación ---------------------------------------------------------
+	//-----------------------------------------------------------------------------------
+
+	function conf__promocion_vinc(pruebas_ei_formulario_ml $form_ml)
+	{
+		$form_ml->set_datos($this->controlador()->get_tabla('promocion_vinc')->get_filas());
+	}
+	function evt__promocion_vinc__modificacion($datos)
+	{
+		$this->controlador()->get_tabla('promocion_vinc')->procesar_filas($datos);
+	}
+	//-----------------------------------------------------------------------------------
+	//---- 5.4 Participacion vinculación ---------------------------------------------------------
+	//-----------------------------------------------------------------------------------
+
+	function conf__participacion_vinc(pruebas_ei_formulario_ml $form_ml)
+	{
+		$form_ml->set_datos($this->controlador()->get_tabla('participacion_vinc')->get_filas());
+	}
+	function evt__participacion_vinc__modificacion($datos)
+	{
+		$this->controlador()->get_tabla('participacion_vinc')->procesar_filas($datos);
+	}
+	//-----------------------------------------------------------------------------------
+	//---- 6.1 Proyectos extension ---------------------------------------------------------
+	//-----------------------------------------------------------------------------------
+
+	function conf__proy_extension(pruebas_ei_formulario_ml $form_ml)
+	{
+		$form_ml->set_datos($this->controlador()->get_tabla('proy_extension')->get_filas());
+	}
+	function evt__proy_extension__modificacion($datos)
+	{
+		$this->controlador()->get_tabla('proy_extension')->procesar_filas($datos);
+	}
+	//-----------------------------------------------------------------------------------
+	//---- 6.2 Publicacion revistas extension ---------------------------------------------------------
+	//-----------------------------------------------------------------------------------
+
+	function conf__publ_rev_extension(pruebas_ei_formulario_ml $form_ml)
+	{
+		$form_ml->set_datos($this->controlador()->get_tabla('publ_rev_extension')->get_filas());
+	}
+	function evt__publ_rev_extension__modificacion($datos)
+	{
+		$this->controlador()->get_tabla('publ_rev_extension')->procesar_filas($datos);
+	}
+	//-----------------------------------------------------------------------------------
+	//---- 6.3.2 Publicacion libros extension ---------------------------------------------------------
+	//-----------------------------------------------------------------------------------
+
+	function conf__libros_extension_632(pruebas_ei_formulario_ml $form_ml)
+	{
+		$form_ml->set_datos($this->controlador()->get_tabla('libros_extension_632')->get_filas());
+	}
+	function evt__libros_extension_632__modificacion($datos)
+	{
+		$this->controlador()->get_tabla('libros_extension_632')->procesar_filas($datos);
+	}
+	//-----------------------------------------------------------------------------------
+	//---- 6.3.3 Capitulos libros extension ---------------------------------------------------------
+	//-----------------------------------------------------------------------------------
+
+	function conf__cap_libros_extension(pruebas_ei_formulario_ml $form_ml)
+	{
+		$form_ml->set_datos($this->controlador()->get_tabla('cap_libros_extension')->get_filas());
+	}
+	function evt__cap_libros_extension__modificacion($datos)
+	{
+		$this->controlador()->get_tabla('cap_libros_extension')->procesar_filas($datos);
+	}
+	//-----------------------------------------------------------------------------------
+	//---- 6.3.4 Patentes extension ---------------------------------------------------------
+	//-----------------------------------------------------------------------------------
+
+	function conf__patentes_extension(pruebas_ei_formulario_ml $form_ml)
+	{
+		$form_ml->set_datos($this->controlador()->get_tabla('patentes_extension')->get_filas());
+	}
+	function evt__patentes_extension__modificacion($datos)
+	{
+		$this->controlador()->get_tabla('patentes_extension')->procesar_filas($datos);
+	}
+	//-----------------------------------------------------------------------------------
+	//---- 6.3.5 Registros extension ---------------------------------------------------------
+	//-----------------------------------------------------------------------------------
+
+	function conf__registros_extension(pruebas_ei_formulario_ml $form_ml)
+	{
+		$form_ml->set_datos($this->controlador()->get_tabla('registros_extension')->get_filas());
+	}
+	function evt__registros_extension__modificacion($datos)
+	{
+		$this->controlador()->get_tabla('registros_extension')->procesar_filas($datos);
+	}
+	//-----------------------------------------------------------------------------------
+	//---- 6.4 Participacion reuniones extension ---------------------------------------------------------
+	//-----------------------------------------------------------------------------------
+
+	function conf__participacion_extension(pruebas_ei_formulario_ml $form_ml)
+	{
+		$form_ml->set_datos($this->controlador()->get_tabla('part_extension')->get_filas());
+	}
+	function evt__participacion_extension__modificacion($datos)
+	{
+		$this->controlador()->get_tabla('part_extension')->procesar_filas($datos);
+	}
+	//-----------------------------------------------------------------------------------
+	//---- 6.5 Premios Internacionalización extension ---------------------------------------------------------
+	//-----------------------------------------------------------------------------------
+
+	function conf__premios_extension(pruebas_ei_formulario_ml $form_ml)
+	{
+		$form_ml->set_datos($this->controlador()->get_tabla('premios_extension')->get_filas());
+	}
+	function evt__premios_extension__modificacion($datos)
+	{
+		$this->controlador()->get_tabla('premios_extension')->procesar_filas($datos);
+	}
+	//-----------------------------------------------------------------------------------
+	//---- 6.6 Formacion en extension ---------------------------------------------------------
+	//-----------------------------------------------------------------------------------
+
+	function conf__formacion_extension(pruebas_ei_formulario_ml $form_ml)
+	{
+		$form_ml->set_datos($this->controlador()->get_tabla('formacion_extension')->get_filas());
+	}
+	function evt__formacion_extension__modificacion($datos)
+	{
+		$this->controlador()->get_tabla('formacion_extension')->procesar_filas($datos);
+	}
+	//-----------------------------------------------------------------------------------
+	//---- 6.7 Servicios extension ---------------------------------------------------------
+	//-----------------------------------------------------------------------------------
+
+	function conf__servicios_extension(pruebas_ei_formulario_ml $form_ml)
+	{
+		$form_ml->set_datos($this->controlador()->get_tabla('servicios_extension')->get_filas());
+	}
+	function evt__servicios_extension__modificacion($datos)
+	{
+		$this->controlador()->get_tabla('servicios_extension')->procesar_filas($datos);
+	}
+
+
 	
 	/** // Método AJAX
-     * Devuelve la cantidad de inscriptos por año y actividad.
-     * @param int $anio_academico
-     * @param string $codigo_actividad
-     * @return array
-     */
+	 * Devuelve la cantidad de inscriptos por año y actividad.
+	 * @param int $anio_academico
+	 * @param string $codigo_actividad
+	 * @return array
+	 */
 
-	
-    function ajax__get_inscriptos_por_espacio($parametros, toba_ajax_respuesta $respuesta)
-    {
+
+	function ajax__get_inscriptos_por_espacio($parametros, toba_ajax_respuesta $respuesta)
+	{
 		//$anio = (string)$parametros[0];
-		$anio='2024';
+		$anio = '2024';
 		$espacio = toba::db()->quote($parametros[0]);
 
-    $sql = "
+		$sql = "
         SELECT count(*) as inscriptos
         FROM negocio.vw_insc_cursada
         JOIN negocio.sga_comisiones ON negocio.vw_insc_cursada.comision = negocio.sga_comisiones.comision
@@ -437,9 +603,9 @@ class ci_interno extends pruebas_ci
           AND negocio.vw_actividades_plan.codigo = $espacio
     ";
 
-    $cant_inscriptos = toba::db('guarani')->consultar($sql);
-    $respuesta->set($cant_inscriptos[0]['inscriptos']);
-    }
+		$cant_inscriptos = toba::db('guarani')->consultar($sql);
+		$respuesta->set($cant_inscriptos[0]['inscriptos']);
+	}
 
 
 	//IMPRESION
@@ -453,77 +619,107 @@ class ci_interno extends pruebas_ci
 
 		//Pie de página
 		$formato = 'Página {PAGENUM} de {TOTALPAGENUM}';
-		$pdf->ezStartPageNumbers(300, 20, 8,'left', $formato, 1);	//x, y, size, pos, texto, pagina inicio
+		$pdf->ezStartPageNumbers(300, 20, 8, 'left', $formato, 1);	//x, y, size, pos, texto, pagina inicio
 
 		//Inserto los componentes usando la API de toba_vista_pdf
 
 		// $salida->titulo($this->get_nombre());
-		 $salida->titulo('INFORME INTEGRADOR DE EVALUACIÓN ANUAL DE DESEMPEÑO DOCENTE DE LA FACULTAD DE CIENCIAS AGRARIAS UNCUYO');
-		 //$salida->mensaje('Nota: Este es el Principal');
-		 $this->dependencia('edicion_ficha')->vista_pdf($salida);
-		 $salida->separacion();
-		 $this->dependencia('licencias')->vista_pdf($salida);
-		 $salida->separacion();
-		 $this->dependencia('cargos')->vista_pdf($salida);
-		  $salida->separacion();
-		  $salida->titulo('3. Docencia');
-		 $salida->separacion();
-		 $this->dependencia('formacion_academica')->vista_pdf($salida);
-		 $salida->separacion();
-		  $this->dependencia('actualizacion')->vista_pdf($salida);
-		 $salida->separacion();
-		 $this->dependencia('docec_facultad')->vista_pdf($salida);		
-		 $salida->separacion();
-		 $this->dependencia('docec_posgrado')->vista_pdf($salida);
-		 $salida->separacion();
-		 $this->dependencia('reu_cientificas')->vista_pdf($salida);
-		 $salida->separacion();
-		 $this->dependencia('proy_educativos')->vista_pdf($salida);
+		$salida->titulo('INFORME INTEGRADOR DE EVALUACIÓN ANUAL DE DESEMPEÑO DOCENTE DE LA FACULTAD DE CIENCIAS AGRARIAS UNCUYO');
+		//$salida->mensaje('Nota: Este es el Principal');
+		$this->dependencia('edicion_ficha')->vista_pdf($salida);
+		$salida->separacion();
+		$this->dependencia('licencias')->vista_pdf($salida);
+		$salida->separacion();
+		$this->dependencia('cargos')->vista_pdf($salida);
+		$salida->separacion();
+		$salida->titulo('III. Docencia');
+		$salida->separacion();
+		$this->dependencia('formacion_academica')->vista_pdf($salida);
+		$salida->separacion();
+		$this->dependencia('actualizacion')->vista_pdf($salida);
+		$salida->separacion();
+		$this->dependencia('docec_facultad')->vista_pdf($salida);
+		$salida->separacion();
+		$this->dependencia('docec_posgrado')->vista_pdf($salida);
+		$salida->separacion();
+		$this->dependencia('reu_cientificas')->vista_pdf($salida);
+		$salida->separacion();
+		$this->dependencia('proy_educativos')->vista_pdf($salida);
 
-		 $salida->separacion();
-		 $this->dependencia('formaciion_docec')->vista_pdf($salida);
-		 $salida->separacion();		
-		 $this->dependencia('materiales_pedag')->vista_pdf($salida);
-		 $salida->separacion();
-		  $salida->titulo('4. Investigacion');
-		 $this->dependencia('categorizacion')->vista_pdf($salida);
-		 $salida->separacion();
-		 $this->dependencia('proy_acreditados')->vista_pdf($salida);
-		 $salida->separacion();
-		 $this->dependencia('impacto_pub')->vista_pdf($salida);
-		 $salida->separacion();
-		 $this->dependencia('publ_rev_cientificas')->vista_pdf($salida);
-		 $salida->separacion();	
-		 $this->dependencia('publ_rev_divulgacion')->vista_pdf($salida);
-		 $salida->separacion();
-		 $this->dependencia('Libros')->vista_pdf($salida);
-		 $salida->separacion();
-		 $this->dependencia('cap_libros')->vista_pdf($salida);
-		 $salida->separacion();
-		 $this->dependencia('patentes')->vista_pdf($salida);
-		 $salida->separacion();
-		 $this->dependencia('part_reun_cientificas')->vista_pdf($salida);
-		 $salida->separacion();
-		 $this->dependencia('part_comite')->vista_pdf($salida);
-		 $salida->separacion();
-		  $salida->titulo('5. Investigacion');
-		  $salida->separacion();
-		 $this->dependencia('proy_acreditados_vinc')->vista_pdf($salida);
-		 $salida->separacion();
-		  $this->dependencia('publ_rev_vinculacion')->vista_pdf($salida);
-		 $salida->separacion();
-		 $this->dependencia('libros_extension')->vista_pdf($salida);
-		 $salida->separacion();
-		 $this->dependencia('cap_libros_vinculacion')->vista_pdf($salida);
-		 $salida->separacion();
-		 $this->dependencia('patentes_vinculacion')->vista_pdf($salida);
-		 $salida->separacion();
-		 $this->dependencia('registros_vinculacion')->vista_pdf($salida);
-		 $salida->separacion();
-		  $this->dependencia('premios_vinc_internac')->vista_pdf($salida);
-		 $salida->separacion();
+		$salida->separacion();
+		$this->dependencia('formaciion_docec')->vista_pdf($salida);
+		$salida->separacion();
+		$this->dependencia('materiales_pedag')->vista_pdf($salida);
+		$salida->separacion();
+		$salida->titulo('IV. Investigacion');
+		$this->dependencia('categorizacion')->vista_pdf($salida);
+		$salida->separacion();
+		$this->dependencia('proy_acreditados')->vista_pdf($salida);
+		$salida->separacion();
+		$this->dependencia('impacto_pub')->vista_pdf($salida);
+		$salida->separacion();
+		$this->dependencia('publ_rev_cientificas')->vista_pdf($salida);
+		$salida->separacion();
+		$this->dependencia('publ_rev_divulgacion')->vista_pdf($salida);
+		$salida->separacion();
+		$this->dependencia('Libros')->vista_pdf($salida);
+		$salida->separacion();
+		$this->dependencia('cap_libros')->vista_pdf($salida);
+		$salida->separacion();
+		$this->dependencia('patentes')->vista_pdf($salida);
+		$salida->separacion();
+		$this->dependencia('part_reun_cientificas')->vista_pdf($salida);
+		$salida->separacion();
+		$this->dependencia('part_comite')->vista_pdf($salida);
+		$salida->separacion();
+		$salida->titulo('V. Investigacion');
+		$salida->separacion();
+		$this->dependencia('proy_acreditados_vinc')->vista_pdf($salida);
+		$salida->separacion();
+		$this->dependencia('publ_rev_vinculacion')->vista_pdf($salida);
+		$salida->separacion();
+		$this->dependencia('libros_extension')->vista_pdf($salida);
+		$salida->separacion();
+		$this->dependencia('cap_libros_vinculacion')->vista_pdf($salida);
+		$salida->separacion();
+		$this->dependencia('patentes_vinculacion')->vista_pdf($salida);
+		$salida->separacion();
+		$this->dependencia('registros_vinculacion')->vista_pdf($salida);
+		$salida->separacion();
+		$this->dependencia('premios_vinc_internac')->vista_pdf($salida);
+		$salida->separacion();
+		$this->dependencia('reconocimientos')->vista_pdf($salida);
+		$salida->separacion();
+		$this->dependencia('formacion_vinc')->vista_pdf($salida);
+		$salida->separacion();
+		$this->dependencia('promocion_vinc')->vista_pdf($salida);
+		$salida->separacion();
+		$this->dependencia('participacion_vinc')->vista_pdf($salida);
+		$salida->separacion();
+		$salida->titulo('VI- Actividades de Extensión');
+		$salida->separacion();
+		$this->dependencia('proy_extension')->vista_pdf($salida);
+		$salida->separacion();
+		$this->dependencia('publ_rev_extension')->vista_pdf($salida);
+		$salida->separacion();
+		$this->dependencia('libros_extension_632')->vista_pdf($salida);
+		$salida->separacion();
+		$this->dependencia('cap_libros_extension')->vista_pdf($salida);
+		$salida->separacion();
+		$this->dependencia('patentes_extension')->vista_pdf($salida);
+		$salida->separacion();
+		$this->dependencia('registros_extension')->vista_pdf($salida);
+		$salida->separacion();
+		$this->dependencia('participacion_extension')->vista_pdf($salida);
+		$salida->separacion();
+		$this->dependencia('premios_extension')->vista_pdf($salida);
+		$salida->separacion();
+		$this->dependencia('formacion_extension')->vista_pdf($salida);
+		$salida->separacion();
+		$this->dependencia('servicios_extension')->vista_pdf($salida);
+		$salida->separacion();
 
-		 
+
 		//Encabezado
 		$pdf = $salida->get_pdf();
 		foreach ($pdf->ezPages as $pageNum => $id) {
@@ -533,9 +729,4 @@ class ci_interno extends pruebas_ci
 			$pdf->closeObject();
 		}
 	}
-
-	
 }
-
-
-?>

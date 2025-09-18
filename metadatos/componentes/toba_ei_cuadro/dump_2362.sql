@@ -53,7 +53,7 @@ INSERT INTO apex_objeto_eventos (proyecto, evento_id, objeto, identificador, eti
 	'eliminar', --identificador
 	NULL, --etiqueta
 	'1', --maneja_datos
-	'0', --sobre_fila
+	'1', --sobre_fila
 	'¿Desea eliminar el registro?', --confirmacion
 	NULL, --estilo
 	'apex', --imagen_recurso_origen
