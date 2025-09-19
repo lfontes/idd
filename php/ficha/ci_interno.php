@@ -572,6 +572,42 @@ class ci_interno extends pruebas_ci
 	{
 		$this->controlador()->get_tabla('servicios_extension')->procesar_filas($datos);
 	}
+	//-----------------------------------------------------------------------------------
+	//---- 7.1 Gobierno universitario ---------------------------------------------------
+	//-----------------------------------------------------------------------------------
+
+	function conf__gobierno_univ(pruebas_ei_formulario_ml $form_ml)
+	{
+		$form_ml->set_datos($this->controlador()->get_tabla('gobierno_univ')->get_filas());
+	}
+	function evt__gobierno_univ__modificacion($datos)
+	{
+		$this->controlador()->get_tabla('gobierno_univ')->procesar_filas($datos);
+	}
+	//-------------------------------------------------------------------------------
+	//---- 7.2 Gobierno institucional   -------------------------------------------------
+	//-----------------------------------------------------------------------------------
+
+	function conf__gobierno_inst(pruebas_ei_formulario_ml $form_ml)
+	{
+		$form_ml->set_datos($this->controlador()->get_tabla('gobierno_inst')->get_filas());
+	}
+	function evt__gobierno_inst__modificacion($datos)
+	{
+		$this->controlador()->get_tabla('gobierno_inst')->procesar_filas($datos);
+	}
+	//-------------------------------------------------------------------------------
+	//---- 7.3 Gobierno departamental   -------------------------------------------------
+	//-----------------------------------------------------------------------------------
+
+	function conf__gobierno_depar(pruebas_ei_formulario_ml $form_ml)
+	{
+		$form_ml->set_datos($this->controlador()->get_tabla('gobierno_depar')->get_filas());
+	}
+	function evt__gobierno_depar__modificacion($datos)
+	{
+		$this->controlador()->get_tabla('gobierno_depar')->procesar_filas($datos);
+	}
 
 
 	
@@ -717,6 +753,14 @@ class ci_interno extends pruebas_ci
 		$this->dependencia('formacion_extension')->vista_pdf($salida);
 		$salida->separacion();
 		$this->dependencia('servicios_extension')->vista_pdf($salida);
+		$salida->separacion();
+		$salida->titulo('VII- Actividades de Gestión');
+		$salida->separacion();
+		$this->dependencia('gobierno_univ')->vista_pdf($salida);
+		$salida->separacion();
+		$this->dependencia('gobierno_inst')->vista_pdf($salida);
+		$salida->separacion();
+		$this->dependencia('gobierno_depar')->vista_pdf($salida);
 		$salida->separacion();
 
 

@@ -26,6 +26,13 @@ class dependencias
                 ORDER BY tipo_espacio_curricular";
         return toba::db('desempenio')->consultar($sql);
     }
+    static function get_estamento_cargo($estamento)
+    {
+        $sql = "SELECT cargo as cargo, cargo as cargo_id FROM gobierno_universitario
+                        where estamento = '$estamento'
+                        order by cargo";
+        return toba::db('desempenio')->consultar($sql);
+    }
 
    
 }
