@@ -608,6 +608,102 @@ class ci_interno extends pruebas_ci
 	{
 		$this->controlador()->get_tabla('gobierno_depar')->procesar_filas($datos);
 	}
+	//-------------------------------------------------------------------------------
+	//---- 7.4 Gestión catedra   -------------------------------------------------
+	//-----------------------------------------------------------------------------------
+
+	function conf__gestion_catedra(pruebas_ei_formulario_ml $form_ml)
+	{
+		$form_ml->set_datos($this->controlador()->get_tabla('gestion_catedra')->get_filas());
+	}
+	function evt__gestion_catedra__modificacion($datos)
+	{
+		$this->controlador()->get_tabla('gestion_catedra')->procesar_filas($datos);
+	}
+	//-------------------------------------------------------------------------------
+	//---- 7.5 Proyectos acteditados Gestión-------------------------------------------
+	//-----------------------------------------------------------------------------------
+
+	function conf__proy_gestion(pruebas_ei_formulario_ml $form_ml)
+	{
+		$form_ml->set_datos($this->controlador()->get_tabla('proy_gestion')->get_filas());
+	}
+	function evt__proy_gestion__modificacion($datos)
+	{
+		$this->controlador()->get_tabla('proy_gestion')->procesar_filas($datos);
+	}
+	//-------------------------------------------------------------------------------
+	//---- 7.6.1 Publicacion revistas Gestión-------------------------------------------
+	//-----------------------------------------------------------------------------------
+
+	function conf__publ_rev_gestion(pruebas_ei_formulario_ml $form_ml)
+	{
+		$form_ml->set_datos($this->controlador()->get_tabla('publ_rev_gestion')->get_filas());
+	}
+	function evt__publ_rev_gestion__modificacion($datos)
+	{
+		$this->controlador()->get_tabla('publ_rev_gestion')->procesar_filas($datos);
+	}
+	//-------------------------------------------------------------------------------
+	//---- 7.6.2 Libros Gestión-------------------------------------------
+	//-----------------------------------------------------------------------------------
+
+	function conf__libros_gestion(pruebas_ei_formulario_ml $form_ml)
+	{
+		$form_ml->set_datos($this->controlador()->get_tabla('libros_gestion')->get_filas());
+	}
+	function evt__libros_gestion__modificacion($datos)
+	{
+		$this->controlador()->get_tabla('libros_gestion')->procesar_filas($datos);
+	}
+	//-------------------------------------------------------------------------------
+	//---- 7.6.3 Capítulos en Libros Gestión-------------------------------------------
+	//-----------------------------------------------------------------------------------
+
+	function conf__cap_libros_gestion(pruebas_ei_formulario_ml $form_ml)
+	{
+		$form_ml->set_datos($this->controlador()->get_tabla('cap_libros_gestion')->get_filas());
+	}
+	function evt__cap_libros_gestion__modificacion($datos)
+	{
+		$this->controlador()->get_tabla('cap_libros_gestion')->procesar_filas($datos);
+	}
+	//-------------------------------------------------------------------------------
+	//---- 7.7 Participacion en congreso y jornadas Gestión ----------------------------
+	//-----------------------------------------------------------------------------------
+
+	function conf__part_gestion(pruebas_ei_formulario_ml $form_ml)
+	{
+		$form_ml->set_datos($this->controlador()->get_tabla('part_gestion')->get_filas());
+	}
+	function evt__part_gestion__modificacion($datos)
+	{
+		$this->controlador()->get_tabla('part_gestion')->procesar_filas($datos);
+	}
+	//-------------------------------------------------------------------------------
+	//---- 7.8 Participacion divulgacion Gestión ----------------------------
+	//-----------------------------------------------------------------------------------
+
+	function conf__part_divulg_gestion(pruebas_ei_formulario_ml $form_ml)
+	{
+		$form_ml->set_datos($this->controlador()->get_tabla('part_divulg_gestion')->get_filas());
+	}
+	function evt__part_divulg_gestion__modificacion($datos)
+	{
+		$this->controlador()->get_tabla('part_divulg_gestion')->procesar_filas($datos);
+	}
+	//-------------------------------------------------------------------------------
+	//---- 7.9 Premios Gestión ----------------------------
+	//-----------------------------------------------------------------------------------
+
+	function conf__premios_gestion(pruebas_ei_formulario_ml $form_ml)
+	{
+		$form_ml->set_datos($this->controlador()->get_tabla('premios_gestion')->get_filas());
+	}
+	function evt__premios_gestion__modificacion($datos)
+	{
+		$this->controlador()->get_tabla('premios_gestion')->procesar_filas($datos);
+	}
 
 
 	
@@ -681,7 +777,6 @@ class ci_interno extends pruebas_ci
 		$this->dependencia('reu_cientificas')->vista_pdf($salida);
 		$salida->separacion();
 		$this->dependencia('proy_educativos')->vista_pdf($salida);
-
 		$salida->separacion();
 		$this->dependencia('formaciion_docec')->vista_pdf($salida);
 		$salida->separacion();
@@ -761,6 +856,22 @@ class ci_interno extends pruebas_ci
 		$this->dependencia('gobierno_inst')->vista_pdf($salida);
 		$salida->separacion();
 		$this->dependencia('gobierno_depar')->vista_pdf($salida);
+		$salida->separacion();
+		$this->dependencia('gestion_catedra')->vista_pdf($salida);
+		$salida->separacion();
+		$this->dependencia('proy_gestion')->vista_pdf($salida);
+		$salida->separacion();
+		$this->dependencia('publ_rev_gestion')->vista_pdf($salida);
+		$salida->separacion();
+		$this->dependencia('libros_gestion')->vista_pdf($salida);
+		$salida->separacion();
+		$this->dependencia('cap_libros_gestion')->vista_pdf($salida);
+		$salida->separacion();
+		$this->dependencia('part_gestion')->vista_pdf($salida);
+		$salida->separacion();
+		$this->dependencia('part_divulg_gestion')->vista_pdf($salida);
+		$salida->separacion();
+		$this->dependencia('premios_gestion')->vista_pdf($salida);
 		$salida->separacion();
 
 
