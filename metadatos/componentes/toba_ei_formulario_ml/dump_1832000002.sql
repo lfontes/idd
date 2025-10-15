@@ -140,7 +140,7 @@ INSERT INTO apex_objeto_ei_formulario_ef (objeto_ei_formulario_fila, objeto_ei_f
 	'departamento_id', --columnas
 	'0', --obligatorio
 	'0', --oculto_relaja_obligatorio
-	'2', --orden
+	'1', --orden
 	'Departamento id', --etiqueta
 	NULL, --etiqueta_estilo
 	NULL, --descripcion
@@ -167,7 +167,7 @@ INSERT INTO apex_objeto_ei_formulario_ef (objeto_ei_formulario_fila, objeto_ei_f
 	NULL, --carga_maestros
 	'0', --carga_cascada_relaj
 	'0', --cascada_mantiene_estado
-	'0', --carga_permite_no_seteado
+	'1', --carga_permite_no_seteado
 	NULL, --carga_no_seteado
 	'0', --carga_no_seteado_ocultar
 	NULL, --edit_tamano
@@ -221,7 +221,7 @@ INSERT INTO apex_objeto_ei_formulario_ef (objeto_ei_formulario_fila, objeto_ei_f
 	'catedra_id', --columnas
 	'0', --obligatorio
 	'0', --oculto_relaja_obligatorio
-	'1', --orden
+	'2', --orden
 	'Catedra id', --etiqueta
 	NULL, --etiqueta_estilo
 	NULL, --descripcion
@@ -235,17 +235,17 @@ INSERT INTO apex_objeto_ei_formulario_ef (objeto_ei_formulario_fila, objeto_ei_f
 	NULL, --estado_defecto
 	'0', --solo_lectura
 	'0', --solo_lectura_modificacion
-	'get_descripciones', --carga_metodo
-	NULL, --carga_clase
-	NULL, --carga_include
-	'2332', --carga_dt
+	'get_catedras', --carga_metodo
+	'dependencias', --carga_clase
+	'datos/dependencias.php', --carga_include
+	NULL, --carga_dt
 	NULL, --carga_consulta_php
 	NULL, --carga_sql
 	'desempenio', --carga_fuente
 	NULL, --carga_lista
-	'id_catedra', --carga_col_clave
-	'nombre_catedra', --carga_col_desc
-	NULL, --carga_maestros
+	'id', --carga_col_clave
+	'catedra', --carga_col_desc
+	'departamento_id', --carga_maestros
 	'0', --carga_cascada_relaj
 	'0', --cascada_mantiene_estado
 	'0', --carga_permite_no_seteado
@@ -406,7 +406,7 @@ INSERT INTO apex_objeto_ei_formulario_ef (objeto_ei_formulario_fila, objeto_ei_f
 	'desempenio', --carga_fuente
 	NULL, --carga_lista
 	'id', --carga_col_clave
-	'dedicacion', --carga_col_desc
+	'descripcion', --carga_col_desc
 	NULL, --carga_maestros
 	'0', --carga_cascada_relaj
 	'0', --cascada_mantiene_estado

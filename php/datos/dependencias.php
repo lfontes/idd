@@ -34,6 +34,15 @@ class dependencias
         return toba::db('desempenio')->consultar($sql);
     }
 
+    static function get_catedras($departamento)
+    {
+        $sql = "SELECT id_catedra as id, nombre_catedra as catedra FROM catedras
+                        where id_departamento = $departamento
+                        order by catedra";
+        return toba::db('desempenio')->consultar($sql);
+    }
+	
+
    
 }
 

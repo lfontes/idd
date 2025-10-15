@@ -26,6 +26,7 @@ class ci_interno extends pruebas_ci
 
 	function evt__edicion_ficha__modificacion($datos)
 	{
+		$datos['fecha_modif']= date('Y-m-d');
 		$this->controlador()->get_tabla('ficha')->set($datos);
 	}
 
@@ -94,7 +95,8 @@ class ci_interno extends pruebas_ci
 
 	function evt__cargos__modificacion($datos)
 	{
-		$this->controlador()->get_tabla('cargos')->procesar_filas($datos);
+		
+	$this->controlador()->get_tabla('cargos')->procesar_filas($datos);
 	}
 	//-----------------------------------------------------------------------------------
 	//---- licencias -------------------------------------------------------------
