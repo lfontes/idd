@@ -21,7 +21,7 @@ INSERT INTO apex_objeto (proyecto, objeto, anterior, identificador, reflexivo, c
 	NULL, --objeto_categoria_proyecto
 	NULL, --objeto_categoria
 	'Ficha - CI - interno - publ_rev_extension', --nombre
-	'6.3 Publicaciones en revistas y libros de extensión', --titulo
+	'6.3 Publicaciones en revistas y libros de extensión<br>6.3.1 Revistas de extensión', --titulo
 	'0', --colapsable
 	NULL, --descripcion
 	'pruebas', --fuente_datos_proyecto

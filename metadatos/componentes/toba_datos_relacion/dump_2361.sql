@@ -518,6 +518,18 @@ INSERT INTO apex_objeto_dependencias (proyecto, dep_id, objeto_consumidor, objet
 );
 INSERT INTO apex_objeto_dependencias (proyecto, dep_id, objeto_consumidor, objeto_proveedor, identificador, parametros_a, parametros_b, parametros_c, inicializar, orden) VALUES (
 	'pruebas', --proyecto
+	'1832000173', --dep_id
+	'2361', --objeto_consumidor
+	'1832000191', --objeto_proveedor
+	'premios_docencia', --identificador
+	NULL, --parametros_a
+	NULL, --parametros_b
+	NULL, --parametros_c
+	NULL, --inicializar
+	'56'  --orden
+);
+INSERT INTO apex_objeto_dependencias (proyecto, dep_id, objeto_consumidor, objeto_proveedor, identificador, parametros_a, parametros_b, parametros_c, inicializar, orden) VALUES (
+	'pruebas', --proyecto
 	'1832000061', --dep_id
 	'2361', --objeto_consumidor
 	'1832000061', --objeto_proveedor
@@ -1614,6 +1626,22 @@ INSERT INTO apex_objeto_datos_rel_asoc (proyecto, objeto, asoc_id, identificador
 	NULL, --cascada
 	'53'  --orden
 );
+INSERT INTO apex_objeto_datos_rel_asoc (proyecto, objeto, asoc_id, identificador, padre_proyecto, padre_objeto, padre_id, padre_clave, hijo_proyecto, hijo_objeto, hijo_id, hijo_clave, cascada, orden) VALUES (
+	'pruebas', --proyecto
+	'2361', --objeto
+	'1832000056', --asoc_id
+	NULL, --identificador
+	'pruebas', --padre_proyecto
+	'2335', --padre_objeto
+	'ficha', --padre_id
+	NULL, --padre_clave
+	'pruebas', --hijo_proyecto
+	'1832000191', --hijo_objeto
+	'premios_docencia', --hijo_id
+	NULL, --hijo_clave
+	NULL, --cascada
+	'54'  --orden
+);
 --- FIN Grupo de desarrollo 1832
 
 ------------------------------------------------------------
@@ -2095,4 +2123,13 @@ INSERT INTO apex_objeto_rel_columnas_asoc (proyecto, objeto, asoc_id, padre_obje
 	'865', --padre_clave
 	'1832000094', --hijo_objeto
 	'1832000332'  --hijo_clave
+);
+INSERT INTO apex_objeto_rel_columnas_asoc (proyecto, objeto, asoc_id, padre_objeto, padre_clave, hijo_objeto, hijo_clave) VALUES (
+	'pruebas', --proyecto
+	'2361', --objeto
+	'1832000056', --asoc_id
+	'2335', --padre_objeto
+	'865', --padre_clave
+	'1832000191', --hijo_objeto
+	'1832000397'  --hijo_clave
 );

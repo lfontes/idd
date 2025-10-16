@@ -21,7 +21,7 @@ INSERT INTO apex_objeto (proyecto, objeto, anterior, identificador, reflexivo, c
 	NULL, --objeto_categoria_proyecto
 	NULL, --objeto_categoria
 	'Ficha - CI - interno - publ_rev_divulgacion', --nombre
-	'4.4.2 Publicación en revistas de divulgación', --titulo
+	'4.4.2 Publicación en revistas de divulgación científica', --titulo
 	'0', --colapsable
 	NULL, --descripcion
 	'pruebas', --fuente_datos_proyecto

@@ -21,7 +21,7 @@ INSERT INTO apex_objeto (proyecto, objeto, anterior, identificador, reflexivo, c
 	NULL, --objeto_categoria_proyecto
 	NULL, --objeto_categoria
 	'Ficha - CI - interno - publ_rev_vinculacion', --nombre
-	'5.2.1 Publicaciones en Revistas de Divulgación', --titulo
+	'5.2 Publicaciones, patentes y registros de vinculción<br>5.2.1 Revista de Divulgación', --titulo
 	'0', --colapsable
 	NULL, --descripcion
 	'pruebas', --fuente_datos_proyecto

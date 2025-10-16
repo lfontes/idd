@@ -21,7 +21,7 @@ INSERT INTO apex_objeto (proyecto, objeto, anterior, identificador, reflexivo, c
 	NULL, --objeto_categoria_proyecto
 	NULL, --objeto_categoria
 	'Ficha - CI - interno - part_comite', --nombre
-	'4.7 Participación en comité editorial y comisiones evaluadoras de proyectos de investigación', --titulo
+	'4.7 Participación en comité editorial y/o comisiones evaluadoras de revistas', --titulo
 	'0', --colapsable
 	NULL, --descripcion
 	'pruebas', --fuente_datos_proyecto
@@ -302,7 +302,7 @@ INSERT INTO apex_objeto_ei_formulario_ef (objeto_ei_formulario_fila, objeto_ei_f
 	'indexada', --columnas
 	'0', --obligatorio
 	'0', --oculto_relaja_obligatorio
-	'3', --orden
+	'5', --orden
 	'Indexada', --etiqueta
 	NULL, --etiqueta_estilo
 	NULL, --descripcion
@@ -383,7 +383,7 @@ INSERT INTO apex_objeto_ei_formulario_ef (objeto_ei_formulario_fila, objeto_ei_f
 	'tipo_evaluacion', --columnas
 	'0', --obligatorio
 	'0', --oculto_relaja_obligatorio
-	'4', --orden
+	'3', --orden
 	'Tipo evaluacion', --etiqueta
 	NULL, --etiqueta_estilo
 	NULL, --descripcion
@@ -464,7 +464,7 @@ INSERT INTO apex_objeto_ei_formulario_ef (objeto_ei_formulario_fila, objeto_ei_f
 	'alcance', --columnas
 	'0', --obligatorio
 	'0', --oculto_relaja_obligatorio
-	'5', --orden
+	'4', --orden
 	'Alcance', --etiqueta
 	NULL, --etiqueta_estilo
 	NULL, --descripcion

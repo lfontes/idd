@@ -122,7 +122,11 @@ INSERT INTO apex_objeto_ut_formulario (objeto_ut_formulario_proyecto, objeto_ut_
 	NULL, --analisis_cambios
 	'0', --no_imprimir_efs_sin_estado
 	'0', --resaltar_efs_con_estado
-	'', --template
+	'<p style="text-align: center;"><br />
+[ef id=dni_doc][ef id=legajo_doc]<br />
+<span style="color:#3498db;"><em>* Consignar aqu&iacute; el cargo de mayor jerarqu&iacute;a</em></span><br />
+[ef id=departamento_id][ef id=catedra_id][ef id=categoria_id][ef id=dedicacion_id][ef id=user_id][ef id=anio][ef id=cargo_gestion]<br />
+&nbsp;</p>', --template
 	NULL  --template_impresion
 );
 

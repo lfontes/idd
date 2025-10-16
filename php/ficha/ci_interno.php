@@ -84,6 +84,20 @@ class ci_interno extends pruebas_ci
 	{
 		$this->controlador()->get_tabla('actualizacion')->procesar_filas($datos);
 	}
+
+	//-----------------------------------------------------------------------------------
+	//---- Premios docentes ------------------------------------------------------------
+	//-----------------------------------------------------------------------------------
+
+	function conf__premios_doc(pruebas_ei_formulario_ml $form_ml)
+	{
+		$form_ml->set_datos($this->controlador()->get_tabla('premios_docencia')->get_filas());
+	}
+
+	function evt__premios_doc__modificacion($datos)
+	{
+		$this->controlador()->get_tabla('premios_docencia')->procesar_filas($datos);
+	}
 	//-----------------------------------------------------------------------------------
 	//---- cargos ---------------------------------------------------------------
 	//-----------------------------------------------------------------------------------
@@ -771,6 +785,8 @@ class ci_interno extends pruebas_ci
 		$this->dependencia('formacion_academica')->vista_pdf($salida);
 		$salida->separacion();
 		$this->dependencia('actualizacion')->vista_pdf($salida);
+		$salida->separacion();
+		$this->dependencia('premios_doc')->vista_pdf($salida);
 		$salida->separacion();
 		$this->dependencia('docec_facultad')->vista_pdf($salida);
 		$salida->separacion();
