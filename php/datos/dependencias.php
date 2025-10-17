@@ -22,7 +22,7 @@ class dependencias
         $sql = "SELECT t_cec.tipo_esp_curr as id,t_esp_tipos.tipo_espacio_curricular as tipo_espacio_curricular
                  FROM c33_espacios_curriculares as t_cec                
                 left outer join c33_espacios_curriculares_tipos as t_esp_tipos on (t_cec.tipo_esp_curr = t_esp_tipos.id)
-                where t_cec.id =$espacio_curricular
+                where t_cec.cod_guarani =$espacio_curricular
                 ORDER BY tipo_espacio_curricular";
         return toba::db('desempenio')->consultar($sql);
     }

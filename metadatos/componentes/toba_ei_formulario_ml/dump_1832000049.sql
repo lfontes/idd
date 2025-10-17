@@ -51,7 +51,7 @@ INSERT INTO apex_objeto_eventos (proyecto, evento_id, objeto, identificador, eti
 	'1832000028', --evento_id
 	'1832000049', --objeto
 	'modificacion', --identificador
-	'&Modificacion', --etiqueta
+	'&Modificación', --etiqueta
 	'1', --maneja_datos
 	'0', --sobre_fila
 	NULL, --confirmacion
@@ -141,7 +141,7 @@ INSERT INTO apex_objeto_ei_formulario_ef (objeto_ei_formulario_fila, objeto_ei_f
 	'0', --obligatorio
 	'0', --oculto_relaja_obligatorio
 	'1', --orden
-	'Titulo de trabajo', --etiqueta
+	'Título de trabajo', --etiqueta
 	NULL, --etiqueta_estilo
 	NULL, --descripcion
 	NULL, --colapsado
@@ -384,7 +384,7 @@ INSERT INTO apex_objeto_ei_formulario_ef (objeto_ei_formulario_fila, objeto_ei_f
 	'0', --obligatorio
 	'0', --oculto_relaja_obligatorio
 	'4', --orden
-	'Ref articulo', --etiqueta
+	'Ref. artículo', --etiqueta
 	NULL, --etiqueta_estilo
 	NULL, --descripcion
 	NULL, --colapsado
