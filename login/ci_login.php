@@ -194,6 +194,12 @@ class ci_login extends toba_ci
 			}
 			$form->set_datos($this->s__datos);
 		}
+		
+		  if (!toba::memoria()->existe_dato('ag')) {
+                          $url_recuperar_contrasenia = toba::vinculador()->get_url(toba_proyecto::get_id(), '58000001');
+              $vinculo_recuperar_contrasenia = "<a href='$url_recuperar_contrasenia";
+              $form->set_datos(array('recuperar_contrasenia' => $vinculo_recuperar_contrasenia));
+          }
 	}
 
 

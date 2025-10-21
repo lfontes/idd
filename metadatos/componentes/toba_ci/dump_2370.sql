@@ -812,8 +812,8 @@ INSERT INTO apex_objeto_ci_pantalla (objeto_ci_proyecto, objeto_ci, pantalla, id
 	NULL, --eventos
 	NULL, --subclase
 	NULL, --subclase_archivo
-	NULL, --template
-	'<p>[dep id=edicion_ficha]&lt;hr&gt;[dep id=cargos]&lt;hr&gt;[dep id=licencias]&lt;hr&gt;[dep id=formacion_academica]&lt;hr&gt;[dep id=actualizacion]&lt;hr&gt;[dep id=docec_facultad]&lt;hr&gt;[dep id=docec_posgrado]&lt;hr&gt;[dep id=reu_cientificas]&lt;hr&gt;[dep id=proy_educativos]&lt;hr&gt;[dep id=formaciion_docec]&lt;hr&gt;[dep id=materiales_pedag]</p>', --template_impresion
+	'', --template
+	NULL, --template_impresion
 	'13'  --punto_montaje
 );
 INSERT INTO apex_objeto_ci_pantalla (objeto_ci_proyecto, objeto_ci, pantalla, identificador, orden, etiqueta, descripcion, tip, imagen_recurso_origen, imagen, objetos, eventos, subclase, subclase_archivo, template, template_impresion, punto_montaje) VALUES (
