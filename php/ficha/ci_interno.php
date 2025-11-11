@@ -303,14 +303,14 @@ class ci_interno extends pruebas_ci
 	//---- 4.5 Patentes -----------------------------------------------------------------
 	//-----------------------------------------------------------------------------------
 
-	function conf__patentes(pruebas_ei_formulario_ml $form_ml)
-	{
-		$form_ml->set_datos($this->controlador()->get_tabla('patentes')->get_filas());
-	}
-	function evt__patentes__modificacion($datos)
-	{
-		$this->controlador()->get_tabla('patentes')->procesar_filas($datos);
-	}
+	// function conf__patentes(pruebas_ei_formulario_ml $form_ml)
+	// {
+	// 	$form_ml->set_datos($this->controlador()->get_tabla('patentes')->get_filas());
+	// }
+	// function evt__patentes__modificacion($datos)
+	// {
+	// 	$this->controlador()->get_tabla('patentes')->procesar_filas($datos);
+	// }
 
 	//-----------------------------------------------------------------------------------
 	//---- 4.6 Participacion en reuniones científicas -----------------------------------------------------------------
@@ -384,18 +384,7 @@ class ci_interno extends pruebas_ci
 	{
 		$this->controlador()->get_tabla('cap_libros_vinculacion')->procesar_filas($datos);
 	}
-	//-----------------------------------------------------------------------------------
-	//---- 5.2.4 Patentes vinculación -------------------------------------
-	//-----------------------------------------------------------------------------------
 
-	function conf__patentes_vinculacion(pruebas_ei_formulario_ml $form_ml)
-	{
-		$form_ml->set_datos($this->controlador()->get_tabla('patentes_vinculacion')->get_filas());
-	}
-	function evt__patentes_vinculacion__modificacion($datos)
-	{
-		$this->controlador()->get_tabla('patentes_vinculacion')->procesar_filas($datos);
-	}
 	//-----------------------------------------------------------------------------------
 	//---- 5.2.5 Registros vinculación --------------------------------------------------
 	//-----------------------------------------------------------------------------------
@@ -516,18 +505,7 @@ class ci_interno extends pruebas_ci
 	{
 		$this->controlador()->get_tabla('cap_libros_extension')->procesar_filas($datos);
 	}
-	//-----------------------------------------------------------------------------------
-	//---- 6.3.4 Patentes extension ---------------------------------------------------------
-	//-----------------------------------------------------------------------------------
-
-	function conf__patentes_extension(pruebas_ei_formulario_ml $form_ml)
-	{
-		$form_ml->set_datos($this->controlador()->get_tabla('patentes_extension')->get_filas());
-	}
-	function evt__patentes_extension__modificacion($datos)
-	{
-		$this->controlador()->get_tabla('patentes_extension')->procesar_filas($datos);
-	}
+	
 	//-----------------------------------------------------------------------------------
 	//---- 6.3.5 Registros extension ---------------------------------------------------------
 	//-----------------------------------------------------------------------------------
@@ -854,8 +832,6 @@ class ci_interno extends pruebas_ci
 		$this->dependencia('libros_extension_632')->vista_pdf($salida);
 		$salida->separacion();
 		$this->dependencia('cap_libros_extension')->vista_pdf($salida);
-		$salida->separacion();
-		$this->dependencia('patentes_extension')->vista_pdf($salida);
 		$salida->separacion();
 		$this->dependencia('registros_extension')->vista_pdf($salida);
 		$salida->separacion();

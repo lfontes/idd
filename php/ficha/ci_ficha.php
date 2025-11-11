@@ -106,7 +106,7 @@ class ci_ficha extends pruebas_ci
 	function evt__guardar()
 	{
 		$this->dep('datos')->sincronizar();
-		$this->resetear();
+		//$this->resetear();
 	}
 
 	function ini__operacion() {}
