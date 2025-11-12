@@ -566,7 +566,7 @@ INSERT INTO apex_objeto_ei_formulario_ef (objeto_ei_formulario_fila, objeto_ei_f
 	NULL, --carga_consulta_php
 	NULL, --carga_sql
 	'desempenio', --carga_fuente
-	'Sin Referato, Con Referato', --carga_lista
+	'--, Sin Referato, Con Referato', --carga_lista
 	NULL, --carga_col_clave
 	NULL, --carga_col_desc
 	NULL, --carga_maestros

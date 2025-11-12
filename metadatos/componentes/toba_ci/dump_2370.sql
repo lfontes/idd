@@ -144,6 +144,18 @@ INSERT INTO apex_objeto_dependencias (proyecto, dep_id, objeto_consumidor, objet
 --- INICIO Grupo de desarrollo 1832
 INSERT INTO apex_objeto_dependencias (proyecto, dep_id, objeto_consumidor, objeto_proveedor, identificador, parametros_a, parametros_b, parametros_c, inicializar, orden) VALUES (
 	'pruebas', --proyecto
+	'1832000176', --dep_id
+	'2370', --objeto_consumidor
+	'1832000197', --objeto_proveedor
+	'c25_capacitacion', --identificador
+	NULL, --parametros_a
+	NULL, --parametros_b
+	NULL, --parametros_c
+	NULL, --inicializar
+	NULL  --orden
+);
+INSERT INTO apex_objeto_dependencias (proyecto, dep_id, objeto_consumidor, objeto_proveedor, identificador, parametros_a, parametros_b, parametros_c, inicializar, orden) VALUES (
+	'pruebas', --proyecto
 	'1832000017', --dep_id
 	'2370', --objeto_consumidor
 	'1832000016', --objeto_proveedor
@@ -516,30 +528,6 @@ INSERT INTO apex_objeto_dependencias (proyecto, dep_id, objeto_consumidor, objet
 );
 INSERT INTO apex_objeto_dependencias (proyecto, dep_id, objeto_consumidor, objeto_proveedor, identificador, parametros_a, parametros_b, parametros_c, inicializar, orden) VALUES (
 	'pruebas', --proyecto
-	'1832000057', --dep_id
-	'2370', --objeto_consumidor
-	'1832000057', --objeto_proveedor
-	'patentes_extension', --identificador
-	NULL, --parametros_a
-	NULL, --parametros_b
-	NULL, --parametros_c
-	NULL, --inicializar
-	NULL  --orden
-);
-INSERT INTO apex_objeto_dependencias (proyecto, dep_id, objeto_consumidor, objeto_proveedor, identificador, parametros_a, parametros_b, parametros_c, inicializar, orden) VALUES (
-	'pruebas', --proyecto
-	'1832000034', --dep_id
-	'2370', --objeto_consumidor
-	'1832000033', --objeto_proveedor
-	'patentes_vinculacion', --identificador
-	NULL, --parametros_a
-	NULL, --parametros_b
-	NULL, --parametros_c
-	NULL, --inicializar
-	NULL  --orden
-);
-INSERT INTO apex_objeto_dependencias (proyecto, dep_id, objeto_consumidor, objeto_proveedor, identificador, parametros_a, parametros_b, parametros_c, inicializar, orden) VALUES (
-	'pruebas', --proyecto
 	'1832000174', --dep_id
 	'2370', --objeto_consumidor
 	'1832000192', --objeto_proveedor
@@ -802,8 +790,8 @@ INSERT INTO apex_objeto_ci_pantalla (objeto_ci_proyecto, objeto_ci, pantalla, id
 	'2370', --objeto_ci
 	'1218', --pantalla
 	'pant_inicial', --identificador
-	'1', --orden
-	'Docencia', --etiqueta
+	'2', --orden
+	'Actividades en docencia', --etiqueta
 	NULL, --descripcion
 	NULL, --tip
 	'apex', --imagen_recurso_origen
@@ -821,9 +809,9 @@ INSERT INTO apex_objeto_ci_pantalla (objeto_ci_proyecto, objeto_ci, pantalla, id
 	'2370', --objeto_ci
 	'1219', --pantalla
 	'pant_investigacion', --identificador
-	'2', --orden
+	'3', --orden
 	'Investigación', --etiqueta
-	NULL, --descripcion
+	'HOla mundo!!', --descripcion
 	NULL, --tip
 	'apex', --imagen_recurso_origen
 	NULL, --imagen
@@ -840,7 +828,7 @@ INSERT INTO apex_objeto_ci_pantalla (objeto_ci_proyecto, objeto_ci, pantalla, id
 	'2370', --objeto_ci
 	'1220', --pantalla
 	'pant_gestion', --identificador
-	'5', --orden
+	'6', --orden
 	'Gestión', --etiqueta
 	NULL, --descripcion
 	NULL, --tip
@@ -859,7 +847,7 @@ INSERT INTO apex_objeto_ci_pantalla (objeto_ci_proyecto, objeto_ci, pantalla, id
 	'2370', --objeto_ci
 	'1221', --pantalla
 	'pant_extension', --identificador
-	'4', --orden
+	'5', --orden
 	'Extensión', --etiqueta
 	NULL, --descripcion
 	NULL, --tip
@@ -878,7 +866,7 @@ INSERT INTO apex_objeto_ci_pantalla (objeto_ci_proyecto, objeto_ci, pantalla, id
 	'2370', --objeto_ci
 	'1222', --pantalla
 	'pant_vinculacion', --identificador
-	'3', --orden
+	'4', --orden
 	'Vinculación', --etiqueta
 	'Descripcion en pantalla vinculacion', --descripcion
 	NULL, --tip
@@ -894,6 +882,28 @@ INSERT INTO apex_objeto_ci_pantalla (objeto_ci_proyecto, objeto_ci, pantalla, id
 );
 --- FIN Grupo de desarrollo 0
 
+--- INICIO Grupo de desarrollo 1832
+INSERT INTO apex_objeto_ci_pantalla (objeto_ci_proyecto, objeto_ci, pantalla, identificador, orden, etiqueta, descripcion, tip, imagen_recurso_origen, imagen, objetos, eventos, subclase, subclase_archivo, template, template_impresion, punto_montaje) VALUES (
+	'pruebas', --objeto_ci_proyecto
+	'2370', --objeto_ci
+	'1832000029', --pantalla
+	'pant_datos', --identificador
+	'1', --orden
+	'Datos personales', --etiqueta
+	NULL, --descripcion
+	NULL, --tip
+	'apex', --imagen_recurso_origen
+	NULL, --imagen
+	NULL, --objetos
+	NULL, --eventos
+	NULL, --subclase
+	NULL, --subclase_archivo
+	NULL, --template
+	NULL, --template_impresion
+	'13'  --punto_montaje
+);
+--- FIN Grupo de desarrollo 1832
+
 ------------------------------------------------------------
 -- apex_objetos_pantalla
 ------------------------------------------------------------
@@ -901,84 +911,56 @@ INSERT INTO apex_objetos_pantalla (proyecto, pantalla, objeto_ci, orden, dep_id)
 	'pruebas', --proyecto
 	'1218', --pantalla
 	'2370', --objeto_ci
-	'3', --orden
-	'1247'  --dep_id
-);
-INSERT INTO apex_objetos_pantalla (proyecto, pantalla, objeto_ci, orden, dep_id) VALUES (
-	'pruebas', --proyecto
-	'1218', --pantalla
-	'2370', --objeto_ci
 	'0', --orden
-	'1248'  --dep_id
-);
-INSERT INTO apex_objetos_pantalla (proyecto, pantalla, objeto_ci, orden, dep_id) VALUES (
-	'pruebas', --proyecto
-	'1218', --pantalla
-	'2370', --objeto_ci
-	'4', --orden
 	'1252'  --dep_id
 );
 INSERT INTO apex_objetos_pantalla (proyecto, pantalla, objeto_ci, orden, dep_id) VALUES (
 	'pruebas', --proyecto
 	'1218', --pantalla
 	'2370', --objeto_ci
-	'6', --orden
+	'2', --orden
 	'1272'  --dep_id
 );
 INSERT INTO apex_objetos_pantalla (proyecto, pantalla, objeto_ci, orden, dep_id) VALUES (
 	'pruebas', --proyecto
 	'1218', --pantalla
 	'2370', --objeto_ci
-	'7', --orden
+	'3', --orden
 	'1274'  --dep_id
 );
 INSERT INTO apex_objetos_pantalla (proyecto, pantalla, objeto_ci, orden, dep_id) VALUES (
 	'pruebas', --proyecto
 	'1218', --pantalla
 	'2370', --objeto_ci
-	'8', --orden
+	'4', --orden
 	'1276'  --dep_id
 );
 INSERT INTO apex_objetos_pantalla (proyecto, pantalla, objeto_ci, orden, dep_id) VALUES (
 	'pruebas', --proyecto
 	'1218', --pantalla
 	'2370', --objeto_ci
-	'9', --orden
+	'5', --orden
 	'1278'  --dep_id
 );
 INSERT INTO apex_objetos_pantalla (proyecto, pantalla, objeto_ci, orden, dep_id) VALUES (
 	'pruebas', --proyecto
 	'1218', --pantalla
 	'2370', --objeto_ci
-	'10', --orden
+	'6', --orden
 	'1282'  --dep_id
 );
 INSERT INTO apex_objetos_pantalla (proyecto, pantalla, objeto_ci, orden, dep_id) VALUES (
 	'pruebas', --proyecto
 	'1218', --pantalla
 	'2370', --objeto_ci
-	'11', --orden
+	'7', --orden
 	'1283'  --dep_id
 );
 INSERT INTO apex_objetos_pantalla (proyecto, pantalla, objeto_ci, orden, dep_id) VALUES (
 	'pruebas', --proyecto
 	'1218', --pantalla
 	'2370', --objeto_ci
-	'2', --orden
-	'1345'  --dep_id
-);
-INSERT INTO apex_objetos_pantalla (proyecto, pantalla, objeto_ci, orden, dep_id) VALUES (
-	'pruebas', --proyecto
-	'1218', --pantalla
-	'2370', --objeto_ci
 	'1', --orden
-	'1832000001'  --dep_id
-);
-INSERT INTO apex_objetos_pantalla (proyecto, pantalla, objeto_ci, orden, dep_id) VALUES (
-	'pruebas', --proyecto
-	'1218', --pantalla
-	'2370', --objeto_ci
-	'5', --orden
 	'1832000174'  --dep_id
 );
 INSERT INTO apex_objetos_pantalla (proyecto, pantalla, objeto_ci, orden, dep_id) VALUES (
@@ -1035,20 +1017,13 @@ INSERT INTO apex_objetos_pantalla (proyecto, pantalla, objeto_ci, orden, dep_id)
 	'1219', --pantalla
 	'2370', --objeto_ci
 	'7', --orden
-	'1832000019'  --dep_id
-);
-INSERT INTO apex_objetos_pantalla (proyecto, pantalla, objeto_ci, orden, dep_id) VALUES (
-	'pruebas', --proyecto
-	'1219', --pantalla
-	'2370', --objeto_ci
-	'8', --orden
 	'1832000021'  --dep_id
 );
 INSERT INTO apex_objetos_pantalla (proyecto, pantalla, objeto_ci, orden, dep_id) VALUES (
 	'pruebas', --proyecto
 	'1219', --pantalla
 	'2370', --objeto_ci
-	'9', --orden
+	'8', --orden
 	'1832000023'  --dep_id
 );
 INSERT INTO apex_objetos_pantalla (proyecto, pantalla, objeto_ci, orden, dep_id) VALUES (
@@ -1160,13 +1135,6 @@ INSERT INTO apex_objetos_pantalla (proyecto, pantalla, objeto_ci, orden, dep_id)
 	'pruebas', --proyecto
 	'1221', --pantalla
 	'2370', --objeto_ci
-	'4', --orden
-	'1832000057'  --dep_id
-);
-INSERT INTO apex_objetos_pantalla (proyecto, pantalla, objeto_ci, orden, dep_id) VALUES (
-	'pruebas', --proyecto
-	'1221', --pantalla
-	'2370', --objeto_ci
 	'5', --orden
 	'1832000058'  --dep_id
 );
@@ -1202,6 +1170,13 @@ INSERT INTO apex_objetos_pantalla (proyecto, pantalla, objeto_ci, orden, dep_id)
 	'pruebas', --proyecto
 	'1222', --pantalla
 	'2370', --objeto_ci
+	'4', --orden
+	'1832000019'  --dep_id
+);
+INSERT INTO apex_objetos_pantalla (proyecto, pantalla, objeto_ci, orden, dep_id) VALUES (
+	'pruebas', --proyecto
+	'1222', --pantalla
+	'2370', --objeto_ci
 	'0', --orden
 	'1832000025'  --dep_id
 );
@@ -1225,13 +1200,6 @@ INSERT INTO apex_objetos_pantalla (proyecto, pantalla, objeto_ci, orden, dep_id)
 	'2370', --objeto_ci
 	'3', --orden
 	'1832000031'  --dep_id
-);
-INSERT INTO apex_objetos_pantalla (proyecto, pantalla, objeto_ci, orden, dep_id) VALUES (
-	'pruebas', --proyecto
-	'1222', --pantalla
-	'2370', --objeto_ci
-	'4', --orden
-	'1832000034'  --dep_id
 );
 INSERT INTO apex_objetos_pantalla (proyecto, pantalla, objeto_ci, orden, dep_id) VALUES (
 	'pruebas', --proyecto
@@ -1274,6 +1242,41 @@ INSERT INTO apex_objetos_pantalla (proyecto, pantalla, objeto_ci, orden, dep_id)
 	'2370', --objeto_ci
 	'10', --orden
 	'1832000045'  --dep_id
+);
+INSERT INTO apex_objetos_pantalla (proyecto, pantalla, objeto_ci, orden, dep_id) VALUES (
+	'pruebas', --proyecto
+	'1832000029', --pantalla
+	'2370', --objeto_ci
+	'3', --orden
+	'1247'  --dep_id
+);
+INSERT INTO apex_objetos_pantalla (proyecto, pantalla, objeto_ci, orden, dep_id) VALUES (
+	'pruebas', --proyecto
+	'1832000029', --pantalla
+	'2370', --objeto_ci
+	'0', --orden
+	'1248'  --dep_id
+);
+INSERT INTO apex_objetos_pantalla (proyecto, pantalla, objeto_ci, orden, dep_id) VALUES (
+	'pruebas', --proyecto
+	'1832000029', --pantalla
+	'2370', --objeto_ci
+	'2', --orden
+	'1345'  --dep_id
+);
+INSERT INTO apex_objetos_pantalla (proyecto, pantalla, objeto_ci, orden, dep_id) VALUES (
+	'pruebas', --proyecto
+	'1832000029', --pantalla
+	'2370', --objeto_ci
+	'1', --orden
+	'1832000001'  --dep_id
+);
+INSERT INTO apex_objetos_pantalla (proyecto, pantalla, objeto_ci, orden, dep_id) VALUES (
+	'pruebas', --proyecto
+	'1832000029', --pantalla
+	'2370', --objeto_ci
+	'4', --orden
+	'1832000176'  --dep_id
 );
 
 ------------------------------------------------------------

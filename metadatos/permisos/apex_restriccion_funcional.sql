@@ -11,3 +11,12 @@ INSERT INTO apex_restriccion_funcional (proyecto, restriccion_funcional, descrip
 	'0'  --permite_edicion
 );
 --- FIN Grupo de desarrollo 0
+
+--- INICIO Grupo de desarrollo 1832
+INSERT INTO apex_restriccion_funcional (proyecto, restriccion_funcional, descripcion, permite_edicion) VALUES (
+	'pruebas', --proyecto
+	'1832000001', --restriccion_funcional
+	'Restriccion admin', --descripcion
+	'0'  --permite_edicion
+);
+--- FIN Grupo de desarrollo 1832

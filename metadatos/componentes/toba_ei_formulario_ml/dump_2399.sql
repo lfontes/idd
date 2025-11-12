@@ -386,7 +386,7 @@ INSERT INTO apex_objeto_ei_formulario_ef (objeto_ei_formulario_fila, objeto_ei_f
 	'5', --orden
 	'Participacion %', --etiqueta
 	NULL, --etiqueta_estilo
-	'% de dedicación horaria.', --descripcion
+	'% de dedicación según designación', --descripcion
 	'0', --colapsado
 	'0', --desactivado
 	NULL, --estilo
@@ -548,7 +548,7 @@ INSERT INTO apex_objeto_ei_formulario_ef (objeto_ei_formulario_fila, objeto_ei_f
 	'3', --orden
 	'Tipo', --etiqueta
 	NULL, --etiqueta_estilo
-	NULL, --descripcion
+	'Tipo de esp. curricular según Plan de estudios vigente.', --descripcion
 	'0', --colapsado
 	'0', --desactivado
 	NULL, --estilo

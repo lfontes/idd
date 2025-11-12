@@ -32,9 +32,24 @@ INSERT INTO apex_usuario_grupo_acc_item (proyecto, usuario_grupo_acc, item_id, i
 	'pruebas', --proyecto
 	'docente', --usuario_grupo_acc
 	NULL, --item_id
+	'2'  --item
+);
+INSERT INTO apex_usuario_grupo_acc_item (proyecto, usuario_grupo_acc, item_id, item) VALUES (
+	'pruebas', --proyecto
+	'docente', --usuario_grupo_acc
+	NULL, --item_id
 	'3479'  --item
 );
 --- FIN Grupo de desarrollo 0
+
+--- INICIO Grupo de desarrollo 1832
+INSERT INTO apex_usuario_grupo_acc_item (proyecto, usuario_grupo_acc, item_id, item) VALUES (
+	'pruebas', --proyecto
+	'docente', --usuario_grupo_acc
+	NULL, --item_id
+	'1832000032'  --item
+);
+--- FIN Grupo de desarrollo 1832
 
 ------------------------------------------------------------
 -- apex_grupo_acc_restriccion_funcional

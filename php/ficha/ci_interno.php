@@ -82,6 +82,7 @@ class ci_interno extends pruebas_ci
 
 	function evt__actualizacion__modificacion($datos)
 	{
+
 		$this->controlador()->get_tabla('actualizacion')->procesar_filas($datos);
 	}
 
@@ -125,6 +126,22 @@ class ci_interno extends pruebas_ci
 	{
 		$this->controlador()->get_tabla('licencias')->procesar_filas($datos);
 	}
+
+	//-----------------------------------------------------------------------------------
+	//---- 2.5 Capacitacions -------------------------------------------------------------
+	//-----------------------------------------------------------------------------------
+
+	function conf__c25_capacitacion(pruebas_ei_formulario_ml $form_ml)
+	{
+		$form_ml->set_datos($this->controlador()->get_tabla('capacitacion')->get_filas());
+	}
+
+	function evt__c25_capacitacion__modificacion($datos)
+	{
+	
+		$this->controlador()->get_tabla('capacitacion')->procesar_filas($datos);
+	}
+
 	//-----------------------------------------------------------------------------------
 	//---- docec_facultad ---------------------------------------------------------------
 	//-----------------------------------------------------------------------------------
@@ -299,18 +316,7 @@ class ci_interno extends pruebas_ci
 	{
 		$this->controlador()->get_tabla('cap_libros')->procesar_filas($datos);
 	}
-	//-----------------------------------------------------------------------------------
-	//---- 4.5 Patentes -----------------------------------------------------------------
-	//-----------------------------------------------------------------------------------
-
-	// function conf__patentes(pruebas_ei_formulario_ml $form_ml)
-	// {
-	// 	$form_ml->set_datos($this->controlador()->get_tabla('patentes')->get_filas());
-	// }
-	// function evt__patentes__modificacion($datos)
-	// {
-	// 	$this->controlador()->get_tabla('patentes')->procesar_filas($datos);
-	// }
+	
 
 	//-----------------------------------------------------------------------------------
 	//---- 4.6 Participacion en reuniones científicas -----------------------------------------------------------------
@@ -384,6 +390,19 @@ class ci_interno extends pruebas_ci
 	{
 		$this->controlador()->get_tabla('cap_libros_vinculacion')->procesar_filas($datos);
 	}
+
+	//-----------------------------------------------------------------------------------
+	//---- 5.2.4 Patentes -----------------------------------------------------------------
+	//-----------------------------------------------------------------------------------
+
+	 function conf__patentes(pruebas_ei_formulario_ml $form_ml)
+	 {
+	 	$form_ml->set_datos($this->controlador()->get_tabla('patentes_vinculacion')->get_filas());
+	 }
+	 function evt__patentes__modificacion($datos)
+	 {
+	 	$this->controlador()->get_tabla('patentes_vinculacion')->procesar_filas($datos);
+	 }
 
 	//-----------------------------------------------------------------------------------
 	//---- 5.2.5 Registros vinculación --------------------------------------------------
@@ -752,16 +771,21 @@ class ci_interno extends pruebas_ci
 		// $salida->titulo($this->get_nombre());
 		$salida->titulo('INFORME INTEGRADOR DE EVALUACIÓN ANUAL DE DESEMPEÑO DOCENTE DE LA FACULTAD DE CIENCIAS AGRARIAS UNCUYO');
 		//$salida->mensaje('Nota: Este es el Principal');
-		$this->dependencia('edicion_ficha')->vista_pdf($salida);
+		$salida->titulo('I. Datos personales');
 		$salida->separacion();
-		$this->dependencia('licencias')->vista_pdf($salida);
+		$this->dependencia('edicion_ficha')->vista_pdf($salida);
 		$salida->separacion();
 		$this->dependencia('cargos')->vista_pdf($salida);
 		$salida->separacion();
-		$salida->titulo('III. Docencia');
+		$this->dependencia('licencias')->vista_pdf($salida);
 		$salida->separacion();
 		$this->dependencia('formacion_academica')->vista_pdf($salida);
 		$salida->separacion();
+		$this->dependencia('c25_capacitacion')->vista_pdf($salida);
+		$salida->separacion();
+		$salida->titulo('III. Docencia');
+		$salida->separacion();
+	
 		$this->dependencia('actualizacion')->vista_pdf($salida);
 		$salida->separacion();
 		$this->dependencia('premios_doc')->vista_pdf($salida);

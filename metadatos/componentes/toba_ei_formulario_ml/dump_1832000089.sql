@@ -21,7 +21,7 @@ INSERT INTO apex_objeto (proyecto, objeto, anterior, identificador, reflexivo, c
 	NULL, --objeto_categoria_proyecto
 	NULL, --objeto_categoria
 	'Ficha - CI - interno - cap_libros_gestion', --nombre
-	'7.6.3 Capítulo de Libro de Extensión', --titulo
+	'7.6.3 Capítulo de Libro de Gestión', --titulo
 	'0', --colapsable
 	NULL, --descripcion
 	'pruebas', --fuente_datos_proyecto

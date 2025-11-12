@@ -406,7 +406,7 @@ INSERT INTO apex_objeto_ci_pantalla (objeto_ci_proyecto, objeto_ci, pantalla, id
 	'pant_edicion', --identificador
 	'2', --orden
 	'Edición', --etiqueta
-	'<p><strong><H4> INFORME INTEGRADOR DE EVALUACIÓN ANUAL DE DESEMPEÑO DOCENTE DE LA FACULTAD DE CIENCIAS AGRARIAS UNCUYO</h4></strong></p>
+	'<p><strong><H4> Informe de Labor Anual para la Evaluación de Desempeño Docente DE LA FACULTAD DE CIENCIAS AGRARIAS UNCUYO</h4></strong></p>
 <p>Recuerde:</br>
 -Se trata de un INFORME ANUAL que debe reflejar estricta y fielmente lo realizado
 durante el periodo solicitado.</br>
