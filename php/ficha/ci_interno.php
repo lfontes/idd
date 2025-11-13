@@ -254,16 +254,16 @@ class ci_interno extends pruebas_ci
 	}
 
 	//-----------------------------------------------------------------------------------
-	//---- 4.3 Impacto publicaciones ----------------------------------------------------
+	//---- 4.3 Formacion RRHH investigacion ---------------------------------------------
 	//-----------------------------------------------------------------------------------
 
-	function conf__impacto_pub(pruebas_ei_formulario_ml $form_ml)
+	function conf__rrhh_investigacion(pruebas_ei_formulario_ml $form_ml)
 	{
-		$form_ml->set_datos($this->controlador()->get_tabla('impacto_pub')->get_filas());
+		$form_ml->set_datos($this->controlador()->get_tabla('rrhh_investigacion')->get_filas());
 	}
-	function evt__impacto_pub__modificacion($datos)
+	function evt__rrhh_investigacion__modificacion($datos)
 	{
-		$this->controlador()->get_tabla('impacto_pub')->procesar_filas($datos);
+		$this->controlador()->get_tabla('rrhh_investigacion')->procesar_filas($datos);
 	}
 
 	//-----------------------------------------------------------------------------------
@@ -585,6 +585,21 @@ class ci_interno extends pruebas_ci
 	{
 		$this->controlador()->get_tabla('servicios_extension')->procesar_filas($datos);
 	}
+	//-----------------------------------------------------------------------------------
+	//---- 6.8 Cursos de extension dictados ---------------------------------------------------------
+	//-----------------------------------------------------------------------------------
+
+	function conf__cursos_extension(pruebas_ei_formulario_ml $form_ml)
+	{
+		$form_ml->set_datos($this->controlador()->get_tabla('cursos_extension')->get_filas());
+	}
+	function evt__cursos_extension__modificacion($datos)
+	{
+		$this->controlador()->get_tabla('cursos_extension')->procesar_filas($datos);
+	}
+
+
+
 	//-----------------------------------------------------------------------------------
 	//---- 7.1 Gobierno universitario ---------------------------------------------------
 	//-----------------------------------------------------------------------------------

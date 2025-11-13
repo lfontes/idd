@@ -1,5 +1,5 @@
 ------------------------------------------------------------
---[1832000196]--  DT - c25_capacitacion 
+--[1832000196]--  DT - capacitacion 
 ------------------------------------------------------------
 
 ------------------------------------------------------------
@@ -20,7 +20,7 @@ INSERT INTO apex_objeto (proyecto, objeto, anterior, identificador, reflexivo, c
 	NULL, --subclase_archivo
 	NULL, --objeto_categoria_proyecto
 	NULL, --objeto_categoria
-	'DT - c25_capacitacion', --nombre
+	'DT - capacitacion', --nombre
 	NULL, --titulo
 	NULL, --colapsable
 	NULL, --descripcion
@@ -53,13 +53,13 @@ INSERT INTO apex_objeto_db_registros (objeto_proyecto, objeto, max_registros, mi
 	'1', --ap
 	NULL, --ap_clase
 	NULL, --ap_archivo
-	'c25_capacitacion', --tabla
+	'capacitacion', --tabla
 	NULL, --tabla_ext
 	NULL, --alias
 	'0', --modificar_claves
 	'pruebas', --fuente_datos_proyecto
 	'desempenio', --fuente_datos
-	'1', --permite_actualizacion_automatica
+	'0', --permite_actualizacion_automatica
 	'public', --esquema
 	'public'  --esquema_ext
 );
@@ -72,21 +72,21 @@ INSERT INTO apex_objeto_db_registros (objeto_proyecto, objeto, max_registros, mi
 INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, columna, tipo, pk, secuencia, largo, no_nulo, no_nulo_db, externa, tabla) VALUES (
 	'pruebas', --objeto_proyecto
 	'1832000196', --objeto
-	'1832000403', --col_id
+	'1832000421', --col_id
 	'id', --columna
 	'E', --tipo
 	'1', --pk
-	NULL, --secuencia
+	'capacitacion_id_seq', --secuencia
 	NULL, --largo
 	NULL, --no_nulo
 	'1', --no_nulo_db
 	'0', --externa
-	'c25_capacitacion'  --tabla
+	'capacitacion'  --tabla
 );
 INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, columna, tipo, pk, secuencia, largo, no_nulo, no_nulo_db, externa, tabla) VALUES (
 	'pruebas', --objeto_proyecto
 	'1832000196', --objeto
-	'1832000404', --col_id
+	'1832000422', --col_id
 	'ficha_id', --columna
 	'E', --tipo
 	'0', --pk
@@ -95,12 +95,12 @@ INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, colum
 	NULL, --no_nulo
 	'0', --no_nulo_db
 	'0', --externa
-	'c25_capacitacion'  --tabla
+	'capacitacion'  --tabla
 );
 INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, columna, tipo, pk, secuencia, largo, no_nulo, no_nulo_db, externa, tabla) VALUES (
 	'pruebas', --objeto_proyecto
 	'1832000196', --objeto
-	'1832000405', --col_id
+	'1832000423', --col_id
 	'tipo_act', --columna
 	'E', --tipo
 	'0', --pk
@@ -109,12 +109,12 @@ INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, colum
 	NULL, --no_nulo
 	'0', --no_nulo_db
 	'0', --externa
-	'c25_capacitacion'  --tabla
+	'capacitacion'  --tabla
 );
 INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, columna, tipo, pk, secuencia, largo, no_nulo, no_nulo_db, externa, tabla) VALUES (
 	'pruebas', --objeto_proyecto
 	'1832000196', --objeto
-	'1832000406', --col_id
+	'1832000424', --col_id
 	'nombre', --columna
 	'C', --tipo
 	'0', --pk
@@ -123,12 +123,12 @@ INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, colum
 	NULL, --no_nulo
 	'0', --no_nulo_db
 	'0', --externa
-	'c25_capacitacion'  --tabla
+	'capacitacion'  --tabla
 );
 INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, columna, tipo, pk, secuencia, largo, no_nulo, no_nulo_db, externa, tabla) VALUES (
 	'pruebas', --objeto_proyecto
 	'1832000196', --objeto
-	'1832000407', --col_id
+	'1832000425', --col_id
 	'institucion', --columna
 	'C', --tipo
 	'0', --pk
@@ -137,12 +137,12 @@ INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, colum
 	NULL, --no_nulo
 	'0', --no_nulo_db
 	'0', --externa
-	'c25_capacitacion'  --tabla
+	'capacitacion'  --tabla
 );
 INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, columna, tipo, pk, secuencia, largo, no_nulo, no_nulo_db, externa, tabla) VALUES (
 	'pruebas', --objeto_proyecto
 	'1832000196', --objeto
-	'1832000408', --col_id
+	'1832000426', --col_id
 	'f_desde', --columna
 	'F', --tipo
 	'0', --pk
@@ -151,12 +151,12 @@ INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, colum
 	NULL, --no_nulo
 	'0', --no_nulo_db
 	'0', --externa
-	'c25_capacitacion'  --tabla
+	'capacitacion'  --tabla
 );
 INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, columna, tipo, pk, secuencia, largo, no_nulo, no_nulo_db, externa, tabla) VALUES (
 	'pruebas', --objeto_proyecto
 	'1832000196', --objeto
-	'1832000409', --col_id
+	'1832000427', --col_id
 	'f_hasta', --columna
 	'F', --tipo
 	'0', --pk
@@ -165,12 +165,12 @@ INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, colum
 	NULL, --no_nulo
 	'0', --no_nulo_db
 	'0', --externa
-	'c25_capacitacion'  --tabla
+	'capacitacion'  --tabla
 );
 INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, columna, tipo, pk, secuencia, largo, no_nulo, no_nulo_db, externa, tabla) VALUES (
 	'pruebas', --objeto_proyecto
 	'1832000196', --objeto
-	'1832000410', --col_id
+	'1832000428', --col_id
 	'certificado', --columna
 	'E', --tipo
 	'0', --pk
@@ -179,12 +179,12 @@ INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, colum
 	NULL, --no_nulo
 	'0', --no_nulo_db
 	'0', --externa
-	'c25_capacitacion'  --tabla
+	'capacitacion'  --tabla
 );
 INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, columna, tipo, pk, secuencia, largo, no_nulo, no_nulo_db, externa, tabla) VALUES (
 	'pruebas', --objeto_proyecto
 	'1832000196', --objeto
-	'1832000411', --col_id
+	'1832000429', --col_id
 	'horas', --columna
 	'E', --tipo
 	'0', --pk
@@ -193,6 +193,6 @@ INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, colum
 	NULL, --no_nulo
 	'0', --no_nulo_db
 	'0', --externa
-	'c25_capacitacion'  --tabla
+	'capacitacion'  --tabla
 );
 --- FIN Grupo de desarrollo 1832

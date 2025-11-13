@@ -68,11 +68,11 @@ INSERT INTO apex_objeto_db_registros (objeto_proyecto, objeto, max_registros, mi
 -- apex_objeto_db_registros_col
 ------------------------------------------------------------
 
---- INICIO Grupo de desarrollo 0
+--- INICIO Grupo de desarrollo 1832
 INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, columna, tipo, pk, secuencia, largo, no_nulo, no_nulo_db, externa, tabla) VALUES (
 	'pruebas', --objeto_proyecto
 	'2400', --objeto
-	'956', --col_id
+	'1832000430', --col_id
 	'id', --columna
 	'E', --tipo
 	'1', --pk
@@ -86,7 +86,7 @@ INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, colum
 INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, columna, tipo, pk, secuencia, largo, no_nulo, no_nulo_db, externa, tabla) VALUES (
 	'pruebas', --objeto_proyecto
 	'2400', --objeto
-	'957', --col_id
+	'1832000431', --col_id
 	'tipo_posgrado_id', --columna
 	'E', --tipo
 	'0', --pk
@@ -100,21 +100,21 @@ INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, colum
 INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, columna, tipo, pk, secuencia, largo, no_nulo, no_nulo_db, externa, tabla) VALUES (
 	'pruebas', --objeto_proyecto
 	'2400', --objeto
-	'958', --col_id
+	'1832000432', --col_id
 	'participacion_id', --columna
 	'E', --tipo
 	'0', --pk
 	'c34_docec_posgrado_participacion_id_seq', --secuencia
 	NULL, --largo
 	NULL, --no_nulo
-	'1', --no_nulo_db
+	'0', --no_nulo_db
 	'0', --externa
 	'c34_docec_posgrado'  --tabla
 );
 INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, columna, tipo, pk, secuencia, largo, no_nulo, no_nulo_db, externa, tabla) VALUES (
 	'pruebas', --objeto_proyecto
 	'2400', --objeto
-	'959', --col_id
+	'1832000433', --col_id
 	'creditos', --columna
 	'E', --tipo
 	'0', --pk
@@ -128,7 +128,7 @@ INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, colum
 INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, columna, tipo, pk, secuencia, largo, no_nulo, no_nulo_db, externa, tabla) VALUES (
 	'pruebas', --objeto_proyecto
 	'2400', --objeto
-	'960', --col_id
+	'1832000434', --col_id
 	'ficha_id', --columna
 	'E', --tipo
 	'0', --pk
@@ -139,4 +139,60 @@ INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, colum
 	'0', --externa
 	'c34_docec_posgrado'  --tabla
 );
---- FIN Grupo de desarrollo 0
+INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, columna, tipo, pk, secuencia, largo, no_nulo, no_nulo_db, externa, tabla) VALUES (
+	'pruebas', --objeto_proyecto
+	'2400', --objeto
+	'1832000435', --col_id
+	'caracter', --columna
+	'L', --tipo
+	'0', --pk
+	NULL, --secuencia
+	NULL, --largo
+	NULL, --no_nulo
+	'0', --no_nulo_db
+	'0', --externa
+	'c34_docec_posgrado'  --tabla
+);
+INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, columna, tipo, pk, secuencia, largo, no_nulo, no_nulo_db, externa, tabla) VALUES (
+	'pruebas', --objeto_proyecto
+	'2400', --objeto
+	'1832000436', --col_id
+	'institucion', --columna
+	'C', --tipo
+	'0', --pk
+	NULL, --secuencia
+	NULL, --largo
+	NULL, --no_nulo
+	'0', --no_nulo_db
+	'0', --externa
+	'c34_docec_posgrado'  --tabla
+);
+INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, columna, tipo, pk, secuencia, largo, no_nulo, no_nulo_db, externa, tabla) VALUES (
+	'pruebas', --objeto_proyecto
+	'2400', --objeto
+	'1832000437', --col_id
+	'denominacion', --columna
+	'C', --tipo
+	'0', --pk
+	NULL, --secuencia
+	NULL, --largo
+	NULL, --no_nulo
+	'0', --no_nulo_db
+	'0', --externa
+	'c34_docec_posgrado'  --tabla
+);
+INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, columna, tipo, pk, secuencia, largo, no_nulo, no_nulo_db, externa, tabla) VALUES (
+	'pruebas', --objeto_proyecto
+	'2400', --objeto
+	'1832000447', --col_id
+	'nombre', --columna
+	'C', --tipo
+	'0', --pk
+	NULL, --secuencia
+	NULL, --largo
+	NULL, --no_nulo
+	'0', --no_nulo_db
+	'0', --externa
+	'c34_docec_posgrado'  --tabla
+);
+--- FIN Grupo de desarrollo 1832

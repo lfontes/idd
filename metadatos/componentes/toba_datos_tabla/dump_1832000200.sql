@@ -1,15 +1,15 @@
 ------------------------------------------------------------
---[2413]--  DT - c37_formacion_docec 
+--[1832000200]--  DT - c68_cursos_extension 
 ------------------------------------------------------------
 
 ------------------------------------------------------------
 -- apex_objeto
 ------------------------------------------------------------
 
---- INICIO Grupo de desarrollo 0
+--- INICIO Grupo de desarrollo 1832
 INSERT INTO apex_objeto (proyecto, objeto, anterior, identificador, reflexivo, clase_proyecto, clase, punto_montaje, subclase, subclase_archivo, objeto_categoria_proyecto, objeto_categoria, nombre, titulo, colapsable, descripcion, fuente_datos_proyecto, fuente_datos, solicitud_registrar, solicitud_obj_obs_tipo, solicitud_obj_observacion, parametro_a, parametro_b, parametro_c, parametro_d, parametro_e, parametro_f, usuario, creacion, posicion_botonera) VALUES (
 	'pruebas', --proyecto
-	'2413', --objeto
+	'1832000200', --objeto
 	NULL, --anterior
 	NULL, --identificador
 	NULL, --reflexivo
@@ -20,7 +20,7 @@ INSERT INTO apex_objeto (proyecto, objeto, anterior, identificador, reflexivo, c
 	NULL, --subclase_archivo
 	NULL, --objeto_categoria_proyecto
 	NULL, --objeto_categoria
-	'DT - c37_formacion_docec', --nombre
+	'DT - c68_cursos_extension', --nombre
 	NULL, --titulo
 	NULL, --colapsable
 	NULL, --descripcion
@@ -36,31 +36,31 @@ INSERT INTO apex_objeto (proyecto, objeto, anterior, identificador, reflexivo, c
 	NULL, --parametro_e
 	NULL, --parametro_f
 	NULL, --usuario
-	'2025-04-03 16:24:42', --creacion
+	'2025-11-13 13:02:21', --creacion
 	NULL  --posicion_botonera
 );
---- FIN Grupo de desarrollo 0
+--- FIN Grupo de desarrollo 1832
 
 ------------------------------------------------------------
 -- apex_objeto_db_registros
 ------------------------------------------------------------
 INSERT INTO apex_objeto_db_registros (objeto_proyecto, objeto, max_registros, min_registros, punto_montaje, ap, ap_clase, ap_archivo, tabla, tabla_ext, alias, modificar_claves, fuente_datos_proyecto, fuente_datos, permite_actualizacion_automatica, esquema, esquema_ext) VALUES (
 	'pruebas', --objeto_proyecto
-	'2413', --objeto
+	'1832000200', --objeto
 	NULL, --max_registros
 	NULL, --min_registros
 	'13', --punto_montaje
 	'1', --ap
 	NULL, --ap_clase
 	NULL, --ap_archivo
-	'c37_formacion_docec', --tabla
+	'c68_cursos_extension', --tabla
 	NULL, --tabla_ext
 	NULL, --alias
 	'0', --modificar_claves
 	'pruebas', --fuente_datos_proyecto
 	'desempenio', --fuente_datos
-	'0', --permite_actualizacion_automatica
-	'public', --esquema
+	'1', --permite_actualizacion_automatica
+	NULL, --esquema
 	'public'  --esquema_ext
 );
 
@@ -68,25 +68,25 @@ INSERT INTO apex_objeto_db_registros (objeto_proyecto, objeto, max_registros, mi
 -- apex_objeto_db_registros_col
 ------------------------------------------------------------
 
---- INICIO Grupo de desarrollo 0
+--- INICIO Grupo de desarrollo 1832
 INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, columna, tipo, pk, secuencia, largo, no_nulo, no_nulo_db, externa, tabla) VALUES (
 	'pruebas', --objeto_proyecto
-	'2413', --objeto
-	'994', --col_id
+	'1832000200', --objeto
+	'1832000452', --col_id
 	'id', --columna
 	'E', --tipo
 	'1', --pk
-	'c37_formacion_docec_id_seq', --secuencia
+	'c68_cursos_extension_id_seq', --secuencia
 	NULL, --largo
 	NULL, --no_nulo
 	'1', --no_nulo_db
 	'0', --externa
-	'c37_formacion_docec'  --tabla
+	'c68_cursos_extension'  --tabla
 );
 INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, columna, tipo, pk, secuencia, largo, no_nulo, no_nulo_db, externa, tabla) VALUES (
 	'pruebas', --objeto_proyecto
-	'2413', --objeto
-	'995', --col_id
+	'1832000200', --objeto
+	'1832000453', --col_id
 	'ficha_id', --columna
 	'E', --tipo
 	'0', --pk
@@ -95,27 +95,13 @@ INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, colum
 	NULL, --no_nulo
 	'0', --no_nulo_db
 	'0', --externa
-	'c37_formacion_docec'  --tabla
+	'c68_cursos_extension'  --tabla
 );
 INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, columna, tipo, pk, secuencia, largo, no_nulo, no_nulo_db, externa, tabla) VALUES (
 	'pruebas', --objeto_proyecto
-	'2413', --objeto
-	'996', --col_id
-	'categoria_id', --columna
-	'E', --tipo
-	'0', --pk
-	NULL, --secuencia
-	NULL, --largo
-	NULL, --no_nulo
-	'0', --no_nulo_db
-	'0', --externa
-	'c37_formacion_docec'  --tabla
-);
-INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, columna, tipo, pk, secuencia, largo, no_nulo, no_nulo_db, externa, tabla) VALUES (
-	'pruebas', --objeto_proyecto
-	'2413', --objeto
-	'997', --col_id
-	'ayn', --columna
+	'1832000200', --objeto
+	'1832000454', --col_id
+	'denominacion', --columna
 	'C', --tipo
 	'0', --pk
 	NULL, --secuencia
@@ -123,30 +109,13 @@ INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, colum
 	NULL, --no_nulo
 	'0', --no_nulo_db
 	'0', --externa
-	'c37_formacion_docec'  --tabla
+	'c68_cursos_extension'  --tabla
 );
 INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, columna, tipo, pk, secuencia, largo, no_nulo, no_nulo_db, externa, tabla) VALUES (
 	'pruebas', --objeto_proyecto
-	'2413', --objeto
-	'998', --col_id
-	'descripcion', --columna
-	'C', --tipo
-	'0', --pk
-	NULL, --secuencia
-	NULL, --largo
-	NULL, --no_nulo
-	'0', --no_nulo_db
-	'0', --externa
-	'c37_formacion_docec'  --tabla
-);
---- FIN Grupo de desarrollo 0
-
---- INICIO Grupo de desarrollo 1832
-INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, columna, tipo, pk, secuencia, largo, no_nulo, no_nulo_db, externa, tabla) VALUES (
-	'pruebas', --objeto_proyecto
-	'2413', --objeto
-	'1832000440', --col_id
-	'rol', --columna
+	'1832000200', --objeto
+	'1832000455', --col_id
+	'horas', --columna
 	'E', --tipo
 	'0', --pk
 	NULL, --secuencia
@@ -154,6 +123,76 @@ INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, colum
 	NULL, --no_nulo
 	'0', --no_nulo_db
 	'0', --externa
-	'c37_formacion_docec'  --tabla
+	'c68_cursos_extension'  --tabla
+);
+INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, columna, tipo, pk, secuencia, largo, no_nulo, no_nulo_db, externa, tabla) VALUES (
+	'pruebas', --objeto_proyecto
+	'1832000200', --objeto
+	'1832000456', --col_id
+	'destinatarios', --columna
+	'E', --tipo
+	'0', --pk
+	NULL, --secuencia
+	NULL, --largo
+	NULL, --no_nulo
+	'0', --no_nulo_db
+	'0', --externa
+	'c68_cursos_extension'  --tabla
+);
+INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, columna, tipo, pk, secuencia, largo, no_nulo, no_nulo_db, externa, tabla) VALUES (
+	'pruebas', --objeto_proyecto
+	'1832000200', --objeto
+	'1832000457', --col_id
+	'encuadre', --columna
+	'C', --tipo
+	'0', --pk
+	NULL, --secuencia
+	NULL, --largo
+	NULL, --no_nulo
+	'0', --no_nulo_db
+	'0', --externa
+	'c68_cursos_extension'  --tabla
+);
+INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, columna, tipo, pk, secuencia, largo, no_nulo, no_nulo_db, externa, tabla) VALUES (
+	'pruebas', --objeto_proyecto
+	'1832000200', --objeto
+	'1832000458', --col_id
+	'fecha_ini', --columna
+	'F', --tipo
+	'0', --pk
+	NULL, --secuencia
+	NULL, --largo
+	NULL, --no_nulo
+	'0', --no_nulo_db
+	'0', --externa
+	'c68_cursos_extension'  --tabla
+);
+INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, columna, tipo, pk, secuencia, largo, no_nulo, no_nulo_db, externa, tabla) VALUES (
+	'pruebas', --objeto_proyecto
+	'1832000200', --objeto
+	'1832000459', --col_id
+	'fecha_fin', --columna
+	'F', --tipo
+	'0', --pk
+	NULL, --secuencia
+	NULL, --largo
+	NULL, --no_nulo
+	'0', --no_nulo_db
+	'0', --externa
+	'c68_cursos_extension'  --tabla
+);
+INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, columna, tipo, pk, secuencia, largo, no_nulo, no_nulo_db, externa, tabla) VALUES (
+	'pruebas', --objeto_proyecto
+	'1832000200', --objeto
+	'1832000460', --col_id
+	'evaluacion', --columna
+	'E', --tipo
+	'0', --pk
+	NULL, --secuencia
+	NULL, --largo
+	NULL, --no_nulo
+	'0', --no_nulo_db
+	'0', --externa
+	'c68_cursos_extension'  --tabla
 );
 --- FIN Grupo de desarrollo 1832
