@@ -304,18 +304,7 @@ class ci_interno extends pruebas_ci
 	{
 		$this->controlador()->get_tabla('libros')->procesar_filas($datos);
 	}
-	//-----------------------------------------------------------------------------------
-	//---- 4.4.3.2 Capitulos de Libros --------------------------------------------------
-	//-----------------------------------------------------------------------------------
-
-	function conf__cap_libros(pruebas_ei_formulario_ml $form_ml)
-	{
-		$form_ml->set_datos($this->controlador()->get_tabla('cap_libros')->get_filas());
-	}
-	function evt__cap_libros__modificacion($datos)
-	{
-		$this->controlador()->get_tabla('cap_libros')->procesar_filas($datos);
-	}
+	
 	
 
 	//-----------------------------------------------------------------------------------
