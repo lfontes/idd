@@ -21,7 +21,7 @@ INSERT INTO apex_objeto (proyecto, objeto, anterior, identificador, reflexivo, c
 	NULL, --objeto_categoria_proyecto
 	NULL, --objeto_categoria
 	'Ficha - CI - interno - promocion_vinc', --nombre
-	'5.5  Promoción de actividades de vinculación', --titulo
+	'5.6  Promoción de actividades de vinculación', --titulo
 	'0', --colapsable
 	NULL, --descripcion
 	'pruebas', --fuente_datos_proyecto
@@ -242,7 +242,7 @@ INSERT INTO apex_objeto_ei_formulario_ef (objeto_ei_formulario_fila, objeto_ei_f
 	NULL, --carga_consulta_php
 	NULL, --carga_sql
 	'desempenio', --carga_fuente
-	'Tecnológica Promocion,Tecnológica Difusión,Emprendedurismo Generación,Emprendedurismo Desarrollo, Incubación Desarrollo,', --carga_lista
+	'Tecnológica Promoción,Tecnológica Difusión,Emprendedurismo Generación,Emprendedurismo Desarrollo, Incubación Desarrollo,', --carga_lista
 	NULL, --carga_col_clave
 	NULL, --carga_col_desc
 	NULL, --carga_maestros

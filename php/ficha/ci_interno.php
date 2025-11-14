@@ -764,7 +764,7 @@ class ci_interno extends pruebas_ci
 	{
 		//Cambio lo márgenes accediendo directamente a la librería PDF
 		$pdf = $salida->get_pdf();
-		$pdf->ezSetMargins(80, 50, 30, 30);	//top, bottom, left, right
+		$pdf->ezSetMargins(80, 50, 50, 50);	//top, bottom, left, right
 
 		//Pie de página
 		$formato = 'Página {PAGENUM} de {TOTALPAGENUM}';
@@ -811,6 +811,8 @@ class ci_interno extends pruebas_ci
 		$salida->separacion();
 		$this->dependencia('proy_acreditados')->vista_pdf($salida);
 		$salida->separacion();
+		$this->dependencia('rrhh_investigacion')->vista_pdf($salida);
+		$salida->separacion();
 		$this->dependencia('impacto_pub')->vista_pdf($salida);
 		$salida->separacion();
 		$this->dependencia('publ_rev_cientificas')->vista_pdf($salida);
@@ -818,10 +820,6 @@ class ci_interno extends pruebas_ci
 		$this->dependencia('publ_rev_divulgacion')->vista_pdf($salida);
 		$salida->separacion();
 		$this->dependencia('Libros')->vista_pdf($salida);
-		$salida->separacion();
-		$this->dependencia('cap_libros')->vista_pdf($salida);
-		$salida->separacion();
-		$this->dependencia('patentes')->vista_pdf($salida);
 		$salida->separacion();
 		$this->dependencia('part_reun_cientificas')->vista_pdf($salida);
 		$salida->separacion();
@@ -837,7 +835,7 @@ class ci_interno extends pruebas_ci
 		$salida->separacion();
 		$this->dependencia('cap_libros_vinculacion')->vista_pdf($salida);
 		$salida->separacion();
-		$this->dependencia('patentes_vinculacion')->vista_pdf($salida);
+		$this->dependencia('patentes')->vista_pdf($salida);
 		$salida->separacion();
 		$this->dependencia('registros_vinculacion')->vista_pdf($salida);
 		$salida->separacion();

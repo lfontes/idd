@@ -21,7 +21,7 @@ INSERT INTO apex_objeto (proyecto, objeto, anterior, identificador, reflexivo, c
 	NULL, --objeto_categoria_proyecto
 	NULL, --objeto_categoria
 	'Ficha - CI - interno - part_comite', --nombre
-	'4.7 Participación en comité editorial y/o comisiones evaluadoras de revistas', --titulo
+	'4.6 Participación en comité editorial y/o comisiones de revistas', --titulo
 	'0', --colapsable
 	NULL, --descripcion
 	'pruebas', --fuente_datos_proyecto

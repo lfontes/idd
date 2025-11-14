@@ -259,7 +259,7 @@ INSERT INTO apex_objeto_eventos (proyecto, evento_id, objeto, identificador, eti
 	NULL, --estilo
 	'apex', --imagen_recurso_origen
 	'extension_pdf.png', --imagen
-	'0', --en_botonera
+	'1', --en_botonera
 	NULL, --ayuda
 	'7', --orden
 	NULL, --ci_predep

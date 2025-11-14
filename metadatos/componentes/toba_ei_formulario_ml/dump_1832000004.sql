@@ -161,7 +161,7 @@ INSERT INTO apex_objeto_ei_formulario_ef (objeto_ei_formulario_fila, objeto_ei_f
 	NULL, --carga_consulta_php
 	NULL, --carga_sql
 	'desempenio', --carga_fuente
-	'I, II, III, IV, No posee', --carga_lista
+	'I, II, III, IV, V, No posee', --carga_lista
 	NULL, --carga_col_clave
 	NULL, --carga_col_desc
 	NULL, --carga_maestros
@@ -224,7 +224,7 @@ INSERT INTO apex_objeto_ei_formulario_ef (objeto_ei_formulario_fila, objeto_ei_f
 	'2', --orden
 	'Organismo', --etiqueta
 	NULL, --etiqueta_estilo
-	NULL, --descripcion
+	'Organismo que otorga la categoría', --descripcion
 	'0', --colapsado
 	'0', --desactivado
 	NULL, --estilo

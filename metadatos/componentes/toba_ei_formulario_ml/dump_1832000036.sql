@@ -21,7 +21,7 @@ INSERT INTO apex_objeto (proyecto, objeto, anterior, identificador, reflexivo, c
 	NULL, --objeto_categoria_proyecto
 	NULL, --objeto_categoria
 	'Ficha - CI - interno - premios_vinc_internac', --nombre
-	'5.3 Internacionalización de la vinculación, premios y distinciones  Internacionalización', --titulo
+	'5.4 Internacionalización de la vinculación, premios y distinciones', --titulo
 	'0', --colapsable
 	NULL, --descripcion
 	'pruebas', --fuente_datos_proyecto
