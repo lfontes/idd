@@ -124,7 +124,7 @@ INSERT INTO apex_objeto_eventos (proyecto, evento_id, objeto, identificador, eti
 	NULL, --estilo
 	'apex', --imagen_recurso_origen
 	'borrar.png', --imagen
-	'1', --en_botonera
+	'0', --en_botonera
 	NULL, --ayuda
 	'3', --orden
 	NULL, --ci_predep
@@ -190,7 +190,7 @@ INSERT INTO apex_objeto_eventos (proyecto, evento_id, objeto, identificador, eti
 	NULL, --estilo
 	'apex', --imagen_recurso_origen
 	'consulta_php.gif', --imagen
-	'1', --en_botonera
+	'0', --en_botonera
 	NULL, --ayuda
 	'5', --orden
 	NULL, --ci_predep
@@ -226,7 +226,7 @@ INSERT INTO apex_objeto_eventos (proyecto, evento_id, objeto, identificador, eti
 	NULL, --estilo
 	'apex', --imagen_recurso_origen
 	'impresora.gif', --imagen
-	'1', --en_botonera
+	'0', --en_botonera
 	NULL, --ayuda
 	'6', --orden
 	NULL, --ci_predep
@@ -259,7 +259,7 @@ INSERT INTO apex_objeto_eventos (proyecto, evento_id, objeto, identificador, eti
 	NULL, --estilo
 	'apex', --imagen_recurso_origen
 	'extension_pdf.png', --imagen
-	'1', --en_botonera
+	'0', --en_botonera
 	NULL, --ayuda
 	'7', --orden
 	NULL, --ci_predep

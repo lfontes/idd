@@ -26,7 +26,7 @@ class ci_interno extends pruebas_ci
 
 	function evt__edicion_ficha__modificacion($datos)
 	{
-		$datos['fecha_modif']= date('Y-m-d');
+		$datos['fecha_modif'] = date('Y-m-d');
 		$this->controlador()->get_tabla('ficha')->set($datos);
 	}
 
@@ -110,8 +110,8 @@ class ci_interno extends pruebas_ci
 
 	function evt__cargos__modificacion($datos)
 	{
-		
-	$this->controlador()->get_tabla('cargos')->procesar_filas($datos);
+
+		$this->controlador()->get_tabla('cargos')->procesar_filas($datos);
 	}
 	//-----------------------------------------------------------------------------------
 	//---- licencias -------------------------------------------------------------
@@ -138,7 +138,7 @@ class ci_interno extends pruebas_ci
 
 	function evt__c25_capacitacion__modificacion($datos)
 	{
-	
+
 		$this->controlador()->get_tabla('capacitacion')->procesar_filas($datos);
 	}
 
@@ -304,8 +304,8 @@ class ci_interno extends pruebas_ci
 	{
 		$this->controlador()->get_tabla('libros')->procesar_filas($datos);
 	}
-	
-	
+
+
 
 	//-----------------------------------------------------------------------------------
 	//---- 4.6 Participacion en reuniones científicas -----------------------------------------------------------------
@@ -384,14 +384,14 @@ class ci_interno extends pruebas_ci
 	//---- 5.2.4 Patentes -----------------------------------------------------------------
 	//-----------------------------------------------------------------------------------
 
-	 function conf__patentes(pruebas_ei_formulario_ml $form_ml)
-	 {
-	 	$form_ml->set_datos($this->controlador()->get_tabla('patentes_vinculacion')->get_filas());
-	 }
-	 function evt__patentes__modificacion($datos)
-	 {
-	 	$this->controlador()->get_tabla('patentes_vinculacion')->procesar_filas($datos);
-	 }
+	function conf__patentes(pruebas_ei_formulario_ml $form_ml)
+	{
+		$form_ml->set_datos($this->controlador()->get_tabla('patentes_vinculacion')->get_filas());
+	}
+	function evt__patentes__modificacion($datos)
+	{
+		$this->controlador()->get_tabla('patentes_vinculacion')->procesar_filas($datos);
+	}
 
 	//-----------------------------------------------------------------------------------
 	//---- 5.2.5 Registros vinculación --------------------------------------------------
@@ -513,7 +513,7 @@ class ci_interno extends pruebas_ci
 	{
 		$this->controlador()->get_tabla('cap_libros_extension')->procesar_filas($datos);
 	}
-	
+
 	//-----------------------------------------------------------------------------------
 	//---- 6.3.5 Registros extension ---------------------------------------------------------
 	//-----------------------------------------------------------------------------------
@@ -722,8 +722,21 @@ class ci_interno extends pruebas_ci
 		$this->controlador()->get_tabla('premios_gestion')->procesar_filas($datos);
 	}
 
+	//-------------------------------------------------------------------------------
+	//---- 7.10 Representacion  -------------------------------------------
+	//-----------------------------------------------------------------------------------
 
-	
+	function conf__representacion(pruebas_ei_formulario_ml $form_ml)
+	{
+		$form_ml->set_datos($this->controlador()->get_tabla('representacion')->get_filas());
+	}
+	function evt__representacion__modificacion($datos)
+	{
+		$this->controlador()->get_tabla('representacion')->procesar_filas($datos);
+	}
+
+
+
 	/** // Método AJAX
 	 * Devuelve la cantidad de inscriptos por año y actividad.
 	 * @param int $anio_academico
@@ -789,7 +802,7 @@ class ci_interno extends pruebas_ci
 		$salida->separacion();
 		$salida->titulo('III. Docencia');
 		$salida->separacion();
-	
+
 		$this->dependencia('actualizacion')->vista_pdf($salida);
 		$salida->separacion();
 		$this->dependencia('premios_doc')->vista_pdf($salida);
@@ -833,8 +846,6 @@ class ci_interno extends pruebas_ci
 		$salida->separacion();
 		$this->dependencia('libros_extension')->vista_pdf($salida);
 		$salida->separacion();
-		$this->dependencia('cap_libros_vinculacion')->vista_pdf($salida);
-		$salida->separacion();
 		$this->dependencia('patentes')->vista_pdf($salida);
 		$salida->separacion();
 		$this->dependencia('registros_vinculacion')->vista_pdf($salida);
@@ -856,8 +867,6 @@ class ci_interno extends pruebas_ci
 		$this->dependencia('publ_rev_extension')->vista_pdf($salida);
 		$salida->separacion();
 		$this->dependencia('libros_extension_632')->vista_pdf($salida);
-		$salida->separacion();
-		$this->dependencia('cap_libros_extension')->vista_pdf($salida);
 		$salida->separacion();
 		$this->dependencia('registros_extension')->vista_pdf($salida);
 		$salida->separacion();
@@ -885,13 +894,13 @@ class ci_interno extends pruebas_ci
 		$salida->separacion();
 		$this->dependencia('libros_gestion')->vista_pdf($salida);
 		$salida->separacion();
-		$this->dependencia('cap_libros_gestion')->vista_pdf($salida);
-		$salida->separacion();
 		$this->dependencia('part_gestion')->vista_pdf($salida);
 		$salida->separacion();
 		$this->dependencia('part_divulg_gestion')->vista_pdf($salida);
 		$salida->separacion();
 		$this->dependencia('premios_gestion')->vista_pdf($salida);
+		$salida->separacion();
+		$this->dependencia('representacion')->vista_pdf($salida);
 		$salida->separacion();
 
 

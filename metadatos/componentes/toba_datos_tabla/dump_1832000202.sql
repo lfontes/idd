@@ -1,5 +1,5 @@
 ------------------------------------------------------------
---[1832000086]--  DT - c762_libros_gestion 
+--[1832000202]--  DT - c710_representacion_gestion 
 ------------------------------------------------------------
 
 ------------------------------------------------------------
@@ -9,7 +9,7 @@
 --- INICIO Grupo de desarrollo 1832
 INSERT INTO apex_objeto (proyecto, objeto, anterior, identificador, reflexivo, clase_proyecto, clase, punto_montaje, subclase, subclase_archivo, objeto_categoria_proyecto, objeto_categoria, nombre, titulo, colapsable, descripcion, fuente_datos_proyecto, fuente_datos, solicitud_registrar, solicitud_obj_obs_tipo, solicitud_obj_observacion, parametro_a, parametro_b, parametro_c, parametro_d, parametro_e, parametro_f, usuario, creacion, posicion_botonera) VALUES (
 	'pruebas', --proyecto
-	'1832000086', --objeto
+	'1832000202', --objeto
 	NULL, --anterior
 	NULL, --identificador
 	NULL, --reflexivo
@@ -20,7 +20,7 @@ INSERT INTO apex_objeto (proyecto, objeto, anterior, identificador, reflexivo, c
 	NULL, --subclase_archivo
 	NULL, --objeto_categoria_proyecto
 	NULL, --objeto_categoria
-	'DT - c762_libros_gestion', --nombre
+	'DT - c710_representacion_gestion', --nombre
 	NULL, --titulo
 	NULL, --colapsable
 	NULL, --descripcion
@@ -36,7 +36,7 @@ INSERT INTO apex_objeto (proyecto, objeto, anterior, identificador, reflexivo, c
 	NULL, --parametro_e
 	NULL, --parametro_f
 	NULL, --usuario
-	'2025-09-22 12:19:37', --creacion
+	'2025-11-17 13:21:30', --creacion
 	NULL  --posicion_botonera
 );
 --- FIN Grupo de desarrollo 1832
@@ -46,20 +46,20 @@ INSERT INTO apex_objeto (proyecto, objeto, anterior, identificador, reflexivo, c
 ------------------------------------------------------------
 INSERT INTO apex_objeto_db_registros (objeto_proyecto, objeto, max_registros, min_registros, punto_montaje, ap, ap_clase, ap_archivo, tabla, tabla_ext, alias, modificar_claves, fuente_datos_proyecto, fuente_datos, permite_actualizacion_automatica, esquema, esquema_ext) VALUES (
 	'pruebas', --objeto_proyecto
-	'1832000086', --objeto
+	'1832000202', --objeto
 	NULL, --max_registros
 	NULL, --min_registros
 	'13', --punto_montaje
 	'1', --ap
 	NULL, --ap_clase
 	NULL, --ap_archivo
-	'c762_libros_gestion', --tabla
+	'c710_representacion_gestion', --tabla
 	NULL, --tabla_ext
 	NULL, --alias
 	'0', --modificar_claves
 	'pruebas', --fuente_datos_proyecto
 	'desempenio', --fuente_datos
-	'0', --permite_actualizacion_automatica
+	'1', --permite_actualizacion_automatica
 	NULL, --esquema
 	'public'  --esquema_ext
 );
@@ -71,22 +71,22 @@ INSERT INTO apex_objeto_db_registros (objeto_proyecto, objeto, max_registros, mi
 --- INICIO Grupo de desarrollo 1832
 INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, columna, tipo, pk, secuencia, largo, no_nulo, no_nulo_db, externa, tabla) VALUES (
 	'pruebas', --objeto_proyecto
-	'1832000086', --objeto
-	'1832000300', --col_id
+	'1832000202', --objeto
+	'1832000474', --col_id
 	'id', --columna
 	'E', --tipo
 	'1', --pk
-	'c762_libros_gestion_id_seq', --secuencia
+	'c710_representacion_gestion_id_seq', --secuencia
 	NULL, --largo
 	NULL, --no_nulo
 	'1', --no_nulo_db
 	'0', --externa
-	'c762_libros_gestion'  --tabla
+	'c710_representacion_gestion'  --tabla
 );
 INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, columna, tipo, pk, secuencia, largo, no_nulo, no_nulo_db, externa, tabla) VALUES (
 	'pruebas', --objeto_proyecto
-	'1832000086', --objeto
-	'1832000301', --col_id
+	'1832000202', --objeto
+	'1832000475', --col_id
 	'ficha_id', --columna
 	'E', --tipo
 	'0', --pk
@@ -95,13 +95,13 @@ INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, colum
 	NULL, --no_nulo
 	'0', --no_nulo_db
 	'0', --externa
-	'c762_libros_gestion'  --tabla
+	'c710_representacion_gestion'  --tabla
 );
 INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, columna, tipo, pk, secuencia, largo, no_nulo, no_nulo_db, externa, tabla) VALUES (
 	'pruebas', --objeto_proyecto
-	'1832000086', --objeto
-	'1832000302', --col_id
-	'titulo', --columna
+	'1832000202', --objeto
+	'1832000476', --col_id
+	'organizacion', --columna
 	'C', --tipo
 	'0', --pk
 	NULL, --secuencia
@@ -109,69 +109,13 @@ INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, colum
 	NULL, --no_nulo
 	'0', --no_nulo_db
 	'0', --externa
-	'c762_libros_gestion'  --tabla
+	'c710_representacion_gestion'  --tabla
 );
 INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, columna, tipo, pk, secuencia, largo, no_nulo, no_nulo_db, externa, tabla) VALUES (
 	'pruebas', --objeto_proyecto
-	'1832000086', --objeto
-	'1832000303', --col_id
-	'autores', --columna
-	'C', --tipo
-	'0', --pk
-	NULL, --secuencia
-	NULL, --largo
-	NULL, --no_nulo
-	'0', --no_nulo_db
-	'0', --externa
-	'c762_libros_gestion'  --tabla
-);
-INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, columna, tipo, pk, secuencia, largo, no_nulo, no_nulo_db, externa, tabla) VALUES (
-	'pruebas', --objeto_proyecto
-	'1832000086', --objeto
-	'1832000304', --col_id
-	'paginas', --columna
-	'C', --tipo
-	'0', --pk
-	NULL, --secuencia
-	NULL, --largo
-	NULL, --no_nulo
-	'0', --no_nulo_db
-	'0', --externa
-	'c762_libros_gestion'  --tabla
-);
-INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, columna, tipo, pk, secuencia, largo, no_nulo, no_nulo_db, externa, tabla) VALUES (
-	'pruebas', --objeto_proyecto
-	'1832000086', --objeto
-	'1832000305', --col_id
-	'referencias', --columna
-	'C', --tipo
-	'0', --pk
-	NULL, --secuencia
-	NULL, --largo
-	NULL, --no_nulo
-	'0', --no_nulo_db
-	'0', --externa
-	'c762_libros_gestion'  --tabla
-);
-INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, columna, tipo, pk, secuencia, largo, no_nulo, no_nulo_db, externa, tabla) VALUES (
-	'pruebas', --objeto_proyecto
-	'1832000086', --objeto
-	'1832000306', --col_id
-	'indexado', --columna
-	'C', --tipo
-	'0', --pk
-	NULL, --secuencia
-	NULL, --largo
-	NULL, --no_nulo
-	'0', --no_nulo_db
-	'0', --externa
-	'c762_libros_gestion'  --tabla
-);
-INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, columna, tipo, pk, secuencia, largo, no_nulo, no_nulo_db, externa, tabla) VALUES (
-	'pruebas', --objeto_proyecto
-	'1832000086', --objeto
-	'1832000471', --col_id
-	'tipo_pub', --columna
+	'1832000202', --objeto
+	'1832000477', --col_id
+	'rol', --columna
 	'E', --tipo
 	'0', --pk
 	NULL, --secuencia
@@ -179,13 +123,13 @@ INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, colum
 	NULL, --no_nulo
 	'0', --no_nulo_db
 	'0', --externa
-	'c762_libros_gestion'  --tabla
+	'c710_representacion_gestion'  --tabla
 );
 INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, columna, tipo, pk, secuencia, largo, no_nulo, no_nulo_db, externa, tabla) VALUES (
 	'pruebas', --objeto_proyecto
-	'1832000086', --objeto
-	'1832000472', --col_id
-	'titulo_cap', --columna
+	'1832000202', --objeto
+	'1832000478', --col_id
+	'resolucion', --columna
 	'C', --tipo
 	'0', --pk
 	NULL, --secuencia
@@ -193,20 +137,34 @@ INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, colum
 	NULL, --no_nulo
 	'0', --no_nulo_db
 	'0', --externa
-	'c762_libros_gestion'  --tabla
+	'c710_representacion_gestion'  --tabla
 );
 INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, columna, tipo, pk, secuencia, largo, no_nulo, no_nulo_db, externa, tabla) VALUES (
 	'pruebas', --objeto_proyecto
-	'1832000086', --objeto
-	'1832000473', --col_id
-	'nro_cap', --columna
-	'E', --tipo
+	'1832000202', --objeto
+	'1832000479', --col_id
+	'fecha_ini', --columna
+	'F', --tipo
 	'0', --pk
 	NULL, --secuencia
 	NULL, --largo
 	NULL, --no_nulo
 	'0', --no_nulo_db
 	'0', --externa
-	'c762_libros_gestion'  --tabla
+	'c710_representacion_gestion'  --tabla
+);
+INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, columna, tipo, pk, secuencia, largo, no_nulo, no_nulo_db, externa, tabla) VALUES (
+	'pruebas', --objeto_proyecto
+	'1832000202', --objeto
+	'1832000480', --col_id
+	'fecha_fin', --columna
+	'F', --tipo
+	'0', --pk
+	NULL, --secuencia
+	NULL, --largo
+	NULL, --no_nulo
+	'0', --no_nulo_db
+	'0', --externa
+	'c710_representacion_gestion'  --tabla
 );
 --- FIN Grupo de desarrollo 1832
