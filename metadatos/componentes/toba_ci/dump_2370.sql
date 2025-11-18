@@ -799,7 +799,7 @@ INSERT INTO apex_objeto_ci_pantalla (objeto_ci_proyecto, objeto_ci, pantalla, id
 	'pant_investigacion', --identificador
 	'3', --orden
 	'Investigación', --etiqueta
-	'HOla mundo!!', --descripcion
+	NULL, --descripcion
 	NULL, --tip
 	'apex', --imagen_recurso_origen
 	NULL, --imagen
@@ -990,14 +990,14 @@ INSERT INTO apex_objetos_pantalla (proyecto, pantalla, objeto_ci, orden, dep_id)
 	'pruebas', --proyecto
 	'1219', --pantalla
 	'2370', --objeto_ci
-	'7', --orden
+	'6', --orden
 	'1832000021'  --dep_id
 );
 INSERT INTO apex_objetos_pantalla (proyecto, pantalla, objeto_ci, orden, dep_id) VALUES (
 	'pruebas', --proyecto
 	'1219', --pantalla
 	'2370', --objeto_ci
-	'8', --orden
+	'7', --orden
 	'1832000023'  --dep_id
 );
 INSERT INTO apex_objetos_pantalla (proyecto, pantalla, objeto_ci, orden, dep_id) VALUES (

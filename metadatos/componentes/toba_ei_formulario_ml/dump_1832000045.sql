@@ -21,7 +21,7 @@ INSERT INTO apex_objeto (proyecto, objeto, anterior, identificador, reflexivo, c
 	NULL, --objeto_categoria_proyecto
 	NULL, --objeto_categoria
 	'Ficha - CI - interno - participacion_vinc', --nombre
-	'5.7 Participación en eventos de vinculación', --titulo
+	'5.8 Participación en eventos de vinculación', --titulo
 	'0', --colapsable
 	NULL, --descripcion
 	'pruebas', --fuente_datos_proyecto

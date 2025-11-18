@@ -21,7 +21,7 @@ INSERT INTO apex_objeto (proyecto, objeto, anterior, identificador, reflexivo, c
 	NULL, --objeto_categoria_proyecto
 	NULL, --objeto_categoria
 	'Ficha - CI - interno - formacion_vinc', --nombre
-	'5.5 Formación de recursos humanos en vinculación', --titulo
+	'5.6 Formación de recursos humanos en vinculación', --titulo
 	'0', --colapsable
 	NULL, --descripcion
 	'pruebas', --fuente_datos_proyecto

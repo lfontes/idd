@@ -21,7 +21,7 @@ INSERT INTO apex_objeto (proyecto, objeto, anterior, identificador, reflexivo, c
 	NULL, --objeto_categoria_proyecto
 	NULL, --objeto_categoria
 	'Ficha - CI - interno - reconocimientos', --nombre
-	'5.3.1 Reconocimientos', --titulo
+	'5.5 Reconocimientos', --titulo
 	'0', --colapsable
 	NULL, --descripcion
 	'pruebas', --fuente_datos_proyecto

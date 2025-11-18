@@ -308,3 +308,7 @@ a.nivel-0:hover, a.nivel-0:focus, a.nivel-0.rollover, a.nivel-0.rollover:visited
 .today, .todayevents {
 	border: 1px solid #000000;
 }
+
+.main-header .logo {
+	    height: 100px;
+}	
