@@ -387,7 +387,13 @@ INSERT INTO apex_objeto_ci_pantalla (objeto_ci_proyecto, objeto_ci, pantalla, id
 	'pant_seleccion', --identificador
 	'1', --orden
 	'Selección', --etiqueta
-	'Cree una nueva ficha o seleccione alguna para editar', --descripcion
+	'<p><strong><H4> Informe de Labor Anual para la Evaluación de Desempeño Docente DE LA FACULTAD DE CIENCIAS AGRARIAS UNCUYO</h4></strong></p>
+<p>Recuerde:</br>
+-Se trata de un INFORME ANUAL que debe reflejar estricta y fielmente lo realizado
+durante el periodo solicitado.</br>
+-En caso de desear incorporar más información en los ítems solicitados, agregar al
+ cuadro correspondiente las filas que sean necesarias.</br>
+- Ud. puede ver la documentación de como llenar cada cuadro <strong> <a href="https://docs.google.com/document/d/1YdaSu-NlVQeg-8Qziek5JIKpZMe1gpdM/edit?usp=sharing&ouid=104670079544388521657&rtpof=true&sd=true">aquí</a></strong>.', --descripcion
 	NULL, --tip
 	'apex', --imagen_recurso_origen
 	NULL, --imagen
