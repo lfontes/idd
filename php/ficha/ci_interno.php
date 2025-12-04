@@ -4,7 +4,7 @@ use datos\dependencias;
 
 class ci_interno extends pruebas_ci
 {
-
+	protected $s__anio;
 	/**
 	 * devuelve el usuario logueado
 	 */
@@ -27,6 +27,8 @@ class ci_interno extends pruebas_ci
 	function evt__edicion_ficha__modificacion($datos)
 	{
 		$datos['fecha_modif'] = date('Y-m-d');
+		$this->s__anio=$datos['anio'];
+		toba::memoria()->set_dato_instancia('anio', $this->s__anio);
 		$this->controlador()->get_tabla('ficha')->set($datos);
 	}
 
@@ -148,6 +150,7 @@ class ci_interno extends pruebas_ci
 
 	function conf__docec_facultad(pruebas_ei_formulario_ml $form_ml)
 	{
+	
 		$form_ml->set_datos($this->controlador()->get_tabla('docec_facultad')->get_filas());
 	}
 
@@ -738,7 +741,7 @@ class ci_interno extends pruebas_ci
 
 
 	/** // Método AJAX
-	 * Devuelve la cantidad de inscriptos por año y actividad.
+	 * Devuelve la cantidad de inscriptos por año y actividad de la BD Guarani
 	 * @param int $anio_academico
 	 * @param string $codigo_actividad
 	 * @return array
@@ -748,8 +751,9 @@ class ci_interno extends pruebas_ci
 	function ajax__get_inscriptos_por_espacio($parametros, toba_ajax_respuesta $respuesta)
 	{
 		//$anio = (string)$parametros[0];
-		$anio = '2024';
+		//$anio = '2024';
 		$espacio = toba::db()->quote($parametros[0]);
+		$anio = toba::db()->quote($parametros[1]);
 
 		$sql = "
         SELECT count(*) as inscriptos
@@ -761,7 +765,7 @@ class ci_interno extends pruebas_ci
             negocio.sga_comisiones.elemento = negocio.vw_actividades_plan.elemento
             AND negocio.vw_insc_cursada.plan_version = negocio.vw_actividades_plan.plan_version
         )
-        WHERE negocio.sga_periodos.anio_academico = '2024'
+        WHERE negocio.sga_periodos.anio_academico = $anio
           AND negocio.vw_actividades_plan.codigo = $espacio
     ";
 
