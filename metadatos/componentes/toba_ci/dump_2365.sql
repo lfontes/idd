@@ -393,7 +393,10 @@ INSERT INTO apex_objeto_ci_pantalla (objeto_ci_proyecto, objeto_ci, pantalla, id
 durante el periodo solicitado.</br>
 -En caso de desear incorporar más información en los ítems solicitados, agregar al
  cuadro correspondiente las filas que sean necesarias.</br>
-- Ud. puede ver la documentación de como llenar cada cuadro <strong> <a href="https://docs.google.com/document/d/1YdaSu-NlVQeg-8Qziek5JIKpZMe1gpdM/edit?usp=sharing&ouid=104670079544388521657&rtpof=true&sd=true">aquí</a></strong>.', --descripcion
+- Ud. puede ver la documentación de como llenar cada cuadro <strong> <a href="https://docs.google.com/document/d/1YdaSu-NlVQeg-8Qziek5JIKpZMe1gpdM/edit?usp=sharing&ouid=104670079544388521657&rtpof=true&sd=true">aquí</a></strong>.
+<p><strong><H6>Informe de labor 2024 fecha límite 30-03-2026<br>
+Informe de labor 2025 fecha límite 30-06-2026<br></H6></strong>.
+</p>', --descripcion
 	NULL, --tip
 	'apex', --imagen_recurso_origen
 	NULL, --imagen
