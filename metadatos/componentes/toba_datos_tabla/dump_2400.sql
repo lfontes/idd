@@ -104,7 +104,7 @@ INSERT INTO apex_objeto_db_registros_col (objeto_proyecto, objeto, col_id, colum
 	'participacion_id', --columna
 	'E', --tipo
 	'0', --pk
-	'c34_docec_posgrado_participacion_id_seq', --secuencia
+	NULL, --secuencia
 	NULL, --largo
 	NULL, --no_nulo
 	'0', --no_nulo_db
