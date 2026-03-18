@@ -256,6 +256,56 @@ class ci_interno extends pruebas_ci
 		$this->controlador()->get_tabla('proy_acreditados')->procesar_filas($datos);
 	}
 
+	function imprimir_proy_acreditados_tabla_pdf(toba_vista_pdf $salida)
+	{
+		$filas = $this->controlador()->get_tabla('proy_acreditados')->get_filas();
+
+		// if (empty($filas)) {
+		// 	$salida->titulo('4.2 Proyectos acreditados');
+		// 	$salida->mensaje('No se registran proyectos acreditados.');
+		// 	return;
+		// }
+
+		$datos_tabla = array();
+		foreach ($filas as $fila) {
+			$datos_tabla[] = array(
+				'titulo' => $fila['titulo_proyecto'],
+				'organismo' => $fila['organismo'],
+				'tipo' => $fila['tipo_proyecto'],
+				'participacion' => $fila['participacion'],
+				'horas' => $fila['horas'],
+			);
+		}
+
+		$datos = array(
+			'titulo_tabla' => '4.2 Proyectos acreditados',
+			'titulos_columnas' => array(
+				'titulo' => 'Proyecto',
+				'organismo' => 'Organismo',
+				'tipo' => 'Tipo',
+				'participacion' => 'Participacion',
+				'horas' => 'Hs',
+			),
+			'datos_tabla' => $datos_tabla,
+		);
+
+		$salida->tabla(
+			$datos,
+			true,
+			8,
+			array(
+				'rowGap' => 2,
+				'titleFontSize' => 11,
+				'xPos' => 'left',
+				'maxWidth' => $salida->get_ancho(100),
+				'cols' => array(
+					'tipo' => array('width' => 55),
+					'horas' => array('width' => 35),
+				),
+			)
+		);
+	}
+
 	//-----------------------------------------------------------------------------------
 	//---- 4.3 Formacion RRHH investigacion ---------------------------------------------
 	//-----------------------------------------------------------------------------------
@@ -282,6 +332,54 @@ class ci_interno extends pruebas_ci
 		$this->controlador()->get_tabla('publ_rev_cientificas')->procesar_filas($datos);
 	}
 
+	function imprimir_publ_rev_cientificas_tabla_pdf(toba_vista_pdf $salida)
+	{
+		$filas = $this->controlador()->get_tabla('publ_rev_cientificas')->get_filas();
+
+		// if (empty($filas)) {
+		// 	$salida->titulo('4.4.1 Publicacion en revistas cientificas');
+		// 	$salida->mensaje('No se registran publicaciones en revistas cientificas.');
+		// 	return;
+		// }
+
+		$datos_tabla = array();
+		foreach ($filas as $fila) {
+			$datos_tabla[] = array(
+				'titulo' => $fila['titulo'],
+				'revista' => $fila['nombre_revista'],
+				'indicador' => $fila['indicador_revista'],
+				'indexada' => $fila['indexada'],
+			);
+		}
+
+		$datos = array(
+			'titulo_tabla' => '4.4.1 Publicacion en revistas cientificas',
+			'titulos_columnas' => array(
+				'titulo' => 'Titulo',
+				'revista' => 'Revista',
+				'indicador' => 'Indicador',
+				'indexada' => 'Indexada',
+			),
+			'datos_tabla' => $datos_tabla,
+		);
+
+		$salida->tabla(
+			$datos,
+			true,
+			8,
+			array(
+				'rowGap' => 2,
+				'titleFontSize' => 11,
+				'xPos' => 'left',
+				'maxWidth' => $salida->get_ancho(100),
+				'cols' => array(
+					'indicador' => array('width' => 55),
+					'indexada' => array('width' => 55),
+				),
+			)
+		);
+	}
+
 	//-----------------------------------------------------------------------------------
 	//---- 4.4.2 Publicaciones en revistas de divulgación--------------------------------
 	//-----------------------------------------------------------------------------------
@@ -293,6 +391,53 @@ class ci_interno extends pruebas_ci
 	function evt__publ_rev_divulgacion__modificacion($datos)
 	{
 		$this->controlador()->get_tabla('publ_rev_divulgacion')->procesar_filas($datos);
+	}
+
+	function imprimir_publ_rev_divulgacion_tabla_pdf(toba_vista_pdf $salida)
+	{
+		$filas = $this->controlador()->get_tabla('publ_rev_divulgacion')->get_filas();
+
+		// if (empty($filas)) {
+		// 	$salida->titulo('4.4.2 Publicacion en revistas de divulgacion');
+		// 	$salida->mensaje('No se registran publicaciones en revistas de divulgacion.');
+		// 	return;
+		// }
+
+		$datos_tabla = array();
+		foreach ($filas as $fila) {
+			$datos_tabla[] = array(
+				'titulo' => $fila['titulo'],
+				'revista' => $fila['nombre_revista'],
+				'ref_articulo' => $fila['ref_articulo'],
+				'indexada' => $fila['indexada'],
+			);
+		}
+
+		$datos = array(
+			'titulo_tabla' => '4.4.2 Publicacion en revistas de divulgacion',
+			'titulos_columnas' => array(
+				'titulo' => 'Titulo',
+				'revista' => 'Revista',
+				'ref_articulo' => 'Referencia',
+				'indexada' => 'Indexada',
+			),
+			'datos_tabla' => $datos_tabla,
+		);
+
+		$salida->tabla(
+			$datos,
+			true,
+			8,
+			array(
+				'rowGap' => 2,
+				'titleFontSize' => 11,
+				'xPos' => 'left',
+				'maxWidth' => $salida->get_ancho(100),
+				'cols' => array(
+					'indexada' => array('width' => 55),
+				),
+			)
+		);
 	}
 
 	//-----------------------------------------------------------------------------------
@@ -420,6 +565,56 @@ class ci_interno extends pruebas_ci
 	{
 		$this->controlador()->get_tabla('premios_vinc_internac')->procesar_filas($datos);
 	}
+
+	function imprimir_premios_vinc_internac_tabla_pdf(toba_vista_pdf $salida)
+	{
+		$filas = $this->controlador()->get_tabla('premios_vinc_internac')->get_filas();
+
+		// if (empty($filas)) {
+		// 	$salida->titulo('5.4 Internacionalizacion de la vinculacion, premios y distinciones');
+		// 	$salida->mensaje('No se registran premios o distinciones.');
+		// 	return;
+		// }
+
+		$datos_tabla = array();
+		foreach ($filas as $fila) {
+			$datos_tabla[] = array(
+				'descripcion' => $fila['descripcion'],
+				'periodo' => $fila['periodo'],
+				'red_nombre' => $fila['red_nombre'],
+				'mov_nombre' => $fila['mov_nombre'],
+				'mov_lugar' => $fila['mov_lugar'],
+			);
+		}
+
+		$datos = array(
+			'titulo_tabla' => '5.4 Internacionalizacion de la vinculacion, premios y distinciones',
+			'titulos_columnas' => array(
+				'descripcion' => 'Descripcion',
+				'periodo' => 'Periodo',
+				'red_nombre' => 'Red',
+				'mov_nombre' => 'Movilidad',
+				'mov_lugar' => 'Lugar',
+			),
+			'datos_tabla' => $datos_tabla,
+		);
+
+		$salida->tabla(
+			$datos,
+			true,
+			8,
+			array(
+				'rowGap' => 2,
+				'titleFontSize' => 11,
+				'xPos' => 'left',
+				'maxWidth' => $salida->get_ancho(100),
+				'cols' => array(
+					'periodo' => array('width' => 55),
+					'mov_lugar' => array('width' => 60),
+				),
+			)
+		);
+	}
 	//-----------------------------------------------------------------------------------
 	//---- 5.3. Reconocimientos ---------------------------------------------------------
 	//-----------------------------------------------------------------------------------
@@ -479,6 +674,56 @@ class ci_interno extends pruebas_ci
 	function evt__proy_extension__modificacion($datos)
 	{
 		$this->controlador()->get_tabla('proy_extension')->procesar_filas($datos);
+	}
+
+	function imprimir_proy_extension_tabla_pdf(toba_vista_pdf $salida)
+	{
+		$filas = $this->controlador()->get_tabla('proy_extension')->get_filas();
+
+		if (empty($filas)) {
+			$salida->titulo('6.1 Proyectos de extension');
+			$salida->mensaje('No se registran proyectos de extension.');
+			return;
+		}
+
+		$datos_tabla = array();
+		foreach ($filas as $fila) {
+			$datos_tabla[] = array(
+				'nombre' => $fila['nombre'],
+				'organismo' => $fila['organismo'],
+				'lugar' => $fila['lugar'],
+				'tipo_participacion' => $fila['tipo_participacion'],
+			);
+		}
+
+		$datos = array(
+			'titulo_tabla' => '6.1 Proyectos de extension',
+			'titulos_columnas' => array(
+				'nombre' => 'Proyecto',
+				'organismo' => 'Organismo',
+				'lugar' => 'Lugar',
+				'tipo_participacion' => 'Participacion',
+			),
+			'datos_tabla' => $datos_tabla,
+		);
+
+		$salida->tabla(
+			$datos,
+			true,
+			8,
+			array(
+				'rowGap' => 2,
+				'titleFontSize' => 11,
+				'xPos' => 'left',
+				'maxWidth' => $salida->get_ancho(100),
+				'cols' => array(
+					'nombre' => array('width' => 220),
+					'organismo' => array('width' => 120),
+					'lugar' => array('width' => 90),
+					'tipo_participacion' => array('width' => 65),
+				),
+			)
+		);
 	}
 	//-----------------------------------------------------------------------------------
 	//---- 6.2 Publicacion revistas extension ---------------------------------------------------------
@@ -588,6 +833,66 @@ class ci_interno extends pruebas_ci
 	function evt__cursos_extension__modificacion($datos)
 	{
 		$this->controlador()->get_tabla('cursos_extension')->procesar_filas($datos);
+	}
+
+	function imprimir_cursos_extension_tabla_pdf(toba_vista_pdf $salida)
+	{
+		$filas = $this->controlador()->get_tabla('cursos_extension')->get_filas();
+		$destinatarios_desc = array(
+			'1' => 'Alumnos',
+			'2' => 'Profesionales',
+			'3' => 'Publico general',
+			'4' => 'Otros',
+		);
+
+		if (empty($filas)) {
+			$salida->titulo('6.2 Cursos de capacitacion/actualizacion dictados');
+			$salida->mensaje('No se registran cursos de capacitacion/actualizacion dictados.');
+			return;
+		}
+
+		$datos_tabla = array();
+		foreach ($filas as $fila) {
+			$destinatario = (string) $fila['destinatarios'];
+			$datos_tabla[] = array(
+				'denominacion' => $fila['denominacion'],
+				'horas' => $fila['horas'],
+				'destinatarios' => isset($destinatarios_desc[$destinatario]) ? $destinatarios_desc[$destinatario] : $fila['destinatarios'],
+				'fecha_ini' => $fila['fecha_ini'],
+				'fecha_fin' => $fila['fecha_fin'],
+			);
+		}
+
+		$datos = array(
+			'titulo_tabla' => '6.2 Cursos de capacitacion/actualizacion dictados',
+			'titulos_columnas' => array(
+				'denominacion' => 'Denominacion',
+				'horas' => 'Hs',
+				'destinatarios' => 'Destinatarios',
+				'fecha_ini' => 'Fecha inicio',
+				'fecha_fin' => 'Fecha fin',
+			),
+			'datos_tabla' => $datos_tabla,
+		);
+
+		$salida->tabla(
+			$datos,
+			true,
+			8,
+			array(
+				'rowGap' => 2,
+				'titleFontSize' => 11,
+				'xPos' => 'left',
+				'maxWidth' => $salida->get_ancho(100),
+				'cols' => array(
+					'denominacion' => array('width' => 210),
+					'horas' => array('width' => 35),
+					'destinatarios' => array('width' => 80),
+					'fecha_ini' => array('width' => 65),
+					'fecha_fin' => array('width' => 65),
+				),
+			)
+		);
 	}
 
 
@@ -826,16 +1131,16 @@ class ci_interno extends pruebas_ci
 		$salida->titulo('IV. Investigacion');
 		$this->dependencia('categorizacion')->vista_pdf($salida);
 		$salida->separacion();
-		$this->dependencia('proy_acreditados')->vista_pdf($salida);
-		$salida->separacion();
+			$this->imprimir_proy_acreditados_tabla_pdf($salida);
+			$salida->separacion();
 		$this->dependencia('rrhh_investigacion')->vista_pdf($salida);
 		$salida->separacion();
 		$this->dependencia('impacto_pub')->vista_pdf($salida);
 		$salida->separacion();
-		$this->dependencia('publ_rev_cientificas')->vista_pdf($salida);
-		$salida->separacion();
-		$this->dependencia('publ_rev_divulgacion')->vista_pdf($salida);
-		$salida->separacion();
+			$this->imprimir_publ_rev_cientificas_tabla_pdf($salida);
+			$salida->separacion();
+			$this->imprimir_publ_rev_divulgacion_tabla_pdf($salida);
+			$salida->separacion();
 		$this->dependencia('Libros')->vista_pdf($salida);
 		$salida->separacion();
 		$this->dependencia('part_reun_cientificas')->vista_pdf($salida);
@@ -854,8 +1159,8 @@ class ci_interno extends pruebas_ci
 		$salida->separacion();
 		$this->dependencia('registros_vinculacion')->vista_pdf($salida);
 		$salida->separacion();
-		$this->dependencia('premios_vinc_internac')->vista_pdf($salida);
-		$salida->separacion();
+			$this->imprimir_premios_vinc_internac_tabla_pdf($salida);
+			$salida->separacion();
 		$this->dependencia('reconocimientos')->vista_pdf($salida);
 		$salida->separacion();
 		$this->dependencia('formacion_vinc')->vista_pdf($salida);
@@ -866,8 +1171,10 @@ class ci_interno extends pruebas_ci
 		$salida->separacion();
 		$salida->titulo('VI- Actividades de Extensión');
 		$salida->separacion();
-		$this->dependencia('proy_extension')->vista_pdf($salida);
-		$salida->separacion();
+			$this->imprimir_proy_extension_tabla_pdf($salida);
+			$salida->separacion();
+			$this->imprimir_cursos_extension_tabla_pdf($salida);
+			$salida->separacion();
 		$this->dependencia('publ_rev_extension')->vista_pdf($salida);
 		$salida->separacion();
 		$this->dependencia('libros_extension_632')->vista_pdf($salida);
