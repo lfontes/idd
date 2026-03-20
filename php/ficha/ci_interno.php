@@ -405,11 +405,27 @@ class ci_interno extends pruebas_ci
 
 		$datos_tabla = array();
 		foreach ($filas as $fila) {
+			// $titulo = trim((string) $fila['titulo']);
+			// if ($titulo !== '') {
+			// 	$titulo = wordwrap($titulo, 34, "\n", true);
+			// }
+
+			// $revista = trim((string) $fila['nombre_revista']);
+			// if ($revista !== '') {
+			// 	$revista = wordwrap($revista, 30, "\n", true);
+			// }
+
+			$referencia = trim((string) $fila['ref_articulo']);
+			if ($referencia !== '') {
+				$referencia = wordwrap($referencia, 28, "\n", true);
+			}
+
 			$datos_tabla[] = array(
 				'titulo' => $fila['titulo'],
+				'autores' => $fila['autores'],
 				'revista' => $fila['nombre_revista'],
-				'ref_articulo' => $fila['ref_articulo'],
-				'indexada' => $fila['indexada'],
+				'ref_articulo' => $referencia,
+				
 			);
 		}
 
@@ -417,9 +433,10 @@ class ci_interno extends pruebas_ci
 			'titulo_tabla' => '4.4.2 Publicacion en revistas de divulgacion',
 			'titulos_columnas' => array(
 				'titulo' => 'Titulo',
+				'autores' => 'Autores',
 				'revista' => 'Revista',
 				'ref_articulo' => 'Referencia',
-				'indexada' => 'Indexada',
+				
 			),
 			'datos_tabla' => $datos_tabla,
 		);
@@ -427,14 +444,19 @@ class ci_interno extends pruebas_ci
 		$salida->tabla(
 			$datos,
 			true,
-			8,
+			7,
 			array(
 				'rowGap' => 2,
 				'titleFontSize' => 11,
 				'xPos' => 'left',
+				'width' => 490,
 				'maxWidth' => $salida->get_ancho(100),
 				'cols' => array(
-					'indexada' => array('width' => 55),
+					'titulo' => array('width' => 155),
+					'autores' => array('width' => 65),
+					'revista' => array('width' => 155),
+					'ref_articulo' => array('width' => 105),
+					
 				),
 			)
 		);
@@ -845,11 +867,11 @@ class ci_interno extends pruebas_ci
 			'4' => 'Otros',
 		);
 
-		if (empty($filas)) {
-			$salida->titulo('6.2 Cursos de capacitacion/actualizacion dictados');
-			$salida->mensaje('No se registran cursos de capacitacion/actualizacion dictados.');
-			return;
-		}
+		// if (empty($filas)) {
+		// 	$salida->titulo('6.2 Cursos de capacitacion/actualizacion dictados');
+		// 	$salida->mensaje('No se registran cursos de capacitacion/actualizacion dictados.');
+		// 	return;
+		// }
 
 		$datos_tabla = array();
 		foreach ($filas as $fila) {
@@ -1131,16 +1153,16 @@ class ci_interno extends pruebas_ci
 		$salida->titulo('IV. Investigacion');
 		$this->dependencia('categorizacion')->vista_pdf($salida);
 		$salida->separacion();
-			$this->imprimir_proy_acreditados_tabla_pdf($salida);
-			$salida->separacion();
+		$this->imprimir_proy_acreditados_tabla_pdf($salida);
+		$salida->separacion();
 		$this->dependencia('rrhh_investigacion')->vista_pdf($salida);
 		$salida->separacion();
 		$this->dependencia('impacto_pub')->vista_pdf($salida);
 		$salida->separacion();
-			$this->imprimir_publ_rev_cientificas_tabla_pdf($salida);
-			$salida->separacion();
-			$this->imprimir_publ_rev_divulgacion_tabla_pdf($salida);
-			$salida->separacion();
+		$this->imprimir_publ_rev_cientificas_tabla_pdf($salida);
+		$salida->separacion();
+		$this->imprimir_publ_rev_divulgacion_tabla_pdf($salida);
+		$salida->separacion();
 		$this->dependencia('Libros')->vista_pdf($salida);
 		$salida->separacion();
 		$this->dependencia('part_reun_cientificas')->vista_pdf($salida);
