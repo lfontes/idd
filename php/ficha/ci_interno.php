@@ -726,11 +726,11 @@ class ci_interno extends pruebas_ci
 	{
 		$filas = $this->controlador()->get_tabla('proy_extension')->get_filas();
 
-		if (empty($filas)) {
-			$salida->titulo('6.1 Proyectos de extension');
-			$salida->mensaje('No se registran proyectos de extension.');
-			return;
-		}
+		// if (empty($filas)) {
+		// 	$salida->titulo('6.1 Proyectos de extension');
+		// 	$salida->mensaje('No se registran proyectos de extension.');
+		// 	return;
+		// }
 
 		$datos_tabla = array();
 		foreach ($filas as $fila) {
@@ -1203,15 +1203,22 @@ class ci_interno extends pruebas_ci
 
 		// $salida->titulo($this->get_nombre());
 		$salida->titulo('INFORME INTEGRADOR DE EVALUACIÓN ANUAL DE DESEMPEÑO DOCENTE DE LA FACULTAD DE CIENCIAS AGRARIAS UNCUYO');
-		//$salida->mensaje('Nota: Este es el Principal');
+		$salida->separacion();
+		$salida->separacion();
 		$salida->titulo('I. Datos personales');
 		$salida->separacion();
 		if ($nombre_docente !== '') {
 			$salida->titulo('Docente: ' . $nombre_docente, 4);
 			$salida->separacion();
 		}
+		$this->dependencia('edicion_ficha')->set_pdf_tabla_ancho('80%');
+		$this->dependencia('edicion_ficha')->set_pdf_tabla_opciones(array(
+			'xPos' => 'center',
+			'xOrientation' => 'center',
+		));
 		$this->dependencia('edicion_ficha')->vista_pdf($salida);
 		$salida->separacion();
+		$salida->salto_pagina();
 		$this->dependencia('cargos')->vista_pdf($salida);
 		$salida->separacion();
 		$this->dependencia('licencias')->vista_pdf($salida);
