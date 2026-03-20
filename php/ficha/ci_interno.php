@@ -12,6 +12,30 @@ class ci_interno extends pruebas_ci
 	{
 		return toba::usuario()->get_id();
 	}
+
+	function get_nombre_docente_pdf($dni_doc)
+	{
+		$dni_doc = preg_replace('/\D+/', '', (string) $dni_doc);
+		if ($dni_doc === '') {
+			return '';
+		}
+
+		$sql_agente = "SELECT apellido, nombre FROM public.agentes WHERE dni = " . quote($dni_doc) . " LIMIT 1";
+		$agente = toba::db('desempenio')->consultar($sql_agente);
+		if (! empty($agente)) {
+			$apellido = trim((string) $agente[0]['apellido']);
+			$nombre = trim((string) $agente[0]['nombre']);
+			return trim($apellido . ', ' . $nombre, ', ');
+		}
+
+		$sql_docente = "SELECT ayn FROM docentes WHERE dni = " . quote($dni_doc) . " LIMIT 1";
+		$docente = toba::db('desempenio')->consultar($sql_docente);
+		if (! empty($docente)) {
+			return trim((string) $docente[0]['ayn']);
+		}
+
+		return '';
+	}
 	//-----------------------------------------------------------------------------------
 	//---- edicion_ficha ----------------------------------------------------------------
 	//-----------------------------------------------------------------------------------
@@ -917,6 +941,61 @@ class ci_interno extends pruebas_ci
 		);
 	}
 
+	function imprimir_declaracion_jurada_pdf(toba_vista_pdf $salida)
+	{
+		$salida->salto_pagina();
+
+		$fecha_impresion = date('d/m/Y');
+		$texto_declaracion = "Fecha de impresion: $fecha_impresion\n\n";
+		$texto_declaracion .= "Manifiesto la exactitud de los datos consignados tanto de la version impresa como de la electronica en cumplimiento a lo establecido por la Ordenanza N°91/2014-CS para la Evaluacion de Desempeno de los Docentes Efectivos de la Universidad Nacional de Cuyo y la Ordenanza N°591/2017-CD que reglamenta la evaluacion de desempeno de los Docentes Interinos de la Facultad de Ciencias Agrarias- UNCuyo.";
+
+		$salida->tabla(
+			array(
+				'titulo_tabla' => 'DECLARACION JURADA',
+				'datos_tabla' => array(
+					array('texto' => $texto_declaracion),
+				),
+			),
+			false,
+			9,
+			array(
+				'xPos' => 'left',
+				'maxWidth' => $salida->get_ancho(100),
+				'cols' => array(
+					'texto' => array('width' => $salida->get_ancho(100) - 10),
+				),
+			)
+		);
+
+		$salida->separacion(12);
+
+		$firma = "\n\n\n................................................\nFirma                    Aclaracion";
+		$salida->tabla(
+			array(
+				'titulos_columnas' => array(
+					'docente' => 'DOCENTE',
+					'superior' => 'AVAL DEL SUPERIOR',
+				),
+				'datos_tabla' => array(
+					array(
+						'docente' => $firma,
+						'superior' => $firma,
+					),
+				),
+			),
+			true,
+			9,
+			array(
+				'xPos' => 'left',
+				'maxWidth' => $salida->get_ancho(100),
+				'cols' => array(
+					'docente' => array('width' => ($salida->get_ancho(100) / 2) - 3),
+					'superior' => array('width' => ($salida->get_ancho(100) / 2) - 3),
+				),
+			)
+		);
+	}
+
 
 
 	//-----------------------------------------------------------------------------------
@@ -1106,6 +1185,12 @@ class ci_interno extends pruebas_ci
 	//----  PDF --------------------------------------------------------------------------		
 	function vista_pdf(toba_vista_pdf $salida)
 	{
+		$ficha = $this->controlador()->get_tabla('ficha')->get();
+		$dni_doc = isset($ficha['dni_doc']) ? preg_replace('/\D+/', '', (string) $ficha['dni_doc']) : '';
+		$nombre_docente = $this->get_nombre_docente_pdf($dni_doc);
+		$nombre_archivo = ($dni_doc !== '') ? 'ILD-' . $dni_doc . '.pdf' : 'ILD.pdf';
+		$salida->set_nombre_archivo($nombre_archivo);
+
 		//Cambio lo márgenes accediendo directamente a la librería PDF
 		$pdf = $salida->get_pdf();
 		$pdf->ezSetMargins(80, 50, 50, 50);	//top, bottom, left, right
@@ -1121,6 +1206,10 @@ class ci_interno extends pruebas_ci
 		//$salida->mensaje('Nota: Este es el Principal');
 		$salida->titulo('I. Datos personales');
 		$salida->separacion();
+		if ($nombre_docente !== '') {
+			$salida->titulo('Docente: ' . $nombre_docente, 4);
+			$salida->separacion();
+		}
 		$this->dependencia('edicion_ficha')->vista_pdf($salida);
 		$salida->separacion();
 		$this->dependencia('cargos')->vista_pdf($salida);
@@ -1235,6 +1324,7 @@ class ci_interno extends pruebas_ci
 		$salida->separacion();
 		$this->dependencia('representacion')->vista_pdf($salida);
 		$salida->separacion();
+		$this->imprimir_declaracion_jurada_pdf($salida);
 
 
 		//Encabezado
