@@ -36,6 +36,17 @@ class ci_interno extends pruebas_ci
 
 		return '';
 	}
+
+	function get_descripciones_combo_pdf($tabla, $columna_desc)
+	{
+		$sql = "SELECT id, $columna_desc AS descripcion FROM $tabla ORDER BY id";
+		$filas = toba::db('desempenio')->consultar($sql);
+		$descripciones = array();
+		foreach ($filas as $fila) {
+			$descripciones[(string) $fila['id']] = $fila['descripcion'];
+		}
+		return $descripciones;
+	}
 	//-----------------------------------------------------------------------------------
 	//---- edicion_ficha ----------------------------------------------------------------
 	//-----------------------------------------------------------------------------------
@@ -209,6 +220,56 @@ class ci_interno extends pruebas_ci
 	function evt__reu_cientificas__modificacion($datos)
 	{
 		$this->controlador()->get_tabla('reu_cientificas')->procesar_filas($datos);
+	}
+
+	function imprimir_reu_cientificas_tabla_pdf(toba_vista_pdf $salida)
+	{
+		$filas = $this->controlador()->get_tabla('reu_cientificas')->get_filas();
+		$tipos_participacion = $this->get_descripciones_combo_pdf('c35_tipos_participacion', 'tipo_participacion');
+		$tipos_presentacion = $this->get_descripciones_combo_pdf('c35_tipos_presentacion', 'tipo_presentacion');
+
+		$datos_tabla = array();
+		foreach ($filas as $fila) {
+			$tipo_participacion = (string) $fila['tipo_participacion_id'];
+			$tipo_presentacion = (string) $fila['present_tipo_id'];
+
+			$datos_tabla[] = array(
+				'nombre' => $fila['nombre'],
+				'titulo' => $fila['titulo'],
+				'fecha' => $fila['fecha'],
+				'tipo_participacion' => isset($tipos_participacion[$tipo_participacion]) ? $tipos_participacion[$tipo_participacion] : $fila['tipo_participacion_id'],
+				'tipo_presentacion' => isset($tipos_presentacion[$tipo_presentacion]) ? $tipos_presentacion[$tipo_presentacion] : $fila['present_tipo_id'],
+			);
+		}
+
+		$datos = array(
+			'titulo_tabla' => '3.5 Participacion en reuniones con referencia a la docencia',
+			'titulos_columnas' => array(
+				'nombre' => 'Reunion',
+				'titulo' => 'Titulo',
+				'fecha' => 'Fecha',
+				'tipo_participacion' => 'Participacion',
+				'tipo_presentacion' => 'Presentacion',
+			),
+			'datos_tabla' => $datos_tabla,
+		);
+
+		$salida->tabla(
+			$datos,
+			true,
+			7,
+			array(
+				'rowGap' => 2,
+				'titleFontSize' => 11,
+				'xPos' => 'left',
+				'maxWidth' => $salida->get_ancho(100),
+				'cols' => array(
+					'fecha' => array('width' => 55),
+					'tipo_participacion' => array('width' => 75),
+					'tipo_presentacion' => array('width' => 75),
+				),
+			)
+		);
 	}
 
 	//-----------------------------------------------------------------------------------
@@ -1238,7 +1299,7 @@ class ci_interno extends pruebas_ci
 		$salida->separacion();
 		$this->dependencia('docec_posgrado')->vista_pdf($salida);
 		$salida->separacion();
-		$this->dependencia('reu_cientificas')->vista_pdf($salida);
+		$this->imprimir_reu_cientificas_tabla_pdf($salida);
 		$salida->separacion();
 		$this->dependencia('proy_educativos')->vista_pdf($salida);
 		$salida->separacion();
