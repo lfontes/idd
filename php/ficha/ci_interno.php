@@ -5,6 +5,7 @@ use datos\dependencias;
 class ci_interno extends pruebas_ci
 {
 	protected $s__anio;
+	protected $pdf_helper;
 	/**
 	 * devuelve el usuario logueado
 	 */
@@ -13,39 +14,27 @@ class ci_interno extends pruebas_ci
 		return toba::usuario()->get_id();
 	}
 
+	function get_pdf_helper()
+	{
+		if (! isset($this->pdf_helper)) {
+			$this->pdf_helper = new ci_interno_impresion_pdf($this);
+		}
+		return $this->pdf_helper;
+	}
+
 	function get_nombre_docente_pdf($dni_doc)
 	{
-		$dni_doc = preg_replace('/\D+/', '', (string) $dni_doc);
-		if ($dni_doc === '') {
-			return '';
-		}
-
-		$sql_agente = "SELECT apellido, nombre FROM public.agentes WHERE dni = " . quote($dni_doc) . " LIMIT 1";
-		$agente = toba::db('desempenio')->consultar($sql_agente);
-		if (! empty($agente)) {
-			$apellido = trim((string) $agente[0]['apellido']);
-			$nombre = trim((string) $agente[0]['nombre']);
-			return trim($apellido . ', ' . $nombre, ', ');
-		}
-
-		$sql_docente = "SELECT ayn FROM docentes WHERE dni = " . quote($dni_doc) . " LIMIT 1";
-		$docente = toba::db('desempenio')->consultar($sql_docente);
-		if (! empty($docente)) {
-			return trim((string) $docente[0]['ayn']);
-		}
-
-		return '';
+		return $this->get_pdf_helper()->get_nombre_docente_pdf($dni_doc);
 	}
 
 	function get_descripciones_combo_pdf($tabla, $columna_desc)
 	{
-		$sql = "SELECT id, $columna_desc AS descripcion FROM $tabla ORDER BY id";
-		$filas = toba::db('desempenio')->consultar($sql);
-		$descripciones = array();
-		foreach ($filas as $fila) {
-			$descripciones[(string) $fila['id']] = $fila['descripcion'];
-		}
-		return $descripciones;
+		return $this->get_pdf_helper()->get_descripciones_combo_pdf($tabla, $columna_desc);
+	}
+
+	function log_memoria_pdf($seccion)
+	{
+		$this->get_pdf_helper()->log_memoria_pdf($seccion);
 	}
 	//-----------------------------------------------------------------------------------
 	//---- edicion_ficha ----------------------------------------------------------------
@@ -224,52 +213,7 @@ class ci_interno extends pruebas_ci
 
 	function imprimir_reu_cientificas_tabla_pdf(toba_vista_pdf $salida)
 	{
-		$filas = $this->controlador()->get_tabla('reu_cientificas')->get_filas();
-		$tipos_participacion = $this->get_descripciones_combo_pdf('c35_tipos_participacion', 'tipo_participacion');
-		$tipos_presentacion = $this->get_descripciones_combo_pdf('c35_tipos_presentacion', 'tipo_presentacion');
-
-		$datos_tabla = array();
-		foreach ($filas as $fila) {
-			$tipo_participacion = (string) $fila['tipo_participacion_id'];
-			$tipo_presentacion = (string) $fila['present_tipo_id'];
-
-			$datos_tabla[] = array(
-				'nombre' => $fila['nombre'],
-				'titulo' => $fila['titulo'],
-				'fecha' => $fila['fecha'],
-				'tipo_participacion' => isset($tipos_participacion[$tipo_participacion]) ? $tipos_participacion[$tipo_participacion] : $fila['tipo_participacion_id'],
-				'tipo_presentacion' => isset($tipos_presentacion[$tipo_presentacion]) ? $tipos_presentacion[$tipo_presentacion] : $fila['present_tipo_id'],
-			);
-		}
-
-		$datos = array(
-			'titulo_tabla' => '3.5 Participacion en reuniones con referencia a la docencia',
-			'titulos_columnas' => array(
-				'nombre' => 'Reunion',
-				'titulo' => 'Titulo',
-				'fecha' => 'Fecha',
-				'tipo_participacion' => 'Participacion',
-				'tipo_presentacion' => 'Presentacion',
-			),
-			'datos_tabla' => $datos_tabla,
-		);
-
-		$salida->tabla(
-			$datos,
-			true,
-			7,
-			array(
-				'rowGap' => 2,
-				'titleFontSize' => 11,
-				'xPos' => 'left',
-				'maxWidth' => $salida->get_ancho(100),
-				'cols' => array(
-					'fecha' => array('width' => 55),
-					'tipo_participacion' => array('width' => 75),
-					'tipo_presentacion' => array('width' => 75),
-				),
-			)
-		);
+		$this->get_pdf_helper()->imprimir_reu_cientificas_tabla_pdf($salida);
 	}
 
 	//-----------------------------------------------------------------------------------
@@ -343,52 +287,7 @@ class ci_interno extends pruebas_ci
 
 	function imprimir_proy_acreditados_tabla_pdf(toba_vista_pdf $salida)
 	{
-		$filas = $this->controlador()->get_tabla('proy_acreditados')->get_filas();
-
-		// if (empty($filas)) {
-		// 	$salida->titulo('4.2 Proyectos acreditados');
-		// 	$salida->mensaje('No se registran proyectos acreditados.');
-		// 	return;
-		// }
-
-		$datos_tabla = array();
-		foreach ($filas as $fila) {
-			$datos_tabla[] = array(
-				'titulo' => $fila['titulo_proyecto'],
-				'organismo' => $fila['organismo'],
-				'tipo' => $fila['tipo_proyecto'],
-				'participacion' => $fila['participacion'],
-				'horas' => $fila['horas'],
-			);
-		}
-
-		$datos = array(
-			'titulo_tabla' => '4.2 Proyectos acreditados',
-			'titulos_columnas' => array(
-				'titulo' => 'Proyecto',
-				'organismo' => 'Organismo',
-				'tipo' => 'Tipo',
-				'participacion' => 'Participacion',
-				'horas' => 'Hs',
-			),
-			'datos_tabla' => $datos_tabla,
-		);
-
-		$salida->tabla(
-			$datos,
-			true,
-			8,
-			array(
-				'rowGap' => 2,
-				'titleFontSize' => 11,
-				'xPos' => 'left',
-				'maxWidth' => $salida->get_ancho(100),
-				'cols' => array(
-					'tipo' => array('width' => 55),
-					'horas' => array('width' => 35),
-				),
-			)
-		);
+		$this->get_pdf_helper()->imprimir_proy_acreditados_tabla_pdf($salida);
 	}
 
 	//-----------------------------------------------------------------------------------
@@ -419,50 +318,7 @@ class ci_interno extends pruebas_ci
 
 	function imprimir_publ_rev_cientificas_tabla_pdf(toba_vista_pdf $salida)
 	{
-		$filas = $this->controlador()->get_tabla('publ_rev_cientificas')->get_filas();
-
-		// if (empty($filas)) {
-		// 	$salida->titulo('4.4.1 Publicacion en revistas cientificas');
-		// 	$salida->mensaje('No se registran publicaciones en revistas cientificas.');
-		// 	return;
-		// }
-
-		$datos_tabla = array();
-		foreach ($filas as $fila) {
-			$datos_tabla[] = array(
-				'titulo' => $fila['titulo'],
-				'revista' => $fila['nombre_revista'],
-				'indicador' => $fila['indicador_revista'],
-				'indexada' => $fila['indexada'],
-			);
-		}
-
-		$datos = array(
-			'titulo_tabla' => '4.4.1 Publicacion en revistas cientificas',
-			'titulos_columnas' => array(
-				'titulo' => 'Titulo',
-				'revista' => 'Revista',
-				'indicador' => 'Indicador',
-				'indexada' => 'Indexada',
-			),
-			'datos_tabla' => $datos_tabla,
-		);
-
-		$salida->tabla(
-			$datos,
-			true,
-			8,
-			array(
-				'rowGap' => 2,
-				'titleFontSize' => 11,
-				'xPos' => 'left',
-				'maxWidth' => $salida->get_ancho(100),
-				'cols' => array(
-					'indicador' => array('width' => 55),
-					'indexada' => array('width' => 55),
-				),
-			)
-		);
+		$this->get_pdf_helper()->imprimir_publ_rev_cientificas_tabla_pdf($salida);
 	}
 
 	//-----------------------------------------------------------------------------------
@@ -480,71 +336,7 @@ class ci_interno extends pruebas_ci
 
 	function imprimir_publ_rev_divulgacion_tabla_pdf(toba_vista_pdf $salida)
 	{
-		$filas = $this->controlador()->get_tabla('publ_rev_divulgacion')->get_filas();
-
-		// if (empty($filas)) {
-		// 	$salida->titulo('4.4.2 Publicacion en revistas de divulgacion');
-		// 	$salida->mensaje('No se registran publicaciones en revistas de divulgacion.');
-		// 	return;
-		// }
-
-		$datos_tabla = array();
-		foreach ($filas as $fila) {
-			// $titulo = trim((string) $fila['titulo']);
-			// if ($titulo !== '') {
-			// 	$titulo = wordwrap($titulo, 34, "\n", true);
-			// }
-
-			// $revista = trim((string) $fila['nombre_revista']);
-			// if ($revista !== '') {
-			// 	$revista = wordwrap($revista, 30, "\n", true);
-			// }
-
-			$referencia = trim((string) $fila['ref_articulo']);
-			if ($referencia !== '') {
-				$referencia = wordwrap($referencia, 28, "\n", true);
-			}
-
-			$datos_tabla[] = array(
-				'titulo' => $fila['titulo'],
-				'autores' => $fila['autores'],
-				'revista' => $fila['nombre_revista'],
-				'ref_articulo' => $referencia,
-				
-			);
-		}
-
-		$datos = array(
-			'titulo_tabla' => '4.4.2 Publicacion en revistas de divulgacion',
-			'titulos_columnas' => array(
-				'titulo' => 'Titulo',
-				'autores' => 'Autores',
-				'revista' => 'Revista',
-				'ref_articulo' => 'Referencia',
-				
-			),
-			'datos_tabla' => $datos_tabla,
-		);
-
-		$salida->tabla(
-			$datos,
-			true,
-			7,
-			array(
-				'rowGap' => 2,
-				'titleFontSize' => 11,
-				'xPos' => 'left',
-				'width' => 490,
-				'maxWidth' => $salida->get_ancho(100),
-				'cols' => array(
-					'titulo' => array('width' => 155),
-					'autores' => array('width' => 65),
-					'revista' => array('width' => 155),
-					'ref_articulo' => array('width' => 105),
-					
-				),
-			)
-		);
+		$this->get_pdf_helper()->imprimir_publ_rev_divulgacion_tabla_pdf($salida);
 	}
 
 	//-----------------------------------------------------------------------------------
@@ -597,6 +389,11 @@ class ci_interno extends pruebas_ci
 	function evt__proy_acreditados_vinc__modificacion($datos)
 	{
 		$this->controlador()->get_tabla('proy_acreditados_vinc')->procesar_filas($datos);
+	}
+
+	function imprimir_proy_acreditados_vinc_tabla_pdf(toba_vista_pdf $salida)
+	{
+		$this->get_pdf_helper()->imprimir_proy_acreditados_vinc_tabla_pdf($salida);
 	}
 	//-----------------------------------------------------------------------------------
 	//---- 5.2.1 Publicaciones revistas divulgación -------------------------------------
@@ -675,52 +472,7 @@ class ci_interno extends pruebas_ci
 
 	function imprimir_premios_vinc_internac_tabla_pdf(toba_vista_pdf $salida)
 	{
-		$filas = $this->controlador()->get_tabla('premios_vinc_internac')->get_filas();
-
-		// if (empty($filas)) {
-		// 	$salida->titulo('5.4 Internacionalizacion de la vinculacion, premios y distinciones');
-		// 	$salida->mensaje('No se registran premios o distinciones.');
-		// 	return;
-		// }
-
-		$datos_tabla = array();
-		foreach ($filas as $fila) {
-			$datos_tabla[] = array(
-				'descripcion' => $fila['descripcion'],
-				'periodo' => $fila['periodo'],
-				'red_nombre' => $fila['red_nombre'],
-				'mov_nombre' => $fila['mov_nombre'],
-				'mov_lugar' => $fila['mov_lugar'],
-			);
-		}
-
-		$datos = array(
-			'titulo_tabla' => '5.4 Internacionalizacion de la vinculacion, premios y distinciones',
-			'titulos_columnas' => array(
-				'descripcion' => 'Descripcion',
-				'periodo' => 'Periodo',
-				'red_nombre' => 'Red',
-				'mov_nombre' => 'Movilidad',
-				'mov_lugar' => 'Lugar',
-			),
-			'datos_tabla' => $datos_tabla,
-		);
-
-		$salida->tabla(
-			$datos,
-			true,
-			8,
-			array(
-				'rowGap' => 2,
-				'titleFontSize' => 11,
-				'xPos' => 'left',
-				'maxWidth' => $salida->get_ancho(100),
-				'cols' => array(
-					'periodo' => array('width' => 55),
-					'mov_lugar' => array('width' => 60),
-				),
-			)
-		);
+		$this->get_pdf_helper()->imprimir_premios_vinc_internac_tabla_pdf($salida);
 	}
 	//-----------------------------------------------------------------------------------
 	//---- 5.3. Reconocimientos ---------------------------------------------------------
@@ -785,52 +537,7 @@ class ci_interno extends pruebas_ci
 
 	function imprimir_proy_extension_tabla_pdf(toba_vista_pdf $salida)
 	{
-		$filas = $this->controlador()->get_tabla('proy_extension')->get_filas();
-
-		// if (empty($filas)) {
-		// 	$salida->titulo('6.1 Proyectos de extension');
-		// 	$salida->mensaje('No se registran proyectos de extension.');
-		// 	return;
-		// }
-
-		$datos_tabla = array();
-		foreach ($filas as $fila) {
-			$datos_tabla[] = array(
-				'nombre' => $fila['nombre'],
-				'organismo' => $fila['organismo'],
-				'lugar' => $fila['lugar'],
-				'tipo_participacion' => $fila['tipo_participacion'],
-			);
-		}
-
-		$datos = array(
-			'titulo_tabla' => '6.1 Proyectos de extension',
-			'titulos_columnas' => array(
-				'nombre' => 'Proyecto',
-				'organismo' => 'Organismo',
-				'lugar' => 'Lugar',
-				'tipo_participacion' => 'Participacion',
-			),
-			'datos_tabla' => $datos_tabla,
-		);
-
-		$salida->tabla(
-			$datos,
-			true,
-			8,
-			array(
-				'rowGap' => 2,
-				'titleFontSize' => 11,
-				'xPos' => 'left',
-				'maxWidth' => $salida->get_ancho(100),
-				'cols' => array(
-					'nombre' => array('width' => 220),
-					'organismo' => array('width' => 120),
-					'lugar' => array('width' => 90),
-					'tipo_participacion' => array('width' => 65),
-				),
-			)
-		);
+		$this->get_pdf_helper()->imprimir_proy_extension_tabla_pdf($salida);
 	}
 	//-----------------------------------------------------------------------------------
 	//---- 6.2 Publicacion revistas extension ---------------------------------------------------------
@@ -944,117 +651,12 @@ class ci_interno extends pruebas_ci
 
 	function imprimir_cursos_extension_tabla_pdf(toba_vista_pdf $salida)
 	{
-		$filas = $this->controlador()->get_tabla('cursos_extension')->get_filas();
-		$destinatarios_desc = array(
-			'1' => 'Alumnos',
-			'2' => 'Profesionales',
-			'3' => 'Publico general',
-			'4' => 'Otros',
-		);
-
-		// if (empty($filas)) {
-		// 	$salida->titulo('6.2 Cursos de capacitacion/actualizacion dictados');
-		// 	$salida->mensaje('No se registran cursos de capacitacion/actualizacion dictados.');
-		// 	return;
-		// }
-
-		$datos_tabla = array();
-		foreach ($filas as $fila) {
-			$destinatario = (string) $fila['destinatarios'];
-			$datos_tabla[] = array(
-				'denominacion' => $fila['denominacion'],
-				'horas' => $fila['horas'],
-				'destinatarios' => isset($destinatarios_desc[$destinatario]) ? $destinatarios_desc[$destinatario] : $fila['destinatarios'],
-				'fecha_ini' => $fila['fecha_ini'],
-				'fecha_fin' => $fila['fecha_fin'],
-			);
-		}
-
-		$datos = array(
-			'titulo_tabla' => '6.2 Cursos de capacitacion/actualizacion dictados',
-			'titulos_columnas' => array(
-				'denominacion' => 'Denominacion',
-				'horas' => 'Hs',
-				'destinatarios' => 'Destinatarios',
-				'fecha_ini' => 'Fecha inicio',
-				'fecha_fin' => 'Fecha fin',
-			),
-			'datos_tabla' => $datos_tabla,
-		);
-
-		$salida->tabla(
-			$datos,
-			true,
-			8,
-			array(
-				'rowGap' => 2,
-				'titleFontSize' => 11,
-				'xPos' => 'left',
-				'maxWidth' => $salida->get_ancho(100),
-				'cols' => array(
-					'denominacion' => array('width' => 210),
-					'horas' => array('width' => 35),
-					'destinatarios' => array('width' => 80),
-					'fecha_ini' => array('width' => 65),
-					'fecha_fin' => array('width' => 65),
-				),
-			)
-		);
+		$this->get_pdf_helper()->imprimir_cursos_extension_tabla_pdf($salida);
 	}
 
 	function imprimir_declaracion_jurada_pdf(toba_vista_pdf $salida)
 	{
-		$salida->salto_pagina();
-
-		$fecha_impresion = date('d/m/Y');
-		$texto_declaracion = "Fecha de impresion: $fecha_impresion\n\n";
-		$texto_declaracion .= "Manifiesto la exactitud de los datos consignados tanto de la version impresa como de la electronica en cumplimiento a lo establecido por la Ordenanza N°91/2014-CS para la Evaluacion de Desempeno de los Docentes Efectivos de la Universidad Nacional de Cuyo y la Ordenanza N°591/2017-CD que reglamenta la evaluacion de desempeno de los Docentes Interinos de la Facultad de Ciencias Agrarias- UNCuyo.";
-
-		$salida->tabla(
-			array(
-				'titulo_tabla' => 'DECLARACION JURADA',
-				'datos_tabla' => array(
-					array('texto' => $texto_declaracion),
-				),
-			),
-			false,
-			9,
-			array(
-				'xPos' => 'left',
-				'maxWidth' => $salida->get_ancho(100),
-				'cols' => array(
-					'texto' => array('width' => $salida->get_ancho(100) - 10),
-				),
-			)
-		);
-
-		$salida->separacion(12);
-
-		$firma = "\n\n\n................................................\nFirma                    Aclaracion";
-		$salida->tabla(
-			array(
-				'titulos_columnas' => array(
-					'docente' => 'DOCENTE',
-					'superior' => 'AVAL DEL SUPERIOR',
-				),
-				'datos_tabla' => array(
-					array(
-						'docente' => $firma,
-						'superior' => $firma,
-					),
-				),
-			),
-			true,
-			9,
-			array(
-				'xPos' => 'left',
-				'maxWidth' => $salida->get_ancho(100),
-				'cols' => array(
-					'docente' => array('width' => ($salida->get_ancho(100) / 2) - 3),
-					'superior' => array('width' => ($salida->get_ancho(100) / 2) - 3),
-				),
-			)
-		);
+		$this->get_pdf_helper()->imprimir_declaracion_jurada_pdf($salida);
 	}
 
 
@@ -1246,162 +848,6 @@ class ci_interno extends pruebas_ci
 	//----  PDF --------------------------------------------------------------------------		
 	function vista_pdf(toba_vista_pdf $salida)
 	{
-		$ficha = $this->controlador()->get_tabla('ficha')->get();
-		$dni_doc = isset($ficha['dni_doc']) ? preg_replace('/\D+/', '', (string) $ficha['dni_doc']) : '';
-		$nombre_docente = $this->get_nombre_docente_pdf($dni_doc);
-		$nombre_archivo = ($dni_doc !== '') ? 'ILD-' . $dni_doc . '.pdf' : 'ILD.pdf';
-		$salida->set_nombre_archivo($nombre_archivo);
-
-		//Cambio lo márgenes accediendo directamente a la librería PDF
-		$pdf = $salida->get_pdf();
-		$pdf->ezSetMargins(80, 50, 50, 50);	//top, bottom, left, right
-
-		//Pie de página
-		$formato = 'Página {PAGENUM} de {TOTALPAGENUM}';
-		$pdf->ezStartPageNumbers(300, 20, 8, 'left', $formato, 1);	//x, y, size, pos, texto, pagina inicio
-
-		//Inserto los componentes usando la API de toba_vista_pdf
-
-		// $salida->titulo($this->get_nombre());
-		$salida->titulo('INFORME INTEGRADOR DE EVALUACIÓN ANUAL DE DESEMPEÑO DOCENTE DE LA FACULTAD DE CIENCIAS AGRARIAS UNCUYO');
-		$salida->separacion();
-		$salida->separacion();
-		$salida->titulo('I. Datos personales');
-		$salida->separacion();
-		if ($nombre_docente !== '') {
-			$salida->titulo('Docente: ' . $nombre_docente, 4);
-			$salida->separacion();
-		}
-		$this->dependencia('edicion_ficha')->set_pdf_tabla_ancho('80%');
-		$this->dependencia('edicion_ficha')->set_pdf_tabla_opciones(array(
-			'xPos' => 'center',
-			'xOrientation' => 'center',
-		));
-		$this->dependencia('edicion_ficha')->vista_pdf($salida);
-		$salida->separacion();
-		$salida->salto_pagina();
-		$this->dependencia('cargos')->vista_pdf($salida);
-		$salida->separacion();
-		$this->dependencia('licencias')->vista_pdf($salida);
-		$salida->separacion();
-		$this->dependencia('formacion_academica')->vista_pdf($salida);
-		$salida->separacion();
-		$this->dependencia('c25_capacitacion')->vista_pdf($salida);
-		$salida->separacion();
-		$salida->titulo('III. Docencia');
-		$salida->separacion();
-
-		$this->dependencia('actualizacion')->vista_pdf($salida);
-		$salida->separacion();
-		$this->dependencia('premios_doc')->vista_pdf($salida);
-		$salida->separacion();
-		$this->dependencia('docec_facultad')->vista_pdf($salida);
-		$salida->separacion();
-		$this->dependencia('docec_posgrado')->vista_pdf($salida);
-		$salida->separacion();
-		$this->imprimir_reu_cientificas_tabla_pdf($salida);
-		$salida->separacion();
-		$this->dependencia('proy_educativos')->vista_pdf($salida);
-		$salida->separacion();
-		$this->dependencia('formaciion_docec')->vista_pdf($salida);
-		$salida->separacion();
-		$this->dependencia('materiales_pedag')->vista_pdf($salida);
-		$salida->separacion();
-		$salida->titulo('IV. Investigacion');
-		$this->dependencia('categorizacion')->vista_pdf($salida);
-		$salida->separacion();
-		$this->imprimir_proy_acreditados_tabla_pdf($salida);
-		$salida->separacion();
-		$this->dependencia('rrhh_investigacion')->vista_pdf($salida);
-		$salida->separacion();
-		$this->dependencia('impacto_pub')->vista_pdf($salida);
-		$salida->separacion();
-		$this->imprimir_publ_rev_cientificas_tabla_pdf($salida);
-		$salida->separacion();
-		$this->imprimir_publ_rev_divulgacion_tabla_pdf($salida);
-		$salida->separacion();
-		$this->dependencia('Libros')->vista_pdf($salida);
-		$salida->separacion();
-		$this->dependencia('part_reun_cientificas')->vista_pdf($salida);
-		$salida->separacion();
-		$this->dependencia('part_comite')->vista_pdf($salida);
-		$salida->separacion();
-		$salida->titulo('V. Investigacion');
-		$salida->separacion();
-		$this->dependencia('proy_acreditados_vinc')->vista_pdf($salida);
-		$salida->separacion();
-		$this->dependencia('publ_rev_vinculacion')->vista_pdf($salida);
-		$salida->separacion();
-		$this->dependencia('libros_extension')->vista_pdf($salida);
-		$salida->separacion();
-		$this->dependencia('patentes')->vista_pdf($salida);
-		$salida->separacion();
-		$this->dependencia('registros_vinculacion')->vista_pdf($salida);
-		$salida->separacion();
-			$this->imprimir_premios_vinc_internac_tabla_pdf($salida);
-			$salida->separacion();
-		$this->dependencia('reconocimientos')->vista_pdf($salida);
-		$salida->separacion();
-		$this->dependencia('formacion_vinc')->vista_pdf($salida);
-		$salida->separacion();
-		$this->dependencia('promocion_vinc')->vista_pdf($salida);
-		$salida->separacion();
-		$this->dependencia('participacion_vinc')->vista_pdf($salida);
-		$salida->separacion();
-		$salida->titulo('VI- Actividades de Extensión');
-		$salida->separacion();
-			$this->imprimir_proy_extension_tabla_pdf($salida);
-			$salida->separacion();
-			$this->imprimir_cursos_extension_tabla_pdf($salida);
-			$salida->separacion();
-		$this->dependencia('publ_rev_extension')->vista_pdf($salida);
-		$salida->separacion();
-		$this->dependencia('libros_extension_632')->vista_pdf($salida);
-		$salida->separacion();
-		$this->dependencia('registros_extension')->vista_pdf($salida);
-		$salida->separacion();
-		$this->dependencia('participacion_extension')->vista_pdf($salida);
-		$salida->separacion();
-		$this->dependencia('premios_extension')->vista_pdf($salida);
-		$salida->separacion();
-		$this->dependencia('formacion_extension')->vista_pdf($salida);
-		$salida->separacion();
-		$this->dependencia('servicios_extension')->vista_pdf($salida);
-		$salida->separacion();
-		$salida->titulo('VII- Actividades de Gestión');
-		$salida->separacion();
-		$this->dependencia('gobierno_univ')->vista_pdf($salida);
-		$salida->separacion();
-		$this->dependencia('gobierno_inst')->vista_pdf($salida);
-		$salida->separacion();
-		$this->dependencia('gobierno_depar')->vista_pdf($salida);
-		$salida->separacion();
-		$this->dependencia('gestion_catedra')->vista_pdf($salida);
-		$salida->separacion();
-		$this->dependencia('proy_gestion')->vista_pdf($salida);
-		$salida->separacion();
-		$this->dependencia('publ_rev_gestion')->vista_pdf($salida);
-		$salida->separacion();
-		$this->dependencia('libros_gestion')->vista_pdf($salida);
-		$salida->separacion();
-		$this->dependencia('part_gestion')->vista_pdf($salida);
-		$salida->separacion();
-		$this->dependencia('part_divulg_gestion')->vista_pdf($salida);
-		$salida->separacion();
-		$this->dependencia('premios_gestion')->vista_pdf($salida);
-		$salida->separacion();
-		$this->dependencia('representacion')->vista_pdf($salida);
-		$salida->separacion();
-		$this->imprimir_declaracion_jurada_pdf($salida);
-
-
-		//Encabezado
-		$pdf = $salida->get_pdf();
-		foreach ($pdf->ezPages as $pageNum => $id) {
-			$pdf->reopenObject($id);
-			$imagen = toba::proyecto()->get_path() . '/www/img/logo_Ciencias_Agrarias_UNCuyo.jpg';
-			$pdf->addJpegFromFile($imagen, 50, 780, 141, 45);	//imagen, x, y, ancho, alto
-			$pdf->closeObject();
-		}
+		$this->get_pdf_helper()->vista_pdf($salida);
 	}
 }
