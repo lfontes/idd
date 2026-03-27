@@ -161,7 +161,7 @@ INSERT INTO apex_objeto_ei_formulario_ef (objeto_ei_formulario_fila, objeto_ei_f
 	NULL, --carga_consulta_php
 	NULL, --carga_sql
 	'desempenio', --carga_fuente
-	'Decanato, Consejo Directivo, Comisión de carrera,Gestión gremial', --carga_lista
+	'Decanato, Consejo Directivo, Comisión de carrera,Gestión gremial, Otras comisiones', --carga_lista
 	NULL, --carga_col_clave
 	NULL, --carga_col_desc
 	NULL, --carga_maestros
@@ -384,7 +384,7 @@ INSERT INTO apex_objeto_ei_formulario_ef (objeto_ei_formulario_fila, objeto_ei_f
 	'0', --obligatorio
 	'0', --oculto_relaja_obligatorio
 	'3', --orden
-	'Nombre del cargo', --etiqueta
+	'Nombre del cargo / comisión', --etiqueta
 	NULL, --etiqueta_estilo
 	NULL, --descripcion
 	NULL, --colapsado

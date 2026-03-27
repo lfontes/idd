@@ -252,7 +252,7 @@ INSERT INTO apex_objeto_eventos (proyecto, evento_id, objeto, identificador, eti
 	'1832000013', --evento_id
 	'2365', --objeto
 	'imprimirpdf', --identificador
-	'&Imprimir PDF', --etiqueta
+	'&Generar PDF', --etiqueta
 	'0', --maneja_datos
 	NULL, --sobre_fila
 	NULL, --confirmacion
@@ -394,7 +394,7 @@ durante el periodo solicitado.</br>
 -En caso de desear incorporar más información en los ítems solicitados, agregar al
  cuadro correspondiente las filas que sean necesarias.</br>
 - Ud. puede ver la documentación de como llenar cada cuadro <strong> <a href="https://docs.google.com/document/d/1YdaSu-NlVQeg-8Qziek5JIKpZMe1gpdM/edit?usp=sharing&ouid=104670079544388521657&rtpof=true&sd=true">aquí</a></strong>.
-<p><strong><H6>Informe de labor 2024 fecha límite 30-03-2026<br>
+<p><strong><H6>Informe de labor 2024 fecha límite 30-04-2026<br>
 Informe de labor 2025 fecha límite 30-06-2026<br></H6></strong>.
 </p>', --descripcion
 	NULL, --tip
@@ -422,7 +422,7 @@ durante el periodo solicitado.</br>
 -En caso de desear incorporar más información en los ítems solicitados, agregar al
  cuadro correspondiente las filas que sean necesarias.</br>
 - Ud. puede ver la documentación de como llenar cada cuadro <strong> <a href="https://docs.google.com/document/d/1YdaSu-NlVQeg-8Qziek5JIKpZMe1gpdM/edit?usp=sharing&ouid=104670079544388521657&rtpof=true&sd=true">aquí</a></strong>.
-<p><strong><H6>Informe de labor 2024 fecha límite 30-03-2026<br>
+<p><strong><H6>Informe de labor 2024 fecha límite 30-04-2026<br>
 Informe de labor 2025 fecha límite 30-06-2026<br></H6></strong>.
 </p>', --descripcion
 	NULL, --tip
