@@ -14,6 +14,37 @@ class ci_interno extends pruebas_ci
 		return toba::usuario()->get_id();
 	}
 
+	function get_mensaje_confirmacion_pdf()
+	{
+		return "Al generar el PDF de su Informe de Labor debe firmar digitalmente la Declaración Jurada incorporada al final del documento.\n\nEl informe permanecerá disponible en formato editable por un plazo máximo de 15 días corridos, a fin de permitir la realizaciónn de eventuales ajustes que pudieran requerirse.\n\nUna vez completado este paso, cada docente deberá remitir el documento digital al/a la Titular de la cátedra, para el aval y continuación del procedimiento.";
+	}
+
+	function extender_objeto_js()
+	{
+		$id_boton = $this->get_id_form() . '_imprimir';
+		$mensaje = toba::escaper()->escapeJs($this->get_mensaje_confirmacion_pdf());
+
+		echo "
+			(function() {
+				var boton = document.getElementById('$id_boton');
+				if (! boton || boton.dataset.confirmacionPdfIld === '1') {
+					return;
+				}
+				var onclickOriginal = boton.onclick;
+				boton.onclick = function(evento) {
+					if (! confirm('$mensaje')) {
+						return false;
+					}
+					if (typeof onclickOriginal === 'function') {
+						return onclickOriginal.call(this, evento);
+					}
+					return true;
+				};
+				boton.dataset.confirmacionPdfIld = '1';
+			})();
+		";
+	}
+
 	function get_pdf_helper()
 	{
 		if (! isset($this->pdf_helper)) {
@@ -71,10 +102,10 @@ class ci_interno extends pruebas_ci
 	}
 
 	/**
-	 * Se ejecuta por ï¿½nica vez cuando el componente entra en la operaciï¿½n.
-	 * Es ï¿½til por ejemplo para inicializar un conjunto de variables de sesion y evitar el chequeo continuo de las mismas
-	 * Hay situaciones en las que su ejecuciï¿½n no coincide con el instante inicial de operaciï¿½n:
-	 *  - Si el componente es un ci dentro de otro ci, reciï¿½n se ejecuta cuando entra a la operacion que no necesariamente es al inicio, si por ejemplo se encuentra en la 3er pantalla del ci principal.
+	 * Se ejecuta por ?nica vez cuando el componente entra en la operaci?n.
+	 * Es ?til por ejemplo para inicializar un conjunto de variables de sesion y evitar el chequeo continuo de las mismas
+	 * Hay situaciones en las que su ejecuci?n no coincide con el instante inicial de operaci?n:
+	 *  - Si el componente es un ci dentro de otro ci, reci?n se ejecuta cuando entra a la operacion que no necesariamente es al inicio, si por ejemplo se encuentra en la 3er pantalla del ci principal.
 	 *  - Si se ejecuta una limpieza de memoria (comportamiento por defecto del evt__cancelar)
 	 */
 	function ini__operacion() {}
@@ -87,7 +118,7 @@ class ci_interno extends pruebas_ci
 	 * Ventana de extension para ejecutar controles antes de entrar a la pagina.
 	 * Se ejecuta luego de lanzar los eventos del ci.
 	 * Si se lanza una excepcion se evita el cambio de pantalla.
-	 * [wiki:Referencia/Objetos/ci#Controlandolaentradaylasalida Ver mï¿½s]
+	 * [wiki:Referencia/Objetos/ci#Controlandolaentradaylasalida Ver m?s]
 	 */
 	function evt__pant_inicial__entrada() {}
 
@@ -96,7 +127,7 @@ class ci_interno extends pruebas_ci
 	//-----------------------------------------------------------------------------------
 
 	/**
-	 * Permite cambiar la configuraciï¿½n del ML previo a la generaciï¿½n de la salida
+	 * Permite cambiar la configuraci?n del ML previo a la generaci?n de la salida
 	 * El formato debe ser una matriz array('id_fila' => array('id_ef' => valor, ...), ...)
 	 */
 
@@ -304,7 +335,7 @@ class ci_interno extends pruebas_ci
 	}
 
 	//-----------------------------------------------------------------------------------
-	//---- 4.4.1 Publicaciones en revistas cientÃ­ficas ----------------------------------------------------
+	//---- 4.4.1 Publicaciones en revistas científicas ----------------------------------------------------
 	//-----------------------------------------------------------------------------------
 
 	function conf__publ_rev_cientificas(pruebas_ei_formulario_ml $form_ml)
@@ -322,7 +353,7 @@ class ci_interno extends pruebas_ci
 	}
 
 	//-----------------------------------------------------------------------------------
-	//---- 4.4.2 Publicaciones en revistas de divulgaciÃ³n--------------------------------
+	//---- 4.4.2 Publicaciones en revistas de divulgación--------------------------------
 	//-----------------------------------------------------------------------------------
 
 	function conf__publ_rev_divulgacion(pruebas_ei_formulario_ml $form_ml)
@@ -355,7 +386,7 @@ class ci_interno extends pruebas_ci
 
 
 	//-----------------------------------------------------------------------------------
-	//---- 4.6 Participacion en reuniones cientÃ­ficas -----------------------------------------------------------------
+	//---- 4.6 Participacion en reuniones científicas -----------------------------------------------------------------
 	//-----------------------------------------------------------------------------------
 
 	function conf__part_reun_cientificas(pruebas_ei_formulario_ml $form_ml)
@@ -379,7 +410,7 @@ class ci_interno extends pruebas_ci
 		$this->controlador()->get_tabla('part_comite')->procesar_filas($datos);
 	}
 	//-----------------------------------------------------------------------------------
-	//---- 5.1 Proyectos acreditados en vinculaciÃ³n -------------------------------------
+	//---- 5.1 Proyectos acreditados en vinculación -------------------------------------
 	//-----------------------------------------------------------------------------------
 
 	function conf__proy_acreditados_vinc(pruebas_ei_formulario_ml $form_ml)
@@ -396,7 +427,7 @@ class ci_interno extends pruebas_ci
 		$this->get_pdf_helper()->imprimir_proy_acreditados_vinc_tabla_pdf($salida);
 	}
 	//-----------------------------------------------------------------------------------
-	//---- 5.2.1 Publicaciones revistas divulgaciÃ³n -------------------------------------
+	//---- 5.2.1 Publicaciones revistas divulgación -------------------------------------
 	//-----------------------------------------------------------------------------------
 
 	function conf__publ_rev_vinculacion(pruebas_ei_formulario_ml $form_ml)
@@ -420,7 +451,7 @@ class ci_interno extends pruebas_ci
 		$this->controlador()->get_tabla('libros_extension')->procesar_filas($datos);
 	}
 	//-----------------------------------------------------------------------------------
-	//---- 5.2.3 capitulos libros vinculaciÃ³n -------------------------------------
+	//---- 5.2.3 capitulos libros vinculación -------------------------------------
 	//-----------------------------------------------------------------------------------
 
 	function conf__cap_libros_vinculacion(pruebas_ei_formulario_ml $form_ml)
@@ -446,7 +477,7 @@ class ci_interno extends pruebas_ci
 	}
 
 	//-----------------------------------------------------------------------------------
-	//---- 5.2.5 Registros vinculaciÃ³n --------------------------------------------------
+	//---- 5.2.5 Registros vinculación --------------------------------------------------
 	//-----------------------------------------------------------------------------------
 
 	function conf__registros_vinculacion(pruebas_ei_formulario_ml $form_ml)
@@ -458,7 +489,7 @@ class ci_interno extends pruebas_ci
 		$this->controlador()->get_tabla('registros_vinculacion')->procesar_filas($datos);
 	}
 	//-----------------------------------------------------------------------------------
-	//---- 5.3 premios y distinciones InternacionalizaciÃ³n ------------------------------
+	//---- 5.3 premios y distinciones Internacionalización ------------------------------
 	//-----------------------------------------------------------------------------------
 
 	function conf__premios_vinc_internac(pruebas_ei_formulario_ml $form_ml)
@@ -487,7 +518,7 @@ class ci_interno extends pruebas_ci
 		$this->controlador()->get_tabla('reconocimientos')->procesar_filas($datos);
 	}
 	//-----------------------------------------------------------------------------------
-	//---- 5.4 Formacion RRHH en vinculaciÃ³n ---------------------------------------------------------
+	//---- 5.4 Formacion RRHH en vinculación ---------------------------------------------------------
 	//-----------------------------------------------------------------------------------
 
 	function conf__formacion_vinc(pruebas_ei_formulario_ml $form_ml)
@@ -499,7 +530,7 @@ class ci_interno extends pruebas_ci
 		$this->controlador()->get_tabla('formacion_vinc')->procesar_filas($datos);
 	}
 	//-----------------------------------------------------------------------------------
-	//---- 5.4 Promocion vinculaciÃ³n ---------------------------------------------------------
+	//---- 5.4 Promocion vinculación ---------------------------------------------------------
 	//-----------------------------------------------------------------------------------
 
 	function conf__promocion_vinc(pruebas_ei_formulario_ml $form_ml)
@@ -511,7 +542,7 @@ class ci_interno extends pruebas_ci
 		$this->controlador()->get_tabla('promocion_vinc')->procesar_filas($datos);
 	}
 	//-----------------------------------------------------------------------------------
-	//---- 5.4 Participacion vinculaciÃ³n ---------------------------------------------------------
+	//---- 5.4 Participacion vinculación ---------------------------------------------------------
 	//-----------------------------------------------------------------------------------
 
 	function conf__participacion_vinc(pruebas_ei_formulario_ml $form_ml)
@@ -601,7 +632,7 @@ class ci_interno extends pruebas_ci
 		$this->controlador()->get_tabla('part_extension')->procesar_filas($datos);
 	}
 	//-----------------------------------------------------------------------------------
-	//---- 6.5 Premios InternacionalizaciÃ³n extension ---------------------------------------------------------
+	//---- 6.5 Premios Internacionalización extension ---------------------------------------------------------
 	//-----------------------------------------------------------------------------------
 
 	function conf__premios_extension(pruebas_ei_formulario_ml $form_ml)
@@ -698,7 +729,7 @@ class ci_interno extends pruebas_ci
 		$this->controlador()->get_tabla('gobierno_depar')->procesar_filas($datos);
 	}
 	//-------------------------------------------------------------------------------
-	//---- 7.4 GestiÃ³n catedra   -------------------------------------------------
+	//---- 7.4 Gestión catedra   -------------------------------------------------
 	//-----------------------------------------------------------------------------------
 
 	function conf__gestion_catedra(pruebas_ei_formulario_ml $form_ml)
@@ -710,7 +741,7 @@ class ci_interno extends pruebas_ci
 		$this->controlador()->get_tabla('gestion_catedra')->procesar_filas($datos);
 	}
 	//-------------------------------------------------------------------------------
-	//---- 7.5 Proyectos acteditados GestiÃ³n-------------------------------------------
+	//---- 7.5 Proyectos acteditados Gestión-------------------------------------------
 	//-----------------------------------------------------------------------------------
 
 	function conf__proy_gestion(pruebas_ei_formulario_ml $form_ml)
@@ -722,7 +753,7 @@ class ci_interno extends pruebas_ci
 		$this->controlador()->get_tabla('proy_gestion')->procesar_filas($datos);
 	}
 	//-------------------------------------------------------------------------------
-	//---- 7.6.1 Publicacion revistas GestiÃ³n-------------------------------------------
+	//---- 7.6.1 Publicacion revistas Gestión-------------------------------------------
 	//-----------------------------------------------------------------------------------
 
 	function conf__publ_rev_gestion(pruebas_ei_formulario_ml $form_ml)
@@ -734,7 +765,7 @@ class ci_interno extends pruebas_ci
 		$this->controlador()->get_tabla('publ_rev_gestion')->procesar_filas($datos);
 	}
 	//-------------------------------------------------------------------------------
-	//---- 7.6.2 Libros GestiÃ³n-------------------------------------------
+	//---- 7.6.2 Libros Gestión-------------------------------------------
 	//-----------------------------------------------------------------------------------
 
 	function conf__libros_gestion(pruebas_ei_formulario_ml $form_ml)
@@ -746,7 +777,7 @@ class ci_interno extends pruebas_ci
 		$this->controlador()->get_tabla('libros_gestion')->procesar_filas($datos);
 	}
 	//-------------------------------------------------------------------------------
-	//---- 7.6.3 CapÃ­tulos en Libros GestiÃ³n-------------------------------------------
+	//---- 7.6.3 Capítulos en Libros Gestión-------------------------------------------
 	//-----------------------------------------------------------------------------------
 
 	function conf__cap_libros_gestion(pruebas_ei_formulario_ml $form_ml)
@@ -758,7 +789,7 @@ class ci_interno extends pruebas_ci
 		$this->controlador()->get_tabla('cap_libros_gestion')->procesar_filas($datos);
 	}
 	//-------------------------------------------------------------------------------
-	//---- 7.7 Participacion en congreso y jornadas GestiÃ³n ----------------------------
+	//---- 7.7 Participacion en congreso y jornadas Gestión ----------------------------
 	//-----------------------------------------------------------------------------------
 
 	function conf__part_gestion(pruebas_ei_formulario_ml $form_ml)
@@ -770,7 +801,7 @@ class ci_interno extends pruebas_ci
 		$this->controlador()->get_tabla('part_gestion')->procesar_filas($datos);
 	}
 	//-------------------------------------------------------------------------------
-	//---- 7.8 Participacion divulgacion GestiÃ³n ----------------------------
+	//---- 7.8 Participacion divulgacion Gestión ----------------------------
 	//-----------------------------------------------------------------------------------
 
 	function conf__part_divulg_gestion(pruebas_ei_formulario_ml $form_ml)
@@ -782,7 +813,7 @@ class ci_interno extends pruebas_ci
 		$this->controlador()->get_tabla('part_divulg_gestion')->procesar_filas($datos);
 	}
 	//-------------------------------------------------------------------------------
-	//---- 7.9 Premios GestiÃ³n ----------------------------
+	//---- 7.9 Premios Gestión ----------------------------
 	//-----------------------------------------------------------------------------------
 
 	function conf__premios_gestion(pruebas_ei_formulario_ml $form_ml)
@@ -809,8 +840,8 @@ class ci_interno extends pruebas_ci
 
 
 
-	/** // MÃ©todo AJAX
-	 * Devuelve la cantidad de inscriptos por aÃ±o y actividad de la BD Guarani
+	/** // Método AJAX
+	 * Devuelve la cantidad de inscriptos por año y actividad de la BD Guarani
 	 * @param int $anio_academico
 	 * @param string $codigo_actividad
 	 * @return array

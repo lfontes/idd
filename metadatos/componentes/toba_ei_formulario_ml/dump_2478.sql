@@ -161,7 +161,7 @@ INSERT INTO apex_objeto_ei_formulario_ef (objeto_ei_formulario_fila, objeto_ei_f
 	NULL, --carga_consulta_php
 	NULL, --carga_sql
 	'desempenio', --carga_fuente
-	'30/Razones Particulares con Goce,57/Vacaciones Pendientes,12/Donación de Sangre,22/Actividades Deportivas,49/Citación Judicial,17/ Fallecimiento de Cónyuge o pariente de 1º grado,16/Fallecimiento pariente de 2º grado,18/Fallecimiento de pariente político,27/Nacimiento (Paternidad),36/Matrimonio,25/Matrimonio de hijo o hija,7/Adopción (Maternidad),59/Adopción (Paternidad),14/Examen Nivel Medio,15/Examen Nivel Superior,47/Examen para rendir concurso,61/Excesos de Inasistencia (sin Goce)', --carga_lista
+	'30/Razones Particulares con Goce,57/Vacaciones Pendientes,12/Donación de Sangre,22/Actividades Deportivas,49/Citación Judicial,17/ Fallecimiento de Cónyuge o pariente de 1º grado,16/Fallecimiento pariente de 2º grado,18/Fallecimiento de pariente político,27/Nacimiento (Paternidad),36/Matrimonio,25/Matrimonio de hijo o hija,7/Adopción (Maternidad),59/Adopción (Paternidad),14/Examen Nivel Medio,15/Examen Nivel Superior,47/Examen para rendir concurso,61/Excesos de Inasistencia (sin Goce),101/Lic. por razones de estudio,102/Año sabático,103/Licencia por enfermedad', --carga_lista
 	NULL, --carga_col_clave
 	NULL, --carga_col_desc
 	NULL, --carga_maestros
