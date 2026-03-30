@@ -158,32 +158,6 @@ class ci_ficha extends pruebas_ci
 		}
 	}
 
-	
-	//-----------------------------------------------------------------------------------
-	//funcion que devuelte la ficha seleccionada  a partir del indice del cuadro $seleccion
-	//-----------------------------------------------------------------------------------
-	function set_ficha_seleccionada($seleccion)
-	{
-		$r_fichas=($this->dep('cuadro')->get_datos());
-		return $r_fichas[$seleccion];
-	}
-	//-----------------------------------------------------------------------------------
-	//----  Jasperreports ----------------------------------------------------------------
-	//funcion que configura el informe jasperreports
-	//-----------------------------------------------------------------------------------
-	function vista_jasperreports(toba_vista_jasperreports $vista)
-	{
-		$id = toba::memoria()->get_parametro('seleccion'); // Obtiene el id de la ficha seleccionada desde la memoria
-		// Parámetros para el informe
-		$titulo = 'Informe de Fichas';
-		$vista->set_parametro('titulo', 'S', $titulo);
-		$fichaid =  $this->set_ficha_seleccionada($id); // Obtiene la ficha seleccionada a partir del id
-		
-		$vista->set_parametro('ficha_id', 'E', $fichaid['id']);
-
-		$vista->set_path_reporte('/var/local/test/vendor/siu-toba/framework/proyectos/pruebas/reportes/report2.jasper');
-	}
-
 
 	/**
 	 * Atrapa el evento seleccion del cuadro e invoca manualmente el serviccio vista_pdf pasandole el hash por parámetro
@@ -208,11 +182,4 @@ class ci_ficha extends pruebas_ci
 	//-----------------------------------------------------------------------------------
 	//---- cuadro -----------------------------------------------------------------------
 	//-----------------------------------------------------------------------------------
-
-	function evt__cuadro__imprimir($seleccion)
-	{
-		$this->s__id_ficha = $seleccion;
-		$vista = new toba_vista_jasperreports();
-		$this->vista_jasperreports($vista);
-	}
 }
