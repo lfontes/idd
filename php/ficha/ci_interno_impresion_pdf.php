@@ -71,10 +71,19 @@ class ci_interno_impresion_pdf
 		foreach ($filas as $fila) {
 			$tipo_participacion = (string) $fila['tipo_participacion_id'];
 			$tipo_presentacion = (string) $fila['present_tipo_id'];
+			$nombre = trim((string) $fila['nombre']);
+			$titulo = trim((string) $fila['titulo']);
+
+			if ($nombre !== '') {
+				$nombre = wordwrap($nombre, 40, "\n", true);
+			}
+			if ($titulo !== '') {
+				$titulo = wordwrap($titulo, 34, "\n", true);
+			}
 
 			$datos_tabla[] = array(
-				'nombre' => $fila['nombre'],
-				'titulo' => $fila['titulo'],
+				'nombre' => $nombre,
+				'titulo' => $titulo,
 				'fecha' => $fila['fecha'],
 				'tipo_participacion' => isset($tipos_participacion[$tipo_participacion]) ? $tipos_participacion[$tipo_participacion] : $fila['tipo_participacion_id'],
 				'tipo_presentacion' => isset($tipos_presentacion[$tipo_presentacion]) ? $tipos_presentacion[$tipo_presentacion] : $fila['present_tipo_id'],
@@ -102,10 +111,13 @@ class ci_interno_impresion_pdf
 				'titleFontSize' => 11,
 				'xPos' => 'left',
 				'maxWidth' => $salida->get_ancho(100),
+				'width' => 490,
 				'cols' => array(
+					'nombre' => array('width' => 180),
+					'titulo' => array('width' => 125),
 					'fecha' => array('width' => 55),
-					'tipo_participacion' => array('width' => 75),
-					'tipo_presentacion' => array('width' => 75),
+					'tipo_participacion' => array('width' => 60),
+					'tipo_presentacion' => array('width' => 70),
 				),
 			)
 		);
@@ -660,7 +672,7 @@ class ci_interno_impresion_pdf
 		$this->dependencia('Libros')->vista_pdf($salida);
 		$this->log_memoria_pdf('despues Libros');
 		$salida->separacion();
-		$this->dependencia('part_reun_cientificas')->vista_pdf($salida);
+		$this->imprimir_reu_cientificas_tabla_pdf($salida);
 		$this->log_memoria_pdf('despues part_reun_cientificas');
 		$salida->separacion();
 		$this->dependencia('part_comite')->vista_pdf($salida);
