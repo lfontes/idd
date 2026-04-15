@@ -159,8 +159,12 @@ class ci_interno_impresion_pdf
 				'titleFontSize' => 11,
 				'xPos' => 'left',
 				'maxWidth' => $salida->get_ancho(100),
+				'width' => 490,
 				'cols' => array(
+					'titulo' => array('width' => 230),
+					'organismo' => array('width' => 105),
 					'tipo' => array('width' => 55),
+					'participacion' => array('width' => 85),
 					'horas' => array('width' => 35),
 				),
 			)
@@ -319,18 +323,102 @@ class ci_interno_impresion_pdf
 		);
 	}
 
+	function imprimir_publ_rev_gestion_tabla_pdf(toba_vista_pdf $salida)
+	{
+		$filas = $this->controlador()->get_tabla('publ_rev_gestion')->get_filas();
+
+		$datos_tabla = array();
+		foreach ($filas as $fila) {
+			$titulo = trim((string) $fila['titulo']);
+			$autores = trim((string) $fila['autores']);
+			$revista = trim((string) $fila['nombre_revista']);
+			$referencia = trim((string) $fila['ref_articulo']);
+
+			if ($titulo !== '') {
+				$titulo = wordwrap($titulo, 34, "\n", true);
+			}
+			if ($autores !== '') {
+				$autores = wordwrap($autores, 18, "\n", true);
+			}
+			if ($revista !== '') {
+				$revista = wordwrap($revista, 30, "\n", true);
+			}
+			if ($referencia !== '') {
+				$referencia = wordwrap($referencia, 22, "\n", true);
+			}
+
+			$datos_tabla[] = array(
+				'titulo' => $titulo,
+				'autores' => $autores,
+				'revista' => $revista,
+				'ref_articulo' => $referencia,
+				'indexada' => $fila['indexada'],
+			);
+		}
+
+		$datos = array(
+			'titulo_tabla' => '7.6.1 Revista de Gestion',
+			'titulos_columnas' => array(
+				'titulo' => 'Titulo',
+				'autores' => 'Autores',
+				'revista' => 'Revista',
+				'ref_articulo' => 'Referencia',
+				'indexada' => 'Indexada',
+			),
+			'datos_tabla' => $datos_tabla,
+		);
+
+		$salida->tabla(
+			$datos,
+			true,
+			7,
+			array(
+				'rowGap' => 2,
+				'titleFontSize' => 11,
+				'xPos' => 'left',
+				'width' => 490,
+				'maxWidth' => $salida->get_ancho(100),
+				'cols' => array(
+					'titulo' => array('width' => 145),
+					'autores' => array('width' => 65),
+					'revista' => array('width' => 135),
+					'ref_articulo' => array('width' => 95),
+					'indexada' => array('width' => 50),
+				),
+			)
+		);
+	}
+
 	function imprimir_premios_vinc_internac_tabla_pdf(toba_vista_pdf $salida)
 	{
 		$filas = $this->controlador()->get_tabla('premios_vinc_internac')->get_filas();
 
 		$datos_tabla = array();
 		foreach ($filas as $fila) {
+			$descripcion = trim((string) $fila['descripcion']);
+			$red = trim((string) $fila['red_nombre']);
+			$movilidad = trim((string) $fila['mov_nombre']);
+			$lugar = trim((string) $fila['mov_lugar']);
+
+			if ($descripcion !== '') {
+				$descripcion = wordwrap($descripcion, 34, "\n", true);
+			}
+			if ($red !== '') {
+				$red = wordwrap($red, 18, "\n", true);
+			}
+			if ($movilidad !== '') {
+				$movilidad = wordwrap($movilidad, 18, "\n", true);
+			}
+			if ($lugar !== '') {
+				$lugar = wordwrap($lugar, 16, "\n", true);
+			}
+
 			$datos_tabla[] = array(
-				'descripcion' => $fila['descripcion'],
+				'descripcion' => $descripcion,
 				'periodo' => $fila['periodo'],
-				'red_nombre' => $fila['red_nombre'],
-				'mov_nombre' => $fila['mov_nombre'],
-				'mov_lugar' => $fila['mov_lugar'],
+				'red_nombre' => $red,
+				'mov_nombre' => $movilidad,
+				'mov_lugar' => $lugar,
 			);
 		}
 
@@ -354,9 +442,13 @@ class ci_interno_impresion_pdf
 				'rowGap' => 2,
 				'titleFontSize' => 11,
 				'xPos' => 'left',
+				'width' => 490,
 				'maxWidth' => $salida->get_ancho(100),
 				'cols' => array(
+					'descripcion' => array('width' => 175),
 					'periodo' => array('width' => 55),
+					'red_nombre' => array('width' => 90),
+					'mov_nombre' => array('width' => 110),
 					'mov_lugar' => array('width' => 60),
 				),
 			)
@@ -756,7 +848,7 @@ class ci_interno_impresion_pdf
 		$this->dependencia('proy_gestion')->vista_pdf($salida);
 		$this->log_memoria_pdf('despues proy_gestion');
 		$salida->separacion();
-		$this->dependencia('publ_rev_gestion')->vista_pdf($salida);
+		$this->imprimir_publ_rev_gestion_tabla_pdf($salida);
 		$this->log_memoria_pdf('despues publ_rev_gestion');
 		$salida->separacion();
 		$this->dependencia('libros_gestion')->vista_pdf($salida);
