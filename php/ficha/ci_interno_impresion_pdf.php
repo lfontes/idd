@@ -123,6 +123,79 @@ class ci_interno_impresion_pdf
 		);
 	}
 
+	function imprimir_part_reun_cientificas_tabla_pdf(toba_vista_pdf $salida)
+	{
+		$filas = $this->controlador()->get_tabla('part_reun_cientificas')->get_filas();
+
+		$datos_tabla = array();
+		foreach ($filas as $fila) {
+			$tipo = trim((string) $fila['tipo']);
+			$nombre = trim((string) $fila['nombre']);
+			$lugar = trim((string) $fila['lugar']);
+			$caracter = trim((string) $fila['caracter']);
+			$participacion = trim((string) $fila['participacion']);
+
+			if ($tipo !== '') {
+				$tipo = wordwrap($tipo, 14, "\n", true);
+			}
+			if ($nombre !== '') {
+				$nombre = wordwrap($nombre, 34, "\n", true);
+			}
+			if ($lugar !== '') {
+				$lugar = wordwrap($lugar, 18, "\n", true);
+			}
+			if ($caracter !== '') {
+				$caracter = wordwrap($caracter, 16, "\n", true);
+			}
+			if ($participacion !== '') {
+				$participacion = wordwrap($participacion, 18, "\n", true);
+			}
+
+			$datos_tabla[] = array(
+				'tipo' => $tipo,
+				'nombre' => $nombre,
+				'lugar' => $lugar,
+				'fecha' => $fila['fecha'],
+				'caracter' => $caracter,
+				'participacion' => $participacion,
+			);
+		}
+
+		$datos = array(
+			'titulo_tabla' => '4.5 Participacion en eventos cientificos y/o investigacion',
+			'titulos_columnas' => array(
+				'tipo' => 'Tipo',
+				'nombre' => 'Nombre',
+				'lugar' => 'Lugar',
+				'fecha' => 'Fecha',
+				'caracter' => 'Caracter',
+				'participacion' => 'Participacion',
+			),
+			'datos_tabla' => $datos_tabla,
+		);
+
+		$salida->tabla(
+			$datos,
+			true,
+			7,
+			array(
+				'rowGap' => 2,
+				'titleFontSize' => 11,
+				'xPos' => 'left',
+				'width' => 490,
+				'maxWidth' => $salida->get_ancho(100),
+				'cols' => array(
+					'tipo' => array('width' => 65),
+					'nombre' => array('width' => 160),
+					'lugar' => array('width' => 80),
+					'fecha' => array('width' => 55),
+					'caracter' => array('width' => 65),
+					'participacion' => array('width' => 65),
+				),
+			)
+		);
+	}
+
 	function imprimir_proy_acreditados_tabla_pdf(toba_vista_pdf $salida)
 	{
 		$filas = $this->controlador()->get_tabla('proy_acreditados')->get_filas();
@@ -764,7 +837,7 @@ class ci_interno_impresion_pdf
 		$this->dependencia('Libros')->vista_pdf($salida);
 		$this->log_memoria_pdf('despues Libros');
 		$salida->separacion();
-		$this->imprimir_reu_cientificas_tabla_pdf($salida);
+		$this->imprimir_part_reun_cientificas_tabla_pdf($salida);
 		$this->log_memoria_pdf('despues part_reun_cientificas');
 		$salida->separacion();
 		$this->dependencia('part_comite')->vista_pdf($salida);
