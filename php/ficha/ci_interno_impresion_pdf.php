@@ -34,12 +34,6 @@ class ci_interno_impresion_pdf
 			return trim($apellido . ', ' . $nombre, ', ');
 		}
 
-		$sql_docente = "SELECT ayn FROM docentes WHERE dni = " . quote($dni_doc) . " LIMIT 1";
-		$docente = toba::db('desempenio')->consultar($sql_docente);
-		if (! empty($docente)) {
-			return trim((string) $docente[0]['ayn']);
-		}
-
 		return '';
 	}
 
