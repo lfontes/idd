@@ -51,6 +51,9 @@ class ci_ficha extends pruebas_ci
 	{
 		$this->dep('datos')->resetear();
 		$this->dep('datos')->cargar($datos);
+		if ($this->esta_bloqueado_edicion_2024()) {
+			throw new toba_error_usuario('El informe de labor 2024 ya no puede ser eliminado. La fecha limite de edicion fue el 15 de mayo.');
+		}
 		$this->dep('datos')->eliminar_todo();
 		$this->dep('datos')->resetear();
 	}
@@ -58,6 +61,9 @@ class ci_ficha extends pruebas_ci
 	function evt__cuadro__seleccion($datos)
 	{
 		$this->dep('datos')->cargar($datos);
+		if ($this->esta_bloqueado_edicion_2024()) {
+			throw new toba_error_usuario('El informe de labor 2024 ya no puede ser editado. La fecha limite de edicion fue el 15 de mayo.');
+		}
 		$this->s__ficha_seleccionada = $seleccion;
 		$this->set_pantalla('pant_edicion');
 	}
@@ -99,14 +105,31 @@ class ci_ficha extends pruebas_ci
 
 	function evt__eliminar()
 	{
+		if ($this->esta_bloqueado_edicion_2024()) {
+			throw new toba_error_usuario('El informe de labor 2024 ya no puede ser eliminado. La fecha limite de edicion fue el 15 de mayo.');
+		}
 		$this->dep('datos')->eliminar_todo();
 		$this->resetear();
 	}
 
 	function evt__guardar()
 	{
+		if ($this->esta_bloqueado_edicion_2024()) {
+			throw new toba_error_usuario('El informe de labor 2024 ya no puede ser editado. La fecha limite de edicion fue el 15 de mayo.');
+		}
 		$this->dep('datos')->sincronizar();
 		//$this->resetear();
+	}
+
+	private function esta_bloqueado_edicion_2024()
+	{
+		if (!$this->dep('datos')->esta_cargada()) {
+			return false;
+		}
+		$ficha = $this->dep('datos')->tabla('ficha')->get();
+		return isset($ficha['anio'])
+			&& (int)$ficha['anio'] === 2024
+			&& date('m-d') > '05-15';
 	}
 
 	function ini__operacion() {}
