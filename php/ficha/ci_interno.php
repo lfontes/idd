@@ -6,6 +6,7 @@ class ci_interno extends pruebas_ci
 {
 	protected $s__anio;
 	protected $pdf_helper;
+	protected $traer_helper;
 	/**
 	 * devuelve el usuario logueado
 	 */
@@ -51,6 +52,62 @@ class ci_interno extends pruebas_ci
 			$this->pdf_helper = new ci_interno_impresion_pdf($this);
 		}
 		return $this->pdf_helper;
+	}
+
+	//-----------------------------------------------------------------------------------
+	//---- Traer datos del año anterior -------------------------------------------------
+	//-----------------------------------------------------------------------------------
+
+	function get_traer_helper()
+	{
+		if (! isset($this->traer_helper)) {
+			$this->traer_helper = new ci_interno_traer_anterior($this);
+		}
+		return $this->traer_helper;
+	}
+
+	/**
+	 * Opciones (id_tabla => etiqueta) para el ef de selección múltiple del pop-up.
+	 * Configurar el ef 'secciones' del formulario 'traer_anterior' para cargar
+	 * sus opciones desde este método.
+	 */
+	function get_opciones_secciones()
+	{
+		return $this->get_traer_helper()->get_secciones_arrastrables();
+	}
+
+	/**
+	 * Evento que abre el pop-up. Valida antes que exista un informe anterior.
+	 */
+	function evt__abrir_traer_anterior()
+	{
+		if (! $this->get_traer_helper()->hay_anio_anterior()) {
+			toba::notificacion()->agregar('No se encontró un informe de un año anterior para este docente.', 'info');
+			return;
+		}
+		$this->set_pantalla('pant_traer_anterior');
+	}
+
+	function conf__traer_anterior(pruebas_ei_formulario $form)
+	{
+		$form->ef('secciones')->set_opciones($this->get_opciones_secciones());
+	}
+
+	function evt__traer_anterior__aceptar($datos)
+	{
+		$ids = isset($datos['secciones']) ? (array) $datos['secciones'] : array();
+		if (empty($ids)) {
+			throw new toba_error_usuario('Seleccione al menos una sección para traer.');
+		}
+		$reemplazar = ! empty($datos['reemplazar']);
+		$total = $this->get_traer_helper()->traer_secciones($ids, $reemplazar);
+		toba::notificacion()->agregar("Se trajeron $total registros del año anterior. Revíselos y presione Guardar para confirmar.", 'exito');
+		$this->set_pantalla('pant_inicial');
+	}
+
+	function evt__traer_anterior__cancelar()
+	{
+		$this->set_pantalla('pant_inicial');
 	}
 
 	function get_nombre_docente_pdf($dni_doc)
@@ -869,8 +926,15 @@ class ci_interno extends pruebas_ci
           AND negocio.vw_actividades_plan.codigo = $espacio
     ";
 
-		$cant_inscriptos = toba::db('guarani')->consultar($sql);
-		$respuesta->set($cant_inscriptos[0]['inscriptos']);
+		try {
+			$cant_inscriptos = toba::db('guarani')->consultar($sql);
+			$respuesta->set($cant_inscriptos[0]['inscriptos']);
+		} catch (toba_error_db $e) {
+			// Guarani es un sistema externo (base remota). Si esta caido no debe
+			// impedir cargar/guardar el informe: se devuelven 0 inscriptos.
+			toba::logger()->error('No se pudo consultar inscriptos en Guarani: ' . $e->getMessage());
+			$respuesta->set(0);
+		}
 	}
 
 
