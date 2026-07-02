@@ -38,6 +38,7 @@ class pruebas_autoload
 		'pruebas_comando' => 'extension_toba/pruebas_comando.php',
 		'pruebas_modelo' => 'extension_toba/pruebas_modelo.php',
 		'ci_interno_impresion_pdf' => 'ficha/ci_interno_impresion_pdf.php',
+		'ci_interno_traer_anterior' => 'ficha/ci_interno_traer_anterior.php',
 	);
 }
 ?>
