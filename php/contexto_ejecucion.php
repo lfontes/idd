@@ -25,6 +25,8 @@ class contexto_ejecucion extends toba_contexto_ejecucion
 		toba::output()->registrarServicio($bootstrap_config);				
 		bootstrap_config::setMainColor( '#0C328BEB');
 		bootstrap_config::setLogoNombre(toba_recurso::imagen_proyecto('logo.gif', false));
+		bootstrap_config::setIsoLogo(toba_recurso::url_toba().'/siu/manejador_salida_bootstrap/img/logo-iso.png');
+		bootstrap_config::setLogoEspera(toba_recurso::url_toba().'/siu/manejador_salida_bootstrap/img/logo-iso.png');
 
 		//Instanciacion del provider bootstrap extendido (en este caso propio del proyecto)
 		/*$referencia_config = new referencia_factory();
