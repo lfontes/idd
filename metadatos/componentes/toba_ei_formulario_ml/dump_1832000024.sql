@@ -404,7 +404,7 @@ INSERT INTO apex_objeto_ei_formulario_ef (objeto_ei_formulario_fila, objeto_ei_f
 	NULL, --carga_consulta_php
 	NULL, --carga_sql
 	'desempenio', --carga_fuente
-	'Director, Codirector,Participación en Institutos de FCA', --carga_lista
+	'Director, Codirector, Evaluador, Participación en Institutos de FCA', --carga_lista
 	NULL, --carga_col_clave
 	NULL, --carga_col_desc
 	NULL, --carga_maestros
