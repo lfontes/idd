@@ -121,8 +121,16 @@ class ci_ficha extends pruebas_ci
 		//$this->resetear();
 	}
 
+	private function es_admin()
+	{
+		return in_array('admin', toba::usuario()->get_perfiles_funcionales());
+	}
+
 	private function esta_bloqueado_edicion_2024()
 	{
+		if ($this->es_admin()) {
+			return false;
+		}
 		if (!$this->dep('datos')->esta_cargada()) {
 			return false;
 		}
