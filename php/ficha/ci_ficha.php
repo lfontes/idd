@@ -2,7 +2,6 @@
 class ci_ficha extends pruebas_ci
 {
 	protected $s__datos_filtro;
-	protected $s__ficha_seleccionada;
 
 	// funciones para acceder a los datos desde el ci interno
 	// asi es mas corto para llamarlas desde el ci interno 
@@ -64,7 +63,6 @@ class ci_ficha extends pruebas_ci
 		if ($this->esta_bloqueado_edicion_2024()) {
 			throw new toba_error_usuario('El informe de labor 2024 ya no puede ser editado. La fecha limite de edicion fue el 15 de mayo.');
 		}
-		$this->s__ficha_seleccionada = $seleccion;
 		$this->set_pantalla('pant_edicion');
 	}
 
