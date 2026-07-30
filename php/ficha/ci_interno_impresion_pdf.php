@@ -244,9 +244,18 @@ class ci_interno_impresion_pdf
 
 		$datos_tabla = array();
 		foreach ($filas as $fila) {
+			$titulo = trim((string) $fila['titulo']);
+			$revista = trim((string) $fila['nombre_revista']);
+			if ($titulo !== '') {
+				$titulo = wordwrap($titulo, 45, "\n", true);
+			}
+			if ($revista !== '') {
+				$revista = wordwrap($revista, 36, "\n", true);
+			}
+
 			$datos_tabla[] = array(
-				'titulo' => $fila['titulo'],
-				'revista' => $fila['nombre_revista'],
+				'titulo' => $titulo,
+				'revista' => $revista,
 				'indicador' => $fila['indicador_revista'],
 				'indexada' => $fila['indexada'],
 			);
@@ -271,8 +280,11 @@ class ci_interno_impresion_pdf
 				'rowGap' => 2,
 				'titleFontSize' => 11,
 				'xPos' => 'left',
+				'width' => 490,
 				'maxWidth' => $salida->get_ancho(100),
 				'cols' => array(
+					'titulo' => array('width' => 210),
+					'revista' => array('width' => 170),
 					'indicador' => array('width' => 55),
 					'indexada' => array('width' => 55),
 				),
