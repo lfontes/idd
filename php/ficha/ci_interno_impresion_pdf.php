@@ -534,6 +534,68 @@ class ci_interno_impresion_pdf
 		);
 	}
 
+	function imprimir_promocion_vinc_tabla_pdf(toba_vista_pdf $salida)
+	{
+		$filas = $this->controlador()->get_tabla('promocion_vinc')->get_filas();
+
+		$datos_tabla = array();
+		foreach ($filas as $fila) {
+			$actividad = trim((string) $fila['actividad']);
+			if ($actividad !== '') {
+				$actividad = wordwrap($actividad, 32, "\n", true);
+			}
+			$tipo_act = trim((string) $fila['tipo_act']);
+			if ($tipo_act !== '') {
+				$tipo_act = wordwrap($tipo_act, 17, "\n", true);
+			}
+			$tipo_vinc = trim((string) $fila['tipo_vinc']);
+			if ($tipo_vinc !== '') {
+				$tipo_vinc = wordwrap($tipo_vinc, 12, "\n", true);
+			}
+			$nombre_vinc = trim((string) $fila['nombre_vinc']);
+			if ($nombre_vinc !== '') {
+				$nombre_vinc = wordwrap($nombre_vinc, 37, "\n", true);
+			}
+
+			$datos_tabla[] = array(
+				'actividad' => $actividad,
+				'tipo_act' => $tipo_act,
+				'tipo_vinc' => $tipo_vinc,
+				'nombre_vinc' => $nombre_vinc,
+			);
+		}
+
+		$datos = array(
+			'titulo_tabla' => '5.7 Promocion de actividades de vinculacion',
+			'titulos_columnas' => array(
+				'actividad' => 'Actividad',
+				'tipo_act' => 'Tipo actividad',
+				'tipo_vinc' => 'Tipo vinculacion',
+				'nombre_vinc' => 'Nombre vinculacion',
+			),
+			'datos_tabla' => $datos_tabla,
+		);
+
+		$salida->tabla(
+			$datos,
+			true,
+			7,
+			array(
+				'rowGap' => 2,
+				'titleFontSize' => 11,
+				'xPos' => 'left',
+				'width' => 490,
+				'maxWidth' => $salida->get_ancho(100),
+				'cols' => array(
+					'actividad' => array('width' => 160),
+					'tipo_act' => array('width' => 85),
+					'tipo_vinc' => array('width' => 60),
+					'nombre_vinc' => array('width' => 185),
+				),
+			)
+		);
+	}
+
 	function imprimir_participacion_vinc_tabla_pdf(toba_vista_pdf $salida)
 	{
 		$filas = $this->controlador()->get_tabla('participacion_vinc')->get_filas();
@@ -875,7 +937,7 @@ class ci_interno_impresion_pdf
 		$this->dependencia('formacion_vinc')->vista_pdf($salida);
 		$this->log_memoria_pdf('despues formacion_vinc');
 		$salida->separacion();
-		$this->dependencia('promocion_vinc')->vista_pdf($salida);
+		$this->imprimir_promocion_vinc_tabla_pdf($salida);
 		$this->log_memoria_pdf('despues promocion_vinc');
 		$salida->separacion();
 		$this->imprimir_participacion_vinc_tabla_pdf($salida);
