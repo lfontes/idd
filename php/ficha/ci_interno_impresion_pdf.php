@@ -117,6 +117,73 @@ class ci_interno_impresion_pdf
 		);
 	}
 
+	function imprimir_proy_educativos_tabla_pdf(toba_vista_pdf $salida)
+	{
+		$filas = $this->controlador()->get_tabla('proy_educativos')->get_filas();
+		$tipos_participacion = $this->get_descripciones_combo_pdf('c36_tipos_participacion', 'tipo_participacionn');
+
+		$datos_tabla = array();
+		foreach ($filas as $fila) {
+			$tipo_participacion = (string) $fila['tipo_participacion_id'];
+			$nombre_proyecto = trim((string) $fila['nombre_proyecto']);
+			$normativa_acred = trim((string) $fila['normativa_acred']);
+			$lugar_ejecucion = trim((string) $fila['lugar_ejecucion']);
+
+			if ($nombre_proyecto !== '') {
+				$nombre_proyecto = wordwrap($nombre_proyecto, 30, "\n", true);
+			}
+			if ($normativa_acred !== '') {
+				$normativa_acred = wordwrap($normativa_acred, 13, "\n", true);
+			}
+			if ($lugar_ejecucion !== '') {
+				$lugar_ejecucion = wordwrap($lugar_ejecucion, 25, "\n", true);
+			}
+
+			$datos_tabla[] = array(
+				'nombre_proyecto' => $nombre_proyecto,
+				'normativa_acred' => $normativa_acred,
+				'tipo_participacion' => isset($tipos_participacion[$tipo_participacion]) ? $tipos_participacion[$tipo_participacion] : $fila['tipo_participacion_id'],
+				'lugar_ejecucion' => $lugar_ejecucion,
+				'fecha_inicio' => $fila['fecha_inicio'],
+				'fecha_fin' => $fila['fecha_fin'],
+			);
+		}
+
+		$datos = array(
+			'titulo_tabla' => '3.6 Proyectos educativos acreditados',
+			'titulos_columnas' => array(
+				'nombre_proyecto' => 'Nombre proyecto',
+				'normativa_acred' => 'Normativa acred.',
+				'tipo_participacion' => 'Tipo participacion',
+				'lugar_ejecucion' => 'Lugar ejecucion',
+				'fecha_inicio' => 'Fecha inicio',
+				'fecha_fin' => 'Fecha fin',
+			),
+			'datos_tabla' => $datos_tabla,
+		);
+
+		$salida->tabla(
+			$datos,
+			true,
+			7,
+			array(
+				'rowGap' => 2,
+				'titleFontSize' => 11,
+				'xPos' => 'left',
+				'width' => 490,
+				'maxWidth' => $salida->get_ancho(100),
+				'cols' => array(
+					'nombre_proyecto' => array('width' => 150),
+					'normativa_acred' => array('width' => 65),
+					'tipo_participacion' => array('width' => 70),
+					'lugar_ejecucion' => array('width' => 125),
+					'fecha_inicio' => array('width' => 40),
+					'fecha_fin' => array('width' => 40),
+				),
+			)
+		);
+	}
+
 	function imprimir_part_reun_cientificas_tabla_pdf(toba_vista_pdf $salida)
 	{
 		$filas = $this->controlador()->get_tabla('part_reun_cientificas')->get_filas();
@@ -874,7 +941,7 @@ class ci_interno_impresion_pdf
 		$this->imprimir_reu_cientificas_tabla_pdf($salida);
 		$this->log_memoria_pdf('despues reu_cientificas');
 		$salida->separacion();
-		$this->dependencia('proy_educativos')->vista_pdf($salida);
+		$this->imprimir_proy_educativos_tabla_pdf($salida);
 		$this->log_memoria_pdf('despues proy_educativos');
 		$salida->separacion();
 		$this->dependencia('formaciion_docec')->vista_pdf($salida);
