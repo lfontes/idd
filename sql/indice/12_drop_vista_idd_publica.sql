@@ -1,0 +1,27 @@
+-- =============================================================================
+-- Índice de Desempeño Docente - FCA / UNCuyo
+-- Fix: elimina public.vista_idd (implementación paralela, no el motor)
+-- Requiere: 08_vista_idd.sql
+-- =============================================================================
+-- Existía una public.vista_idd escrita a mano contra las tablas de public,
+-- previa e independiente del motor de php/indice/. El search_path por
+-- defecto de la conexión ("$user", public) no incluye el esquema indice, así
+-- que php/datos/dt_ficha.php (JOIN vista_idd sin calificar) resolvía contra
+-- ESTA vista en vez de indice.vista_idd -- silenciosamente, sin error.
+--
+-- public.vista_idd tenía bugs ya identificados y corregidos del lado bueno
+-- (indice.componente/valoracion): AD4 usaba participacion_id directo como si
+-- fuera un porcentaje (mismo bug de "rol tratado como %" que
+-- 09_ad4_fix_tipo_posgrado.sql corrige de otra forma), y AD3 usaba una
+-- fórmula distinta a la del cuadro normativo (suma en vez de producto,
+-- denominador 120 en vez de Cee=90). Además recalculaba en vivo, violando
+-- "los resultados se persisten, no se recalculan al mostrar"
+-- (.claude/rules/indice.md), y no pasaba por indice.componente/valoracion/
+-- umbral, así que ningún fix futuro de esas tablas la iba a alcanzar.
+--
+-- Sin vistas dependientes (verificado contra pg_depend antes de aplicar este
+-- script). Confirmado por el usuario: se da de baja, no se mantiene como
+-- alternativa. dt_ficha.php pasa a calificar el esquema explícitamente
+-- (indice.vista_idd) para no volver a depender del search_path.
+
+DROP VIEW IF EXISTS public.vista_idd;

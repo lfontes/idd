@@ -38,7 +38,7 @@ class dt_ficha extends pruebas_datos_tabla
 			LEFT OUTER JOIN catedras as t_cat ON (t_f.catedra_id = t_cat.id_catedra)
 			LEFT OUTER JOIN categorias_doc as t_catg ON (t_f.categoria_id = t_catg.id)
 			left OUTER JOIN dedicaciones as t_ded ON (t_f.dedicacion_id = t_ded.id)
-			LEFT OUTER JOIN vista_idd as idd ON (t_f.id = idd.ficha_id)
+			LEFT OUTER JOIN indice.vista_idd as idd ON (t_f.id = idd.ficha_id)
 		ORDER BY ficha_id";
 		if (count($where)>0) {
 			$sql = sql_concatenar_where($sql, $where);

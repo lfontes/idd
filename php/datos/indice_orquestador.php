@@ -9,6 +9,11 @@ require_once __DIR__ . '/indice_repositorio.php';
  * (indice_repositorio::items() despacha por indice.dimension.proveedor):
  * agregar una dimensión nueva es agregar su proveedor en indice_repositorio,
  * no tocar esta clase.
+ *
+ * cerrarPeriodo() es independiente de calcularDimension()/guardarDimension():
+ * arma evaluacion_periodo (el enlace ficha<->evaluación con fc/fck) sin
+ * calcular ninguna dimensión. Ambos flujos comparten la misma evaluación
+ * "provisorio" (indice_repositorio::evaluacion_abierta()).
  */
 class indice_orquestador
 {
@@ -59,6 +64,91 @@ class indice_orquestador
     static function guardarAD1(int $legajo, int $anio): ?\Pruebas\Indice\Dto\ResultadoDimension
     {
         return self::guardarDimension('AD1', $legajo, $anio);
+    }
+
+    /**
+     * Cierra el período de un docente: un renglón de evaluacion_periodo por
+     * cada año con ficha (indice_repositorio::fichas()), con categoría/
+     * dedicación de ese año y fc/fck calculados por CorreccionTemporal sobre
+     * la serie completa (fck depende de los años anteriores, no sólo del
+     * propio — docs/indice/modelo-de-calculo.md #6). No calcula ni persiste
+     * dimensiones (eso es guardarDimension(), independiente): esto sólo arma
+     * el enlace ficha<->evaluación que necesita indice.vista_idd.
+     *
+     * Sólo cubre años efectivamente presentados: un año sin ficha no genera
+     * renglón (docs/indice/decisiones-pendientes.md, A5, sigue sin resolver
+     * para el caso de "año faltante que sí debería computar cero").
+     *
+     * No hace nada si el docente no tiene ninguna ficha.
+     */
+    static function cerrarPeriodo(int $legajo): void
+    {
+        $fichas = indice_repositorio::fichas($legajo);
+        if ($fichas === []) {
+            return;
+        }
+
+        $periodos = [];
+        foreach ($fichas as $k => $ficha) {
+            $cargo = indice_repositorio::categoria_dedicacion($legajo, $ficha['anio']);
+            $licencias = indice_repositorio::licencias($legajo, $ficha['anio']);
+
+            $periodos[] = [
+                'anio' => $ficha['anio'],
+                'k' => $k + 1,
+                'ficha_id' => $ficha['ficha_id'],
+                'categoria' => $cargo['categoria'],
+                'dedicacion' => $cargo['dedicacion'],
+                'lic_con_goce' => $licencias['lic_con_goce'],
+                'lic_sin_goce' => $licencias['lic_sin_goce'],
+            ];
+        }
+
+        $correccion = (new \Pruebas\Indice\Motor\CorreccionTemporal())->calcular(array_map(
+            static fn (array $p) => ['k' => $p['k'], 'lic_con_goce' => $p['lic_con_goce'], 'lic_sin_goce' => $p['lic_sin_goce']],
+            $periodos,
+        ));
+
+        foreach ($periodos as $i => &$periodo) {
+            $periodo['fc'] = $correccion[$i]['fc'];
+            $periodo['fck'] = $correccion[$i]['fck'];
+        }
+        unset($periodo);
+
+        indice_repositorio::guardarEvaluacionPeriodo($legajo, $periodos);
+    }
+
+    /**
+     * Cierra el período de un docente y calcula/persiste todas las
+     * dimensiones sembradas (indice_repositorio::dimensiones(), hoy AD1..AD8)
+     * para cada año con ficha. Es lo que hace falta correr, por docente, para
+     * que indice.vista_idd quede poblada sin intervención manual — hasta
+     * ahora esto se hizo a mano, dimensión por dimensión, sólo para el
+     * legajo de prueba.
+     */
+    static function calcularDocente(int $legajo): void
+    {
+        self::cerrarPeriodo($legajo);
+
+        foreach (indice_repositorio::fichas($legajo) as $ficha) {
+            foreach (indice_repositorio::dimensiones($ficha['anio']) as $codigo) {
+                self::guardarDimension($codigo, $legajo, $ficha['anio']);
+            }
+        }
+    }
+
+    /**
+     * calcularDocente() para todos los docentes con al menos una ficha
+     * (indice_repositorio::legajos()). Pensado para correrse manualmente
+     * como acción administrativa (hoy no hay trigger automático al guardar
+     * una ficha ni un cron armado) — 227 legajos / 423 fichas al momento de
+     * escribir esto, sin problema de performance para correrlo síncrono.
+     */
+    static function calcularTodosLosDocentes(): void
+    {
+        foreach (indice_repositorio::legajos() as $legajo) {
+            self::calcularDocente($legajo);
+        }
     }
 
     /**

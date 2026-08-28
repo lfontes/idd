@@ -20,11 +20,13 @@ require_once __DIR__ . '/../../vendor/autoload.php';
  *    violar la regla de "una dimensión a la vez" del mapeo de orígenes.
  *  - guardarEvaluacionDimension(): persiste el resultado de una dimensión en
  *    un año puntual (indice.evaluacion/evaluacion_dimension/evaluacion_item).
- *    No arma evaluacion_periodo/evaluacion_actividad/evaluacion_indice —
- *    esas necesitan el período completo de k años, todavía pendiente
- *    (docs/indice/decisiones-pendientes.md, A1). evaluacion.docente_id es
- *    legajo_doc de public.ficha (sql/indice/06_evaluacion_docente_id.sql):
- *    no hay tabla local de "docente" con id propio.
+ *  - guardarEvaluacionPeriodo(): persiste el cierre de período (evaluacion_periodo,
+ *    fc/fck por año) que arma indice_orquestador::cerrarPeriodo(). Todavía no
+ *    arma evaluacion_actividad/evaluacion_indice — esos necesitan resolver la
+ *    consolidación entre actividades (docs/indice/decisiones-pendientes.md, A1).
+ *    evaluacion.docente_id es legajo_doc de public.ficha
+ *    (sql/indice/06_evaluacion_docente_id.sql): no hay tabla local de
+ *    "docente" con id propio.
  */
 class indice_repositorio
 {
@@ -524,6 +526,48 @@ class indice_repositorio
     }
 
     /**
+     * Todos los códigos de dimensión sembrados para la normativa vigente en
+     * un año (indice.dimension), en orden de actividad/dimensión. Generica
+     * a propósito: agregar una dimensión (p.ej. cuando se implemente
+     * investigación) es insertar filas en indice.dimension, no tocar esta
+     * lista — la usa indice_orquestador::calcularDocente() para no
+     * hardcodear el catálogo AD1..AD8.
+     *
+     * @return list<string>
+     */
+    static function dimensiones(int $anio): array
+    {
+        $normativa_id = self::normativa_id($anio);
+
+        $filas = toba::db('desempenio')->consultar_sentencia(
+            'SELECT dim.codigo
+               FROM indice.dimension dim
+               JOIN indice.actividad a ON a.id = dim.actividad_id
+              WHERE a.normativa_id = :normativa_id
+              ORDER BY a.orden, dim.orden',
+            ['normativa_id' => $normativa_id],
+        );
+
+        return array_map(static fn (array $fila) => (string) $fila['codigo'], $filas);
+    }
+
+    /**
+     * Todos los legajo_doc distintos con al menos una ficha (public.ficha).
+     * Universo para un cálculo batch (indice_orquestador::calcularTodosLosDocentes()).
+     *
+     * @return list<int>
+     */
+    static function legajos(): array
+    {
+        $filas = toba::db('desempenio')->consultar_sentencia(
+            'SELECT DISTINCT legajo_doc FROM public.ficha ORDER BY legajo_doc',
+            [],
+        );
+
+        return array_map(static fn (array $fila) => (int) $fila['legajo_doc'], $filas);
+    }
+
+    /**
      * La fuente 'desempenio' declara encoding LATIN1 (proyecto.ini) aunque
      * la base está en UTF8: toba::db() devuelve texto acentuado como bytes
      * LATIN1 sueltos (confirmado: SHOW client_encoding = 'LATIN1' en esta
@@ -552,6 +596,26 @@ class indice_repositorio
     private static function utf8_a_latin1(?string $valor): ?string
     {
         return $valor === null ? null : mb_convert_encoding($valor, 'ISO-8859-1', 'UTF-8');
+    }
+
+    /**
+     * evaluacion_item.descripcion es varchar(300): sólo trazabilidad para el
+     * detalle que ve el docente (ItemDeclarado.php), el motor no la usa para
+     * calcular nada. Encontrado corriendo indice_orquestador::calcularTodosLosDocentes()
+     * contra la base real (2026-08-28): 12 de 227 legajos tenían un
+     * nombre_proyecto/titulo/denominacion real que superaba los 300
+     * caracteres y hacía fallar el INSERT. Trunca en vez de ampliar la
+     * columna: es más simple y no hay ningún consumidor que necesite el
+     * texto completo hoy. Ya viene convertido a LATIN1 (1 byte = 1 char),
+     * así que substr() por bytes alcanza.
+     */
+    private static function truncar_descripcion(?string $valorLatin1): ?string
+    {
+        if ($valorLatin1 === null || strlen($valorLatin1) <= 300) {
+            return $valorLatin1;
+        }
+
+        return substr($valorLatin1, 0, 297) . '...';
     }
 
     /**
@@ -618,6 +682,77 @@ class indice_repositorio
         );
 
         return $fila === [] ? null : (int) $fila[0]['id'];
+    }
+
+    /**
+     * Todos los años con ficha de un docente (public.ficha), ascendente. Es
+     * "el período" para el cierre (indice_orquestador::cerrarPeriodo()):
+     * sólo los años efectivamente informados, nunca se inventan años faltantes
+     * (docs/indice/decisiones-pendientes.md, A5, sigue sin resolver — este
+     * módulo por ahora sólo cubre el caso de años presentados).
+     *
+     * @return list<array{anio: int, ficha_id: int}>
+     */
+    static function fichas(int $legajo): array
+    {
+        // anio IS NOT NULL: encontrado corriendo calcularTodosLosDocentes()
+        // contra la base real (2026-08-28) -- 2 legajos tenían una ficha
+        // extra con anio NULL (además de sus fichas 2024/2025 válidas). Sin
+        // este filtro, (int) NULL = 0 se colaba como "año 0" y hacía fallar
+        // normativa_id() (make_date(0,1,1)), abortando el cierre de período
+        // de TODO el docente, no sólo de esa fila.
+        $filas = toba::db('desempenio')->consultar_sentencia(
+            'SELECT id, anio FROM public.ficha WHERE legajo_doc = :legajo AND anio IS NOT NULL ORDER BY anio',
+            ['legajo' => $legajo],
+        );
+
+        return array_map(
+            static fn (array $fila) => ['anio' => (int) $fila['anio'], 'ficha_id' => (int) $fila['id']],
+            $filas,
+        );
+    }
+
+    /**
+     * Licencias con y sin goce de un docente en un año, en MESES
+     * (docs/indice/Mapeo-origen.md, "Licencias con y sin goce" — resuelto en
+     * esta sesión, 2026-08-28). Fuente: public.licencias (ficha_id,
+     * tipo_licencia_id, dias, goce). tipo_licencia_id no interviene: la
+     * clasificación con/sin goce es la columna 'goce' de cada fila, no el
+     * catálogo de tipos (que además está incompleto en los datos reales —
+     * irrelevante para este cálculo). dias -> meses: dias/30 (confirmado por
+     * el usuario, no hay conversión en la planilla de origen: ahí se carga
+     * directo en meses). dias NULL cuenta 0, no se excluye la fila.
+     *
+     * @return array{lic_con_goce: string, lic_sin_goce: string} redondeado a
+     *   2 decimales (numeric(5,2) de evaluacion_periodo).
+     */
+    static function licencias(int $legajo, int $anio): array
+    {
+        $ficha_id = self::ficha_id($legajo, $anio);
+        if ($ficha_id === null) {
+            return ['lic_con_goce' => '0.00', 'lic_sin_goce' => '0.00'];
+        }
+
+        $filas = toba::db('desempenio')->consultar_sentencia(
+            'SELECT goce, dias FROM public.licencias WHERE ficha_id = :ficha_id',
+            ['ficha_id' => $ficha_id],
+        );
+
+        $diasConGoce = '0';
+        $diasSinGoce = '0';
+        foreach ($filas as $fila) {
+            $dias = $fila['dias'] !== null ? (string) $fila['dias'] : '0';
+            if ((bool) $fila['goce']) {
+                $diasConGoce = \Pruebas\Indice\Motor\Bc::add($diasConGoce, $dias);
+            } else {
+                $diasSinGoce = \Pruebas\Indice\Motor\Bc::add($diasSinGoce, $dias);
+            }
+        }
+
+        return [
+            'lic_con_goce' => \Pruebas\Indice\Motor\Bc::round(\Pruebas\Indice\Motor\Bc::div($diasConGoce, '30'), 2),
+            'lic_sin_goce' => \Pruebas\Indice\Motor\Bc::round(\Pruebas\Indice\Motor\Bc::div($diasSinGoce, '30'), 2),
+        ];
     }
 
     /**
@@ -844,7 +979,7 @@ class indice_repositorio
                     'anio' => $anio,
                     'origen_tabla' => $item->origenTabla,
                     'origen_id' => $item->origenId,
-                    'descripcion' => self::utf8_a_latin1($item->descripcion),
+                    'descripcion' => self::truncar_descripcion(self::utf8_a_latin1($item->descripcion)),
                     'puntaje' => $entrada['puntaje'],
                     'detalle' => self::utf8_a_latin1(json_encode(
                         ['campos' => $item->campos(), 'detalle' => $item->detalle()],
@@ -855,6 +990,50 @@ class indice_repositorio
         }
 
         return $evaluacion_id;
+    }
+
+    /**
+     * Persiste el cierre de período de un docente: un renglón de
+     * evaluacion_periodo por año, con fc/fck ya calculados por
+     * CorreccionTemporal (indice_orquestador::cerrarPeriodo() arma $periodos).
+     * Recalcular pisa el renglón existente (mismo criterio que
+     * guardarEvaluacionDimension): reabrir un año ya cerrado y volver a
+     * cerrar el período no duplica filas.
+     *
+     * @param list<array{anio: int, k: int, ficha_id: int, categoria: string, dedicacion: string, lic_con_goce: string, lic_sin_goce: string, fc: string, fck: string}> $periodos
+     */
+    static function guardarEvaluacionPeriodo(int $legajo, array $periodos): void
+    {
+        foreach ($periodos as $periodo) {
+            $normativa_id = self::normativa_id($periodo['anio']);
+            $evaluacion_id = self::evaluacion_abierta($legajo, $normativa_id, $periodo['anio']);
+
+            toba::db('desempenio')->ejecutar_sentencia(
+                'INSERT INTO indice.evaluacion_periodo
+                    (evaluacion_id, anio, k, informe_id, informe_leido_en, categoria, dedicacion,
+                     lic_con_goce, lic_sin_goce, fc, fck)
+                 VALUES (:evaluacion_id, :anio, :k, :informe_id, now(), :categoria, :dedicacion,
+                         :lic_con_goce, :lic_sin_goce, :fc, :fck)
+                 ON CONFLICT (evaluacion_id, anio) DO UPDATE
+                    SET k = EXCLUDED.k, informe_id = EXCLUDED.informe_id,
+                        informe_leido_en = EXCLUDED.informe_leido_en,
+                        categoria = EXCLUDED.categoria, dedicacion = EXCLUDED.dedicacion,
+                        lic_con_goce = EXCLUDED.lic_con_goce, lic_sin_goce = EXCLUDED.lic_sin_goce,
+                        fc = EXCLUDED.fc, fck = EXCLUDED.fck',
+                [
+                    'evaluacion_id' => $evaluacion_id,
+                    'anio' => $periodo['anio'],
+                    'k' => $periodo['k'],
+                    'informe_id' => $periodo['ficha_id'],
+                    'categoria' => $periodo['categoria'],
+                    'dedicacion' => $periodo['dedicacion'],
+                    'lic_con_goce' => $periodo['lic_con_goce'],
+                    'lic_sin_goce' => $periodo['lic_sin_goce'],
+                    'fc' => $periodo['fc'],
+                    'fck' => $periodo['fck'],
+                ],
+            );
+        }
     }
 
     /**

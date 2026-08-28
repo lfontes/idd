@@ -13,6 +13,18 @@ declare(strict_types=1);
  */
 final class IndiceRepositorioConfiguracionTest extends \PHPUnit\Framework\TestCase
 {
+    public function test_dimensiones_trae_el_catalogo_completo_de_docencia_sembrado(): void
+    {
+        // Genérico a propósito (docs/indice/decisiones-pendientes.md): hoy
+        // sólo docencia está sembrada, investigación/extensión/gestión
+        // quedan pendientes -- si algún día se siembran, este test empieza a
+        // fallar y avisa que hay que revisar quién usa el resultado.
+        self::assertSame(
+            ['AD1', 'AD2', 'AD3', 'AD4', 'AD5', 'AD6', 'AD7', 'AD8'],
+            indice_repositorio::dimensiones(2025),
+        );
+    }
+
     public function test_componentes_de_ad1_reproduce_el_cuadro_2_4_1_1(): void
     {
         $componentes = indice_repositorio::componentes('AD1', 2025);

@@ -74,6 +74,33 @@ final class IndiceOrquestadorGuardarAD1Test extends \PHPUnit\Framework\TestCase
         self::assertSame('formacion_academica', $items[0]['origen_tabla']);
     }
 
+    /**
+     * evaluacion_item.descripcion es varchar(300). Encontrado corriendo
+     * indice_orquestador::calcularTodosLosDocentes() contra la base real
+     * (2026-08-28): 12 legajos tenían un texto real que superaba el límite y
+     * hacía fallar el INSERT (value too long). Se trunca en la persistencia
+     * (indice_repositorio::truncar_descripcion()), no en el motor.
+     */
+    public function test_descripcion_muy_larga_se_trunca_en_vez_de_fallar(): void
+    {
+        $ficha_id = $this->crearFicha(2025, categoria_id: 4, dedicacion_id: 3);
+        $tituloLargo = str_repeat('a', 350);
+        $this->crearFormacionAcademica($ficha_id, 2, $tituloLargo);
+
+        indice_orquestador::guardarAD1(self::LEGAJO, 2025);
+
+        $items = toba::db('desempenio')->consultar_sentencia(
+            "SELECT descripcion FROM indice.evaluacion_item ei
+               JOIN indice.evaluacion e ON e.id = ei.evaluacion_id
+              WHERE e.docente_id = :d AND ei.anio = 2025",
+            ['d' => self::LEGAJO],
+        );
+
+        self::assertCount(1, $items);
+        self::assertSame(300, strlen($items[0]['descripcion']));
+        self::assertStringEndsWith('...', $items[0]['descripcion']);
+    }
+
     public function test_recalcular_el_mismo_anio_no_duplica_filas(): void
     {
         $ficha_id = $this->crearFicha(2025, categoria_id: 4, dedicacion_id: 3);
