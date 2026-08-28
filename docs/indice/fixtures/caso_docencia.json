@@ -1,0 +1,790 @@
+{
+  "_descripcion": "Caso completo de un docente (4 años), extraido de IADocente.xlsx (hojas AD, AD1..AD8 y Puntaje) para el test de regresion del motor en php/indice/. Los valores de 'esperado' son los que produce la planilla; el motor debe reproducirlos exactamente.",
+  "_fuente": "docs/indice/fixtures/IADocente.xlsx",
+  "_notas": [
+    "anio (2021-2024) es una inferencia a partir de las fechas de los cursos declarados en AD2; la planilla en si solo numera 'k' (1..4), no el anio calendario. Ajustar si hay un anio real de referencia.",
+    "El item 'AD3' del anio 4 sin descripcion, y el item 'AD8' del anio 4 sin carrera/espacio curricular, reproducen filas de la planilla que vinieron sin esos datos descriptivos (no afectan el puntaje).",
+    "En AD5, los items sin 'tipo_presentacion' (Organizacion, Evaluador) son items que solo declaran participacion, sin presentacion: el termino 2 (lookup tipo_presentacion/referato) no aporta a ese item.",
+    "normativa_id / dimension_id no se incluyen: son claves de base generadas por 02_siembra_docencia.sql, no de la planilla."
+  ],
+  "normativa": "IDD-2025",
+  "actividad": "AD",
+  "periodo": [
+    {
+      "k": 1,
+      "anio": 2021,
+      "categoria": "AJ",
+      "dedicacion": "SE",
+      "lic_con_goce": "5.000000",
+      "lic_sin_goce": "3.000000",
+      "fc": "0.333333",
+      "fck": "3.000000"
+    },
+    {
+      "k": 2,
+      "anio": 2022,
+      "categoria": "T",
+      "dedicacion": "SE",
+      "lic_con_goce": "3.000000",
+      "lic_sin_goce": "0.000000",
+      "fc": "0.750000",
+      "fck": "1.846154"
+    },
+    {
+      "k": 3,
+      "anio": 2023,
+      "categoria": "T",
+      "dedicacion": "EX",
+      "lic_con_goce": "0.000000",
+      "lic_sin_goce": "0.000000",
+      "fc": "1.000000",
+      "fck": "1.440000"
+    },
+    {
+      "k": 4,
+      "anio": 2024,
+      "categoria": "T",
+      "dedicacion": "EX",
+      "lic_con_goce": "0.000000",
+      "lic_sin_goce": "0.000000",
+      "fc": "1.000000",
+      "fck": "1.297297"
+    }
+  ],
+  "items": {
+    "AD1": [
+      [
+        {
+          "descripcion": "Grado",
+          "tipo_formacion": "Grado",
+          "cantidad": 1
+        },
+        {
+          "descripcion": "Maestría",
+          "tipo_formacion": "Maestría",
+          "cantidad": 1
+        }
+      ],
+      [
+        {
+          "descripcion": "Grado",
+          "tipo_formacion": "Grado",
+          "cantidad": 1
+        },
+        {
+          "descripcion": "Maestría",
+          "tipo_formacion": "Maestría",
+          "cantidad": 1
+        },
+        {
+          "descripcion": "Diplomado",
+          "tipo_formacion": "Diplomado",
+          "cantidad": 1
+        }
+      ],
+      [
+        {
+          "descripcion": "Grado",
+          "tipo_formacion": "Grado",
+          "cantidad": 1
+        },
+        {
+          "descripcion": "Maestría",
+          "tipo_formacion": "Maestría",
+          "cantidad": 2
+        },
+        {
+          "descripcion": "Diplomado",
+          "tipo_formacion": "Diplomado",
+          "cantidad": 1
+        }
+      ],
+      [
+        {
+          "descripcion": "Grado",
+          "tipo_formacion": "Grado",
+          "cantidad": 1
+        },
+        {
+          "descripcion": "Doctorado",
+          "tipo_formacion": "Doctorado",
+          "cantidad": 1
+        },
+        {
+          "descripcion": "Maestría",
+          "tipo_formacion": "Maestría",
+          "cantidad": 2
+        },
+        {
+          "descripcion": "Diplomado",
+          "tipo_formacion": "Diplomado",
+          "cantidad": 1
+        }
+      ]
+    ],
+    "AD2": [
+      [
+        {
+          "descripcion": "Variable Aleatoria",
+          "horas": "30.000000",
+          "curso": 1,
+          "taller": 0,
+          "asistencia": 1,
+          "aprobado": 1,
+          "form_obligatoria": 0,
+          "pasantia": 0,
+          "distincion": 0
+        },
+        {
+          "descripcion": "Distribuciones",
+          "horas": "25.000000",
+          "curso": 1,
+          "taller": 0,
+          "asistencia": 1,
+          "aprobado": 1,
+          "form_obligatoria": 0,
+          "pasantia": 0,
+          "distincion": 0
+        },
+        {
+          "descripcion": "Binomial",
+          "horas": "30.000000",
+          "curso": 1,
+          "taller": 0,
+          "asistencia": 1,
+          "aprobado": 0,
+          "form_obligatoria": 0,
+          "pasantia": 0,
+          "distincion": 0
+        }
+      ],
+      [
+        {
+          "descripcion": "Análisis de dato",
+          "horas": "30.000000",
+          "curso": 0,
+          "taller": 1,
+          "asistencia": 0,
+          "aprobado": 1,
+          "form_obligatoria": 0,
+          "pasantia": 0,
+          "distincion": 0
+        },
+        {
+          "descripcion": "PP",
+          "horas": "25.000000",
+          "curso": 0,
+          "taller": 1,
+          "asistencia": 1,
+          "aprobado": 0,
+          "form_obligatoria": 0,
+          "pasantia": 0,
+          "distincion": 0
+        },
+        {
+          "descripcion": "Premio docente",
+          "horas": "0.000000",
+          "curso": 0,
+          "taller": 0,
+          "asistencia": 0,
+          "aprobado": 0,
+          "form_obligatoria": 0,
+          "pasantia": 0,
+          "distincion": 0
+        }
+      ],
+      [
+        {
+          "descripcion": "Juju",
+          "horas": "30.000000",
+          "curso": 0,
+          "taller": 1,
+          "asistencia": 0,
+          "aprobado": 1,
+          "form_obligatoria": 0,
+          "pasantia": 0,
+          "distincion": 0
+        },
+        {
+          "descripcion": "Ley Micaela",
+          "horas": "30.000000",
+          "curso": 0,
+          "taller": 0,
+          "asistencia": 0,
+          "aprobado": 1,
+          "form_obligatoria": 1,
+          "pasantia": 0,
+          "distincion": 0
+        }
+      ],
+      [
+        {
+          "descripcion": "NN",
+          "horas": "40.000000",
+          "curso": 1,
+          "taller": 0,
+          "asistencia": 1,
+          "aprobado": 1,
+          "form_obligatoria": 0,
+          "pasantia": 0,
+          "distincion": 0
+        },
+        {
+          "descripcion": "ll",
+          "horas": "20.000000",
+          "curso": 0,
+          "taller": 1,
+          "asistencia": 1,
+          "aprobado": 1,
+          "form_obligatoria": 0,
+          "pasantia": 0,
+          "distincion": 0
+        }
+      ]
+    ],
+    "AD3": [
+      [
+        {
+          "descripcion": "IA / Estadística y Diseño Experimental",
+          "carga_horaria": "95.000000",
+          "estudiantes_inscriptos": "190.000000",
+          "tipo_espacio": "2"
+        },
+        {
+          "descripcion": "LB / Estadística Aplicada",
+          "carga_horaria": "90.000000",
+          "estudiantes_inscriptos": "48.000000",
+          "tipo_espacio": "2"
+        },
+        {
+          "descripcion": "IRN / Bioestadística",
+          "carga_horaria": "90.000000",
+          "estudiantes_inscriptos": "73.000000",
+          "tipo_espacio": "2"
+        },
+        {
+          "descripcion": "B / Estadística Módulo I",
+          "carga_horaria": "50.000000",
+          "estudiantes_inscriptos": "1.000000",
+          "tipo_espacio": "2"
+        },
+        {
+          "descripcion": "B / Herramientas Básicas de Informática",
+          "carga_horaria": "30.000000",
+          "estudiantes_inscriptos": "45.000000",
+          "tipo_espacio": "2"
+        },
+        {
+          "descripcion": "IA / Informática Aplicada",
+          "carga_horaria": "50.000000",
+          "estudiantes_inscriptos": "114.000000",
+          "tipo_espacio": "2"
+        },
+        {
+          "descripcion": "IRN / Aplicación de Programas Informáticos",
+          "carga_horaria": "60.000000",
+          "estudiantes_inscriptos": "18.000000",
+          "tipo_espacio": "2"
+        }
+      ],
+      [
+        {
+          "descripcion": "IA / Estadística y Diseño Experimental",
+          "carga_horaria": "120.000000",
+          "estudiantes_inscriptos": "180.000000",
+          "tipo_espacio": "2"
+        },
+        {
+          "descripcion": "LB / Estadística Aplicada",
+          "carga_horaria": "100.000000",
+          "estudiantes_inscriptos": "40.000000",
+          "tipo_espacio": "2"
+        },
+        {
+          "descripcion": "IRN / Bioestadística",
+          "carga_horaria": "80.000000",
+          "estudiantes_inscriptos": "120.000000",
+          "tipo_espacio": "2"
+        },
+        {
+          "descripcion": "Prueba",
+          "carga_horaria": "6.000000",
+          "estudiantes_inscriptos": "5.000000",
+          "tipo_espacio": "2"
+        }
+      ],
+      [
+        {
+          "descripcion": "IA / Estadística y Diseño Experimental",
+          "carga_horaria": "120.000000",
+          "estudiantes_inscriptos": "180.000000",
+          "tipo_espacio": "2"
+        },
+        {
+          "descripcion": "LB / Estadística Aplicada",
+          "carga_horaria": "100.000000",
+          "estudiantes_inscriptos": "40.000000",
+          "tipo_espacio": "2"
+        },
+        {
+          "descripcion": "IRN / Bioestadística",
+          "carga_horaria": "80.000000",
+          "estudiantes_inscriptos": "120.000000",
+          "tipo_espacio": "2"
+        },
+        {
+          "descripcion": "Prueba",
+          "carga_horaria": "6.000000",
+          "estudiantes_inscriptos": "5.000000",
+          "tipo_espacio": "2"
+        }
+      ],
+      [
+        {
+          "descripcion": "IA / Estadística y Diseño Experimental",
+          "carga_horaria": "120.000000",
+          "estudiantes_inscriptos": "180.000000",
+          "tipo_espacio": "2"
+        },
+        {
+          "descripcion": "LB / Estadística Aplicada",
+          "carga_horaria": "100.000000",
+          "estudiantes_inscriptos": "40.000000",
+          "tipo_espacio": "2"
+        },
+        {
+          "descripcion": "IRN / Bioestadística",
+          "carga_horaria": "80.000000",
+          "estudiantes_inscriptos": "120.000000",
+          "tipo_espacio": "2"
+        },
+        {
+          "descripcion": "Prueba",
+          "carga_horaria": "6.000000",
+          "estudiantes_inscriptos": "5.000000",
+          "tipo_espacio": "2"
+        },
+        {
+          "descripcion": "(sin nombre en la planilla)",
+          "carga_horaria": "15.000000",
+          "estudiantes_inscriptos": "15.000000",
+          "tipo_espacio": "2"
+        }
+      ]
+    ],
+    "AD4": [
+      [
+        {
+          "descripcion": "Estadística Aplicada",
+          "creditos": "3.000000",
+          "participacion": "30.000000",
+          "carrera": "Doctorado"
+        },
+        {
+          "descripcion": "Estadística I",
+          "creditos": "4.000000",
+          "participacion": "20.000000",
+          "carrera": "Maestría"
+        },
+        {
+          "descripcion": "Estadística",
+          "creditos": "3.000000",
+          "participacion": "20.000000",
+          "carrera": "Especialización"
+        }
+      ],
+      [
+        {
+          "descripcion": "Nutrición",
+          "creditos": "2.000000",
+          "participacion": "30.000000",
+          "carrera": "Diplomatura"
+        },
+        {
+          "descripcion": "pp",
+          "creditos": "1.000000",
+          "participacion": "100.000000",
+          "carrera": "Diplomado"
+        }
+      ],
+      [
+        {
+          "descripcion": "Estadística Aplicada",
+          "creditos": "2.000000",
+          "participacion": "30.000000",
+          "carrera": "Maestría"
+        },
+        {
+          "descripcion": "Estadística I",
+          "creditos": "2.000000",
+          "participacion": "5.000000",
+          "carrera": "Maestría"
+        }
+      ],
+      [
+        {
+          "descripcion": "Estadística Aplicada",
+          "creditos": "2.000000",
+          "participacion": "30.000000",
+          "carrera": "Maestría"
+        },
+        {
+          "descripcion": "Estadística I",
+          "creditos": "2.000000",
+          "participacion": "5.000000",
+          "carrera": "Maestría"
+        }
+      ]
+    ],
+    "AD5": [
+      [
+        {
+          "descripcion": "Coloquio",
+          "tipo_participacion": "Asistente",
+          "tipo_presentacion": "Resumen",
+          "referato": "1"
+        },
+        {
+          "descripcion": "UNCUYO",
+          "tipo_participacion": "Expositor",
+          "tipo_presentacion": "Trabajo Extendido",
+          "referato": "1"
+        },
+        {
+          "descripcion": "FGDGG",
+          "tipo_participacion": "Expositor",
+          "tipo_presentacion": "Trabajo Completo",
+          "referato": "1"
+        },
+        {
+          "descripcion": "SSE",
+          "tipo_participacion": "Organización"
+        },
+        {
+          "descripcion": "pppp",
+          "tipo_participacion": "Evaluador"
+        }
+      ],
+      [
+        {
+          "descripcion": "Coloquio",
+          "tipo_participacion": "Asistente",
+          "tipo_presentacion": "Resumen",
+          "referato": "1"
+        }
+      ],
+      [],
+      [
+        {
+          "descripcion": "Coloquio",
+          "tipo_participacion": "Asistente",
+          "tipo_presentacion": "Resumen",
+          "referato": "1"
+        },
+        {
+          "descripcion": "UNCUYO",
+          "tipo_participacion": "Expositor",
+          "tipo_presentacion": "Trabajo Extendido",
+          "referato": "1"
+        },
+        {
+          "descripcion": "FGDGG",
+          "tipo_participacion": "Expositor",
+          "tipo_presentacion": "Trabajo Completo",
+          "referato": "1"
+        },
+        {
+          "descripcion": "SSE",
+          "tipo_participacion": "Organización"
+        },
+        {
+          "descripcion": "pppp",
+          "tipo_participacion": "Evaluador"
+        }
+      ]
+    ],
+    "AD6": [
+      [
+        {
+          "descripcion": "Chinche - N°560/236-D",
+          "tipo_participacion": "Director"
+        },
+        {
+          "descripcion": "Pi - N°560/236-D",
+          "tipo_participacion": "Codirector"
+        },
+        {
+          "descripcion": "Pipi - N°560/236-D",
+          "tipo_participacion": "Participante"
+        },
+        {
+          "descripcion": "Titi - N°560/236-D",
+          "tipo_participacion": "Evaluador"
+        }
+      ],
+      [
+        {
+          "descripcion": "N - N°560/236-D",
+          "tipo_participacion": "Director"
+        },
+        {
+          "descripcion": "S - N°560/236-D",
+          "tipo_participacion": "Codirector"
+        }
+      ],
+      [
+        {
+          "descripcion": "Q - N°560/236-D",
+          "tipo_participacion": "Participante"
+        }
+      ],
+      []
+    ],
+    "AD7": [
+      [
+        {
+          "descripcion": "José",
+          "categoria_rrhh": "Docente"
+        },
+        {
+          "descripcion": "Tony",
+          "categoria_rrhh": "Adscripto"
+        },
+        {
+          "descripcion": "Mónica",
+          "categoria_rrhh": "Pasante"
+        },
+        {
+          "descripcion": "Josefa",
+          "categoria_rrhh": "Concurrencia"
+        }
+      ],
+      [
+        {
+          "descripcion": "José",
+          "categoria_rrhh": "Docente"
+        },
+        {
+          "descripcion": "Tony",
+          "categoria_rrhh": "Docente"
+        },
+        {
+          "descripcion": "Mónica",
+          "categoria_rrhh": "Docente"
+        },
+        {
+          "descripcion": "Josefa",
+          "categoria_rrhh": "Concurrencia"
+        }
+      ],
+      [
+        {
+          "descripcion": "José",
+          "categoria_rrhh": "Docente"
+        }
+      ],
+      []
+    ],
+    "AD8": [
+      [
+        {
+          "descripcion": "IA / Estadística y Diseño Experimental",
+          "material": "Apuntes de clase",
+          "tarea": "Actualización"
+        },
+        {
+          "descripcion": "IA / Estadística y Diseño Experimental",
+          "material": "Trabajo Práctico",
+          "tarea": "Desarrollo"
+        },
+        {
+          "descripcion": "LB / Estadistica Aplicada",
+          "material": "Entorno Virtual",
+          "tarea": "Actualización"
+        }
+      ],
+      [
+        {
+          "descripcion": "IA / Estadística y Diseño Experimental",
+          "material": "Apuntes de clase",
+          "tarea": "Actualización"
+        },
+        {
+          "descripcion": "IA / Estadística y Diseño Experimental",
+          "material": "Trabajo Práctico",
+          "tarea": "Actualización"
+        },
+        {
+          "descripcion": "LB / Estadistica Aplicada",
+          "material": "Entorno Virtual",
+          "tarea": "Actualización"
+        }
+      ],
+      [
+        {
+          "descripcion": "IA / Estadística y Diseño Experimental",
+          "material": "Apuntes de clase",
+          "tarea": "Actualización"
+        },
+        {
+          "descripcion": "IA / Estadística y Diseño Experimental",
+          "material": "Trabajo Práctico",
+          "tarea": "Actualización"
+        }
+      ],
+      [
+        {
+          "descripcion": "(sin carrera/espacio en la planilla)",
+          "material": "Trabajo Práctico",
+          "tarea": "Actualización"
+        }
+      ]
+    ]
+  },
+  "esperado": {
+    "dimensiones": {
+      "AD1": {
+        "pd": [
+          "6.000000",
+          "6.500000",
+          "9.500000",
+          "14.500000"
+        ],
+        "valoracion": [
+          1,
+          1,
+          3,
+          3
+        ]
+      },
+      "AD2": {
+        "pd": [
+          "2.800000",
+          "1.700000",
+          "2.400000",
+          "2.400000"
+        ],
+        "valoracion": [
+          1,
+          1,
+          1,
+          1
+        ]
+      },
+      "AD3": {
+        "pd": [
+          "13.748148",
+          "13.048148",
+          "13.048148",
+          "13.131481"
+        ],
+        "valoracion": [
+          3,
+          3,
+          3,
+          3
+        ]
+      },
+      "AD4": {
+        "pd": [
+          "12.100000",
+          "1.100000",
+          "3.500000",
+          "3.500000"
+        ],
+        "valoracion": [
+          3,
+          1,
+          3,
+          3
+        ]
+      },
+      "AD5": {
+        "pd": [
+          "32.000000",
+          "4.000000",
+          "0.000000",
+          "32.000000"
+        ],
+        "valoracion": [
+          3,
+          1,
+          0,
+          3
+        ]
+      },
+      "AD6": {
+        "pd": [
+          "19.000000",
+          "13.000000",
+          "1.000000",
+          "0.000000"
+        ],
+        "valoracion": [
+          3,
+          3,
+          1,
+          0
+        ]
+      },
+      "AD7": {
+        "pd": [
+          "21.000000",
+          "33.000000",
+          "10.000000",
+          "0.000000"
+        ],
+        "valoracion": [
+          3,
+          3,
+          1,
+          0
+        ]
+      },
+      "AD8": {
+        "pd": [
+          "41.000000",
+          "21.000000",
+          "13.000000",
+          "5.000000"
+        ],
+        "valoracion": [
+          3,
+          3,
+          0,
+          0
+        ]
+      }
+    },
+    "actividad": [
+      {
+        "k": 1,
+        "puntaje": "147.648148",
+        "umbral": "31.000000",
+        "indice_parcial": "14.288530",
+        "indice_acumulado": "14.288530"
+      },
+      {
+        "k": 2,
+        "puntaje": "93.348148",
+        "umbral": "31.000000",
+        "indice_parcial": "4.014974",
+        "indice_acumulado": "7.176068"
+      },
+      {
+        "k": 3,
+        "puntaje": "52.448148",
+        "umbral": "31.000000",
+        "indice_parcial": "1.691876",
+        "indice_acumulado": "4.543656"
+      },
+      {
+        "k": 4,
+        "puntaje": "70.531481",
+        "umbral": "31.000000",
+        "indice_parcial": "2.275209",
+        "indice_acumulado": "3.807943"
+      }
+    ]
+  }
+}

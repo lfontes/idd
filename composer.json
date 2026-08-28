@@ -1,0 +1,24 @@
+{
+    "name": "siu-toba/pruebas-indice",
+    "description": "Motor de calculo del Indice de Desempeño Docente (php/indice/), sin dependencias del framework Toba.",
+    "require": {
+        "php": ">=8.1",
+        "ext-bcmath": "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^10.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Pruebas\\Indice\\": "php/indice/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Pruebas\\Indice\\Test\\": "test/indice/"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    }
+}

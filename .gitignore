@@ -1,3 +1,5 @@
 temp/*
 *.md
 toba_referencia/
+vendor/
+.phpunit.result.cache
